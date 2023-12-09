@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
   m_Name: TestArticle
   m_EditorClassIdentifier: 
-  id: IdFromStoryboard
+  id: Debug_Article
   headline: Pets Overnight Sales Surge During Holidays
   content: CEO says pet delivery service is poise to overtake Amazon during holiday
     season.
