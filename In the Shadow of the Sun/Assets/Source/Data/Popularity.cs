@@ -22,6 +22,20 @@ public class Popularity
         Companies = startPopularity;
     }
 
+    public float Get(EParty party)
+    {
+        switch (party)
+        {
+            case EParty.Civilian:
+                return Civilian;
+            case EParty.Politician:
+                return Politician;
+            case EParty.Companies:
+                return Companies;
+        }
+        return Mathf.Infinity;
+    }
+
     public void Apply(EParty party, float value)
     {
         switch (party)

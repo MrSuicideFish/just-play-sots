@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee1904f9796c4d8399ed2539dc2b1213, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: c734337408e641ac8ef4a961000f02ac, type: 3}
+  m_Name: PoliticianLawsuit
   m_EditorClassIdentifier: 
-  StarterFunds: 1500
-  StarterPopularity: 10
-  StarterInsuranceFee: 250
-  UnpopularThreshold: 30
-  LawsuitProbability: 1
+  id: Debugging
+  header: Campaign Finance Violation
+  content: Got caught giving too much money to a political campaign
+  party: 2
+  cost: 50000

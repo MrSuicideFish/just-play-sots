@@ -18,6 +18,7 @@ public class ArticleDb : ScriptableObject
 
     public Article[] mainArticles;
     public Article[] sideArticles;
+    public Lawsuit[] lawsuits;
 
     public Article GetArticleByIndex(int index)
     {

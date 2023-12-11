@@ -51,6 +51,12 @@ public class Funds
         return fundsA;
     }
 
+    public static Funds operator *(Funds funds, float value)
+    {
+        funds.value *= value;
+        return funds;
+    }
+
     public delegate void FundsDelegate(float value);
     public event FundsDelegate  OnValueChange;
     public static string Format(float value)

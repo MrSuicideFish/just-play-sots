@@ -16,3 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6279ed0eaea36549982648ed91312bd, type: 2}
   - {fileID: 11400000, guid: 0214c8d1796e3354ab4a536b1b37a8c7, type: 2}
   sideArticles: []
+  lawsuits:
+  - {fileID: 11400000, guid: 65c03c0b7fdb2824a8c313463828916b, type: 2}
+  - {fileID: 11400000, guid: 378609236619c9c4d9cea7ead23367ff, type: 2}
+  - {fileID: 11400000, guid: fa3f617894583ce4191fa31aac7c80d1, type: 2}
