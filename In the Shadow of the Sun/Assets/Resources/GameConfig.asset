@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1904f9796c4d8399ed2539dc2b1213, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  StarterFunds: 1500
+  StarterFunds: 167000
   StarterPopularity: 10
-  StarterInsuranceFee: 250
   UnpopularThreshold: 30
   LawsuitProbability: 1
+  StarterInsuranceFee: 250
+  InsuranceMultiplier: 2.1
