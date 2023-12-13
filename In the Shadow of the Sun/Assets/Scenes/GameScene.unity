@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34785548, g: 0.36532846, b: 0.37515396, a: 1}
+  m_IndirectSpecularColor: {r: 0.17986251, g: 0.17986251, b: 0.17986251, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 703368bd25300df41842a697a19a6755, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 2e123aa7a2907d747809397ca34b82d9, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: b1d56402b9e51df419ae50da307fd0a2, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -630,7 +630,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3840
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 3.4e-44, z: 0, w: 1.0289316e+9}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 6e-45, w: 0.002298195}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -4222,7 +4222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.022104826, y: 0.905776, z: -0.047615632, w: 0.42049256}
+  m_LocalRotation: {x: 0.022104822, y: 0.90577596, z: -0.04761562, w: 0.4204926}
   m_LocalPosition: {x: 3.409149, y: -0.5822265, z: -10.295594}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4241,7 +4241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 1
+  clearColorMode: 0
   backgroundColorHDR: {r: 0.001134746, g: 0.004853665, b: 0.014150947, a: 0.49803922}
   clearDepth: 1
   volumeLayerMask:
@@ -4682,14 +4682,14 @@ LightProbeGroup:
   m_GameObject: {fileID: 587569130}
   m_Enabled: 1
   m_SourcePositions:
-  - {x: 1, y: 1, z: 2.5378208}
-  - {x: 1, y: 1, z: -1}
-  - {x: 1, y: -1, z: 1}
-  - {x: 1, y: -1, z: -1}
-  - {x: -1, y: 1, z: 2.5378208}
-  - {x: -1, y: 1, z: -1}
+  - {x: 2.433672, y: 1, z: 2.9042826}
+  - {x: 2.04285, y: 1, z: -1}
+  - {x: 1.9884315, y: -1, z: 2.6984558}
+  - {x: 2.0246706, y: -1, z: -1.2768946}
+  - {x: -2.8503084, y: 1, z: 2.7109547}
+  - {x: -2.609245, y: 1, z: -1}
   - {x: -2.6952562, y: -1, z: 2.7809896}
-  - {x: -1, y: -1, z: -1}
+  - {x: -2.6701822, y: -1, z: -1.5912485}
   m_Dering: 1
 --- !u!1001 &593356753
 PrefabInstance:
@@ -6631,7 +6631,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3840
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 3.6e-44, z: 3e-45, w: 1.3811e-41}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 6e-45, w: 0.0024695098}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -7896,7 +7896,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3840
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 6e-44, z: 3.1e-44, w: 1.9966e-41}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 6e-45, w: 0.0019998066}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -8271,7 +8271,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3840
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 5.69e-43, y: 0, z: 1.1042e-41, w: 8.157313e+21}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 6e-45, w: 0.0022981279}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10721,9 +10721,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: ac772fc3c46f04f45b2ed2a511c6ee40, type: 2}
-  m_StaticLightingSkyUniqueID: 1
+  m_StaticLightingSkyUniqueID: 0
   m_StaticLightingCloudsUniqueID: 0
-  m_StaticLightingVolumetricClouds: 1
+  m_StaticLightingVolumetricClouds: 0
 --- !u!4 &1369526710
 Transform:
   m_ObjectHideFlags: 1
@@ -13218,7 +13218,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: ac772fc3c46f04f45b2ed2a511c6ee40, type: 2}
+  sharedProfile: {fileID: 0}
 --- !u!1001 &1672740663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14038,7 +14038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791897370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.022104826, y: 0.905776, z: -0.047615632, w: 0.42049256}
+  m_LocalRotation: {x: 0.022104822, y: 0.90577596, z: -0.04761562, w: 0.4204926}
   m_LocalPosition: {x: -0.885, y: 0.1582283, z: 0.643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
