@@ -1,13 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-public class Screen_StartGame : GameScreen
+public class Screen_Intro : GameScreen
 {
     public TMP_InputField input_OrgName;
     
     public override EScreenType GetScreenType()
     {
-        return EScreenType.StartGame;
+        return EScreenType.Intro;
     }
 
     private void OnEnable()

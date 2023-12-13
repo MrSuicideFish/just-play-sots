@@ -14,6 +14,7 @@ public class DebuggingUI : MonoBehaviour
                     text_insurance_payout,
                     text_insurance_fees;
 
+    public TMP_Text text_gamestate;
     private void Update()
     {
         text_np_name.text = GameManager.Instance.OrganizationName;
@@ -25,5 +26,7 @@ public class DebuggingUI : MonoBehaviour
         text_insurance_contribute.text = GameManager.Instance.Insurance.totalContributions.ToString();
         text_insurance_payout.text = GameManager.Instance.Insurance.totalPayout.ToString();
         text_insurance_fees.text = GameManager.Instance.Insurance.fee.ToString();
+
+        text_gamestate.text = GameManager.Instance.StateMachine.currentState?.StateName;
     }
 }

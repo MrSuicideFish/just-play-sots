@@ -3,11 +3,13 @@ using UnityEngine.Events;
 
 public enum EScreenType
 {
-    StartGame,
+    Intro,
+    Home,
     Article,
     Result,
     Lawsuit,
-    EndGame
+    EndGame,
+    Empty
 }
 
 public abstract class GameScreen : MonoBehaviour

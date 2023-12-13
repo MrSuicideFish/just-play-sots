@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,7 +7,6 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-
     public static GameManager Instance
     {
         get
@@ -19,41 +19,45 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+    
+    // player
+    public PlayerController playerController;
+    
+    // cinematic
+    public Animation introAnimation;
 
     // Cache
     private bool gameHasStarted;
     private bool gameHasEnded;
 
     public Article CurrentArticle { get; private set; }
-
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
     public Lawsuit CurrentLawsuit { get; private set; }
 
 
     private int articleIndex = 0;
-    public string OrganizationName { get; set; } = String.Empty;
+    public string OrganizationName { get; set; }
     public Popularity Popularity { get; private set; }
     public Funds OrganizationFunds { get; private set; }
     public Insurance Insurance { get; private set; }
+    
+    public GameStateMachine StateMachine { get; private set; }
 
     // Events
     public UnityEvent<Popularity> OnPopularityChanged;
     public UnityEvent<float> OnFundsChanged;
 
-    private void Awake()
-    {
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
-    }
-
+    private void Update() => StateMachine.TickStateMachine(this);
     private void Start()
     {
+        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
+        StateMachine = new GameStateMachine(this);
         Popularity = new(GameConfig.Instance.StarterPopularity);
         OrganizationFunds = new(GameConfig.Instance.StarterFunds);
         OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
-
-        GameUIController.Instance.GoToScreen(EScreenType.StartGame);
+        GameUIController.Instance.GoToScreen(EScreenType.Intro);
     }
 
     public void SelectArticleOption(int optionIndex)
@@ -104,7 +108,7 @@ public class GameManager : MonoBehaviour
             Insurance.SettleLawsuit(CurrentLawsuit.cost);
         }
         
-        GameUIController.Instance.GoToScreen(EScreenType.Article);
+        ReturnToHome();
     }
 
     public void EndArticle()
@@ -113,21 +117,20 @@ public class GameManager : MonoBehaviour
         CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
         if (CurrentArticle != null)
         {
-            EParty pendingLawsuitRequest = RollForLawsuit();
-            if (pendingLawsuitRequest != EParty.None)
-            {
-                int rndLawsuit = UnityEngine.Random.Range(0, ArticleDb.Instance.lawsuits.Length);
-                CurrentLawsuit = ArticleDb.Instance.lawsuits[rndLawsuit];
-                GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
-                return;
-            }
-            
-            GameUIController.Instance.GoToScreen(EScreenType.Article);
+            ReturnToHome();
         }
-        else
+    }
+
+    public void ReturnToHome()
+    {
+        EParty pendingLawsuitRequest = RollForLawsuit();
+        if (pendingLawsuitRequest != EParty.None)
         {
-            GameUIController.Instance.GoToScreen(EScreenType.EndGame);
+            int rndLawsuit = UnityEngine.Random.Range(0, ArticleDb.Instance.lawsuits.Length);
+            CurrentLawsuit = ArticleDb.Instance.lawsuits[rndLawsuit];
         }
+        
+        StateMachine.GoToState(this, new GameState_Home());
     }
 
     public void StartGame()
@@ -139,7 +142,7 @@ public class GameManager : MonoBehaviour
 
         gameHasStarted = true;
         CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
-        GameUIController.Instance.GoToScreen(EScreenType.Article);
+        StateMachine.GoToState(this, new Gamestate_Entry());
     }
 
     public void EndGame()
