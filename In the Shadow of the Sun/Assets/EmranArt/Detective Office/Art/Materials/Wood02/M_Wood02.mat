@@ -526,14 +526,14 @@ Material:
     - _Metallic2: 0
     - _Metallic3: 0
     - _MetallicRemapMax: 1
-    - _MetallicRemapMin: 0
+    - _MetallicRemapMin: 0.416
     - _Mode: 0
     - _NormalMapSpace: 0
     - _NormalMapSpace0: 0
     - _NormalMapSpace1: 0
     - _NormalMapSpace2: 0
     - _NormalMapSpace3: 0
-    - _NormalScale: 1
+    - _NormalScale: 0.5
     - _NormalScale0: 1
     - _NormalScale1: 1
     - _NormalScale2: 1
@@ -569,7 +569,7 @@ Material:
     - _SmoothnessRemapMax1: 1
     - _SmoothnessRemapMax2: 1
     - _SmoothnessRemapMax3: 1
-    - _SmoothnessRemapMin: 0.24385996
+    - _SmoothnessRemapMin: 0.15585996
     - _SmoothnessRemapMin0: 0
     - _SmoothnessRemapMin1: 0
     - _SmoothnessRemapMin2: 0
