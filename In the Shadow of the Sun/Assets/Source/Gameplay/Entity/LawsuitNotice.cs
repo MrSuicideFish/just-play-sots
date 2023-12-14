@@ -1,7 +1,9 @@
-namespace Source.Gameplay.Entity
+using UnityEngine;
+
+public class LawsuitNotice : ClickableEntity
 {
-    public class LawsuitNotice
+    protected override void OnSelected()
     {
-        
+        GameManager.Instance.StateMachine.GoToState(new GameState_Lawsuit());
     }
 }
