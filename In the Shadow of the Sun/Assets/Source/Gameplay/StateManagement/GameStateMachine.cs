@@ -4,16 +4,16 @@ public class GameStateMachine
     
     public GameStateMachine(GameManager gameManager){}
 
-    public void GoToState(GameManager gameManager, IGameState newState)
+    public void GoToState(IGameState newState)
     {
         if (currentState != null)
         {
-            currentState.OnStateExit(gameManager,this);
+            currentState.OnStateExit(GameManager.Instance, this);
             currentState = null;
         }
 
         currentState = newState;
-        currentState.OnStateEnter(gameManager,this);
+        currentState.OnStateEnter(GameManager.Instance,this);
     }
 
     public void TickStateMachine(GameManager gameManager)

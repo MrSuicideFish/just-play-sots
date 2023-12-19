@@ -9,6 +9,7 @@ public enum EScreenType
     Result,
     Lawsuit,
     EndGame,
+    Staff,
     Empty
 }
 

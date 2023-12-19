@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public Popularity Popularity { get; private set; }
     public Funds OrganizationFunds { get; private set; }
     public Insurance Insurance { get; private set; }
+    public Staff Staff { get; private set; }
     
     public GameStateMachine StateMachine { get; private set; }
 
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
         OrganizationFunds = new(GameConfig.Instance.StarterFunds);
         OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
+        Staff = new();
         GameUIController.Instance.GoToScreen(EScreenType.Intro);
     }
 
@@ -130,7 +132,7 @@ public class GameManager : MonoBehaviour
             CurrentLawsuit = ArticleDb.Instance.lawsuits[rndLawsuit];
         }
         
-        StateMachine.GoToState(this, new GameState_Home());
+        StateMachine.GoToState(new GameState_Home());
     }
 
     public void StartGame()
@@ -142,7 +144,7 @@ public class GameManager : MonoBehaviour
 
         gameHasStarted = true;
         CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
-        StateMachine.GoToState(this, new Gamestate_Entry());
+        StateMachine.GoToState(new Gamestate_Entry());
     }
 
     public void EndGame()

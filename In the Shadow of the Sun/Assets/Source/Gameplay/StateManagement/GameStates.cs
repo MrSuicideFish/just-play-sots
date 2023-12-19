@@ -52,3 +52,72 @@ public class GameState_Home : IGameState
     {
     }
 }
+
+public class GameState_Lawsuit: IGameState
+{
+    public string StateName { get; } = "Lawsuit";
+    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    {
+        GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
+        CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
+        gameManager.playerController.enabled = false;
+    }
+
+    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameManager.ReturnToHome();
+        }
+    }
+
+    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    {
+    }
+}
+
+public class GameState_Newspaper : IGameState
+{
+    public string StateName { get; } = "Newspaper";
+    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    {
+        GameUIController.Instance.GoToScreen(EScreenType.Article);
+        CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
+        gameManager.playerController.enabled = false;
+    }
+
+    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameManager.ReturnToHome();
+        }
+    }
+
+    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    {
+    }
+}
+
+public class GameState_Staff : IGameState
+{
+    public string StateName { get; } = "Staff Management";
+    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    {
+        GameUIController.Instance.GoToScreen(EScreenType.Staff);
+        CameraManager.Instance.GoToCamera(ECameraType.Phone);
+        gameManager.playerController.enabled = false;
+    }
+
+    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameManager.ReturnToHome();
+        }
+    }
+
+    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    {
+    }
+}

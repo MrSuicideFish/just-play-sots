@@ -1,7 +1,9 @@
-namespace Source.Gameplay.Entity
+using UnityEngine;
+
+public class Newspaper : ClickableEntity
 {
-    public class Newspaper
+    protected override void OnSelected()
     {
-        
+        GameManager.Instance.StateMachine.GoToState(new GameState_Newspaper());
     }
 }

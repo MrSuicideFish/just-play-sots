@@ -1,7 +1,10 @@
-namespace Source.Gameplay.Entity
+using System;
+using UnityEngine;
+
+public class Phone : ClickableEntity
 {
-    public class Phone
+    protected override void OnSelected()
     {
-        
+        GameManager.Instance.StateMachine.GoToState(new GameState_Staff());
     }
 }
