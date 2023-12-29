@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ClickableEntity : MonoBehaviour
 {
+    public GameObject view;
+    
     protected virtual void OnSelected(){}
     private void OnMouseDown()
     {
@@ -10,5 +12,15 @@ public class ClickableEntity : MonoBehaviour
         {
             OnSelected();
         }
+    }
+    
+    public void Show()
+    {
+        view.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        view.SetActive(false);
     }
 }

@@ -13,6 +13,8 @@ public class Gamestate_Entry : IGameState
     public string StateName { get; } = "Entry";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
+        Newspaper.Instance.Hide();
+        LawsuitNotice.Instance.Hide();
         gameManager.playerController.enabled = false;
         CameraManager.Instance.GoToCamera(ECameraType.Intro);
         GameUIController.Instance.GoToScreen(EScreenType.Empty);
@@ -53,7 +55,7 @@ public class GameState_Home : IGameState
     }
 }
 
-public class GameState_Lawsuit: IGameState
+public class GameState_Lawsuit : IGameState
 {
     public string StateName { get; } = "Lawsuit";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
@@ -96,6 +98,7 @@ public class GameState_Newspaper : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        
     }
 }
 
@@ -115,6 +118,26 @@ public class GameState_Staff : IGameState
         {
             gameManager.ReturnToHome();
         }
+    }
+
+    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    {
+    }
+}
+
+public class GameState_Results : IGameState
+{
+    public string StateName { get; } = "Results";
+
+    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    {
+        GameUIController.Instance.GoToScreen(EScreenType.Result);
+        CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
+        gameManager.playerController.enabled = false;
+    }
+
+    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    {
     }
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
