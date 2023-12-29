@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
     // Events
     public UnityEvent<Popularity> OnPopularityChanged;
     public UnityEvent<float> OnFundsChanged;
+    public UnityEvent OnPaperDelivered, OnLawsuitDelivered;
 
     private void Update() => StateMachine.TickStateMachine(this);
     private void Start()
     {
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
         StateMachine = new GameStateMachine(this);
         Popularity = new(GameConfig.Instance.StarterPopularity);
         OrganizationFunds = new(GameConfig.Instance.StarterFunds);

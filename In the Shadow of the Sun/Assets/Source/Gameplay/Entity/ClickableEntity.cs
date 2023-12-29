@@ -8,7 +8,8 @@ public class ClickableEntity : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Selected World Entity");
-        if (GameManager.Instance.playerController.enabled)
+        if (view != null && view.activeInHierarchy 
+                         && GameManager.Instance.playerController.enabled)
         {
             OnSelected();
         }

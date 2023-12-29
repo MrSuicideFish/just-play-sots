@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -8,4 +9,7 @@ public class Article : ScriptableObject
     public string headline;
     public string content;
     public ArticleOption[] options;
+
+    [NonSerialized]
+    public bool isResolved;
 }
