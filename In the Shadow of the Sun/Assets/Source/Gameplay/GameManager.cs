@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,12 +18,11 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-    
+
+    public IntroModule introModule;
+
     // player
     public PlayerController playerController;
-    
-    // cinematic
-    public Animation introAnimation;
 
     // Cache
     private bool gameHasStarted;
@@ -34,7 +32,6 @@ public class GameManager : MonoBehaviour
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
     public Lawsuit CurrentLawsuit { get; private set; }
-
 
     private int articleIndex = 0;
     public string OrganizationName { get; set; }
@@ -48,18 +45,20 @@ public class GameManager : MonoBehaviour
     // Events
     public UnityEvent<Popularity> OnPopularityChanged;
     public UnityEvent<float> OnFundsChanged;
+    public UnityEvent OnPaperDelivered, OnLawsuitDelivered;
 
     private void Update() => StateMachine.TickStateMachine(this);
     private void Start()
     {
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
         StateMachine = new GameStateMachine(this);
         Popularity = new(GameConfig.Instance.StarterPopularity);
         OrganizationFunds = new(GameConfig.Instance.StarterFunds);
         OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
         Staff = new();
-        GameUIController.Instance.GoToScreen(EScreenType.Intro);
+        
+
+        StartGame();
     }
 
     public void SelectArticleOption(int optionIndex)
@@ -80,7 +79,7 @@ public class GameManager : MonoBehaviour
         Popularity.Apply(EParty.Companies, option.companiesEffect.popularity);
 
         SelectedOption = option;
-        GameUIController.Instance.GoToScreen(EScreenType.Result);
+        StateMachine.GoToState(new GameState_Results());
     }
 
     private EParty RollForLawsuit()
@@ -109,7 +108,7 @@ public class GameManager : MonoBehaviour
         {
             Insurance.SettleLawsuit(CurrentLawsuit.cost);
         }
-        
+
         ReturnToHome();
     }
 
@@ -128,7 +127,7 @@ public class GameManager : MonoBehaviour
         EParty pendingLawsuitRequest = RollForLawsuit();
         if (pendingLawsuitRequest != EParty.None)
         {
-            int rndLawsuit = UnityEngine.Random.Range(0, ArticleDb.Instance.lawsuits.Length);
+            int rndLawsuit = Random.Range(0, ArticleDb.Instance.lawsuits.Length);
             CurrentLawsuit = ArticleDb.Instance.lawsuits[rndLawsuit];
         }
         
@@ -143,7 +142,9 @@ public class GameManager : MonoBehaviour
         }
 
         gameHasStarted = true;
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
+        Newspaper.Instance.Hide();
+        LawsuitNotice.Instance.Hide();
+        
         StateMachine.GoToState(new Gamestate_Entry());
     }
 

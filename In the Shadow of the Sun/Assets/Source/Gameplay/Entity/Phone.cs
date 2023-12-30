@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class Phone : ClickableEntity
 {
     protected override void OnSelected()

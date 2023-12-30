@@ -23,4 +23,18 @@ public class GameUIController : MonoBehaviour
             screens[i].gameObject.SetActive(screens[i].GetScreenType() == screen);
         }
     }
+
+    public GameScreen GetScreen(EScreenType screen)
+    {
+        GameScreen result = null;
+        for (int i = 0; i < screens.Length; i++)
+        {
+            if (screens[i].GetScreenType() == screen)
+            {
+                result = screens[i];
+            }
+        }
+
+        return result;
+    }
 }
