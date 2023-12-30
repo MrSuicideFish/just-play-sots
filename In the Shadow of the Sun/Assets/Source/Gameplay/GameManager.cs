@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,12 +18,11 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-    
+
+    public IntroModule introModule;
+
     // player
     public PlayerController playerController;
-    
-    // cinematic
-    public Animation introAnimation;
 
     // Cache
     private bool gameHasStarted;
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
         Staff = new();
         
-        GameUIController.Instance.GoToScreen(EScreenType.Intro);
+
+        StartGame();
     }
 
     public void SelectArticleOption(int optionIndex)
@@ -141,7 +142,9 @@ public class GameManager : MonoBehaviour
         }
 
         gameHasStarted = true;
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(0);
+        Newspaper.Instance.Hide();
+        LawsuitNotice.Instance.Hide();
+        
         StateMachine.GoToState(new Gamestate_Entry());
     }
 

@@ -17,5 +17,9 @@ public class Staff
     public void Fire()
     {
         Count -= StaffPerHire;
+        if (Count < 0)
+        {
+            Count = 0;
+        }
     }
 }
