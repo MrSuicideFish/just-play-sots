@@ -44,7 +44,18 @@ public class Screen_Intro : GameScreen
         submitButton.interactable = false;
         fadeScreen.DOFade(1.0f, 1.0f).OnComplete(() =>
         {
+#if UNITY_EDITOR
+            if (!GameManager.Instance.debug_SkipCutscene)
+            {
+                StartCoroutine(DoIntroduction());
+            }
+            else
+            {
+                IsComplete = true;
+            }
+#else
             StartCoroutine(DoIntroduction());
+#endif
         });
     }
     
