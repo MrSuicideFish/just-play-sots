@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public interface IGameState
@@ -39,16 +40,38 @@ public class Gamestate_Entry : IGameState
 
 public class GameState_Home : IGameState
 {
+    private static bool firstTimeUser = true;
     public string StateName { get; } = "Home";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
-        GameUIController.Instance.GoToScreen(EScreenType.Home);
         CameraManager.Instance.GoToCamera(ECameraType.Home);
+        if (firstTimeUser)
+        {
+            gameManager.StartCoroutine(WaitForFTUE(gameManager));
+            return;
+        }
+        
+        GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
+    }
+
+    private IEnumerator WaitForFTUE(GameManager gameManager)
+    {
+        GameUIController.Instance.GoToScreen(EScreenType.Tutorial);
+        Screen_Tutorial ftueScreen = GameUIController.Instance.GetScreen(EScreenType.Tutorial) as Screen_Tutorial;
+        while (!ftueScreen.isComplete)
+        {
+            yield return null;
+        }
+        
+        gameManager.playerController.enabled = true;
+        GameUIController.Instance.GoToScreen(EScreenType.Home);
+        firstTimeUser = false;
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
+
     }
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
