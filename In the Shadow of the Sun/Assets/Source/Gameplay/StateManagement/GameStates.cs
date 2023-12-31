@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public interface IGameState
@@ -29,6 +30,7 @@ public class Gamestate_Entry : IGameState
     {
         if (introScreen.IsComplete)
         {
+            introScreen.radioAudioSrc.Play();
             sm.GoToState(new GameState_Home());
         }
     }
@@ -57,6 +59,10 @@ public class GameState_Home : IGameState
 
     private IEnumerator WaitForFTUE(GameManager gameManager)
     {
+        Screen_Home homeScreen = GameUIController.Instance.GetScreen(EScreenType.Home) as Screen_Home;
+        homeScreen.firstTimeIntro.Opacity = 0;
+        homeScreen.orgNameIntro.text = gameManager.OrganizationName;
+        
         GameUIController.Instance.GoToScreen(EScreenType.Tutorial);
         Screen_Tutorial ftueScreen = GameUIController.Instance.GetScreen(EScreenType.Tutorial) as Screen_Tutorial;
         while (!ftueScreen.isComplete)
@@ -65,7 +71,18 @@ public class GameState_Home : IGameState
         }
         
         gameManager.playerController.enabled = true;
+        homeScreen.firstTimeIntro.Set(0.0f);
         GameUIController.Instance.GoToScreen(EScreenType.Home);
+        DOTween.To(
+            () => homeScreen.firstTimeIntro.Opacity,
+            (x) => homeScreen.firstTimeIntro.Opacity = x,
+            1.0f, 5.0f);
+        yield return new WaitForSeconds(8.0f);
+        DOTween.To(
+            () => homeScreen.firstTimeIntro.Opacity,
+            (x) => homeScreen.firstTimeIntro.Opacity = x,
+            0.0f, 1.0f);
+        
         firstTimeUser = false;
     }
 
