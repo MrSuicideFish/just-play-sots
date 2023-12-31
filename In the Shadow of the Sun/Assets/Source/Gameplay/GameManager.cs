@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     private bool gameHasStarted;
     private bool gameHasEnded;
 
+    [Header("Debugging")] 
+    public bool debug_SkipCutscene;
+
     public Article CurrentArticle { get; private set; }
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
@@ -57,7 +60,6 @@ public class GameManager : MonoBehaviour
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
         Staff = new();
         
-
         StartGame();
     }
 

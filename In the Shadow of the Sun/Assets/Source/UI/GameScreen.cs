@@ -10,6 +10,7 @@ public enum EScreenType
     Lawsuit,
     EndGame,
     Staff,
+    Tutorial,
     Empty
 }
 
