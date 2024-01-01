@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,12 +32,21 @@ public class GameManager : MonoBehaviour
     [Header("Debugging")] 
     public bool debug_SkipCutscene;
 
+    /// <summary>
+    /// ARTICLES
+    /// </summary>
     public Article CurrentArticle { get; private set; }
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
-    public Lawsuit CurrentLawsuit { get; private set; }
-
     private int articleIndex = 0;
+    
+    /// <summary>
+    /// LAWSUITS
+    /// </summary>
+    public Lawsuit CurrentLawsuit { get; private set; }
+    private List<Lawsuit> lawsuits = new();
+    private List<string> completedLawsuits = new();
+
     public string OrganizationName { get; set; }
     public Popularity Popularity { get; private set; }
     public Funds OrganizationFunds { get; private set; }
@@ -63,6 +73,19 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+    public IEnumerator DeliverArticle()
+    {
+        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
+        Newspaper.Instance.Show(true);
+        yield return null;
+    }
+
+    public IEnumerator DeliverLawsuit(EParty fromParty)
+    {
+        
+        yield return null;
+    }
+
     public void SelectArticleOption(int optionIndex)
     {
         ArticleOption option = CurrentArticle.options[optionIndex];
@@ -82,23 +105,6 @@ public class GameManager : MonoBehaviour
 
         SelectedOption = option;
         StateMachine.GoToState(new GameState_Results());
-    }
-
-    private EParty RollForLawsuit()
-    {
-        List<EParty> unpopularity = new();
-        for (int i = 0; i < EParty.Count.GetHashCode(); i++)
-        {
-            EParty p = (EParty) i;
-            if (Popularity.Get(p) < GameConfig.Instance.UnpopularThreshold)
-            {
-                unpopularity.Add(p);
-            }
-        }
-
-        return (unpopularity.Count > 0 && UnityEngine.Random.Range(0.0000f, 1.0000f) < GameConfig.Instance.LawsuitProbability)
-            ? unpopularity[UnityEngine.Random.Range(0, unpopularity.Count)]
-            : EParty.None;
     }
 
     public void SettleLawsuit(Lawsuit.ESettlementType settlementType)
@@ -126,13 +132,6 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToHome()
     {
-        EParty pendingLawsuitRequest = RollForLawsuit();
-        if (pendingLawsuitRequest != EParty.None)
-        {
-            int rndLawsuit = Random.Range(0, ArticleDb.Instance.lawsuits.Length);
-            CurrentLawsuit = ArticleDb.Instance.lawsuits[rndLawsuit];
-        }
-        
         StateMachine.GoToState(new GameState_Home());
     }
 

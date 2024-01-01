@@ -43,6 +43,8 @@ public class Gamestate_Entry : IGameState
 public class GameState_Home : IGameState
 {
     private static bool firstTimeUser = true;
+    private static bool hasCompletedFirstArticle = false;
+    
     public string StateName { get; } = "Home";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
@@ -52,6 +54,11 @@ public class GameState_Home : IGameState
             gameManager.StartCoroutine(WaitForFTUE(gameManager));
             return;
         }
+
+        if (gameManager.CurrentArticle != null)
+        {
+            Newspaper.Instance.Show(false);
+        }
         
         GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
@@ -59,6 +66,7 @@ public class GameState_Home : IGameState
 
     private IEnumerator WaitForFTUE(GameManager gameManager)
     {
+        firstTimeUser = false;
         Screen_Home homeScreen = GameUIController.Instance.GetScreen(EScreenType.Home) as Screen_Home;
         homeScreen.firstTimeIntro.Opacity = 0;
         homeScreen.orgNameIntro.text = gameManager.OrganizationName;
@@ -76,14 +84,17 @@ public class GameState_Home : IGameState
         DOTween.To(
             () => homeScreen.firstTimeIntro.Opacity,
             (x) => homeScreen.firstTimeIntro.Opacity = x,
-            1.0f, 5.0f);
+            1.0f, 5.0f).OnComplete(() =>
+        {
+            // show first article
+            gameManager.StartCoroutine(gameManager.DeliverArticle());
+        });
+        
         yield return new WaitForSeconds(8.0f);
         DOTween.To(
             () => homeScreen.firstTimeIntro.Opacity,
             (x) => homeScreen.firstTimeIntro.Opacity = x,
             0.0f, 1.0f);
-        
-        firstTimeUser = false;
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -127,6 +138,7 @@ public class GameState_Newspaper : IGameState
         GameUIController.Instance.GoToScreen(EScreenType.Article);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
+        Newspaper.Instance.Hide();
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -139,7 +151,6 @@ public class GameState_Newspaper : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
-        
     }
 }
 
