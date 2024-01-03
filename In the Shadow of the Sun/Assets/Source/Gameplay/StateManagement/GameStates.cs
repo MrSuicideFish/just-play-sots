@@ -143,6 +143,10 @@ public class GameState_Lawsuit : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        if (gameManager.lawsuits.Count == 0)
+        {
+            LawsuitNotice.Instance.Hide();
+        }
     }
 }
 

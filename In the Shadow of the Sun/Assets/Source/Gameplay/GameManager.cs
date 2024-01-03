@@ -144,7 +144,18 @@ public class GameManager : MonoBehaviour
     
     public void DeliverLawsuit(EParty fromParty)
     {
-        Lawsuit[] allLawsuits = ArticleDb.Instance.lawsuits;
+        Lawsuit[] suits = (fromParty == EParty.None)
+            ? ArticleDb.Instance.lawsuits
+            : ArticleDb.Instance.GetLawsuitsByParty(fromParty);
+
+        for (int i = 0; i < suits.Length; i++)
+        {
+            if (!completedLawsuits.Contains(suits[i].id)
+                && !lawsuits.Contains(suits[i]))
+            {
+                lawsuits.Add(suits[i]);
+            }
+        }
         
         OnLawsuitDelivered?.Invoke();
     }
@@ -169,6 +180,8 @@ public class GameManager : MonoBehaviour
             Insurance.SettleLawsuit(CurrentLawsuit.cost);
         }
 
+        lawsuits.Remove(CurrentLawsuit);
+        completedLawsuits.Add(CurrentLawsuit.id);
         ReturnToHome();
     }
     #endregion

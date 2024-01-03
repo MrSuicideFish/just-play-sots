@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -23,10 +24,17 @@ public class Screen_Lawsuit : GameScreen
 
     public Transform entriesParent;
     private List<UILawsuitEntry> entries = new();
+
+    private int selectedLawsuit;
     
     public override EScreenType GetScreenType()
     {
         return EScreenType.Lawsuit;
+    }
+
+    private void Start()
+    {
+        entryPrototype.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -36,9 +44,12 @@ public class Screen_Lawsuit : GameScreen
 
     public void GoToLawsuitSelect()
     {
-        for (int i = 0; i > entries.Count; i++)
+        for (int i = 0; i < entries.Count; i++)
         {
-            Destroy(entries[i].gameObject);
+            if (entries[i] != null)
+            {
+                Destroy(entries[i].gameObject);   
+            }
         }
 
         for (int i = 0; i < GameManager.Instance.lawsuits.Count; i++)
@@ -46,11 +57,21 @@ public class Screen_Lawsuit : GameScreen
             Lawsuit lawsuit = GameManager.Instance.lawsuits[i];
             UILawsuitEntry newEntry = Instantiate(entryPrototype.gameObject)
                 .GetComponent<UILawsuitEntry>();
-            
+
+            newEntry.toggle.group = selectionToggleGroup;
             newEntry.text_title.text = lawsuit.header;
             newEntry.lawsuitId = lawsuit.id;
             
-            newEntry.transform.SetParent(entriesParent);
+            newEntry.transform.SetParent(entriesParent, true);
+            newEntry.transform.localScale = Vector3.one;
+
+            int index = i;
+            newEntry.toggle.onValueChanged.AddListener(isOn =>
+            {
+                selectedLawsuit = index;
+            });
+            newEntry.gameObject.SetActive(true);
+            entries.Add(newEntry);
         }
         
         selectScreen.SetActive(true);
@@ -58,9 +79,9 @@ public class Screen_Lawsuit : GameScreen
         screenState = ELawsuitScreenState.Select;
     }
 
-    public void SelectLawsuit(int index)
+    public void SelectLawsuit()
     {
-        GameManager.Instance.SelectLawsuit(index);
+        GameManager.Instance.SelectLawsuit(selectedLawsuit);
         
         Lawsuit currentLawsuit = GameManager.Instance.CurrentLawsuit;
         if (currentLawsuit != null)

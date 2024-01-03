@@ -70,6 +70,20 @@ public class ArticleDb : ScriptableObject
         }
     }
 
+    public Lawsuit[] GetLawsuitsByParty(EParty party)
+    {
+        switch (party)
+        {
+            case EParty.Civilian:
+                return CivillianLawsuits;
+            case EParty.Companies:
+                return OrganizationLawsuits;
+            case EParty.Politician:
+                return PoliticianLawsuits;
+        }
+        return lawsuits;
+    }
+
     public Article GetArticleByIndex(int index)
     {
         if (index < 0 || index >= mainArticles.Length)
