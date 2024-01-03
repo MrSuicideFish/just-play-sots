@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MainArticle3
+  m_EditorClassIdentifier: 
+  id: MainArticle3
+  headline: Massage Parlour Bust Turns Deadly
+  content: "Shiawase Beauty Parlour is closed pending a special unit investigation
+    of an officer-involved shooting that occurred on the premises late last night.
+    Constable Jim Morrow has been named in connection with an arrest that turned
+    deadly. Morrow was not able to be reached for comment, but Chief of Police and
+    mayoral hopeful Andrew Taft says he is co-operating fully with the investigation.
+    \u201CIt\u2019s an outcome we never want to happen,\u201D Taft said, \u201Cbut
+    our boys need to protect themselves.\u201D Dr. Sara Trenton, who is running opposite
+    Taft, disagreed. \u201CWhat kind of deadly force could have been required at
+    a beauty parlour?\u201D she asked. \u201CThere is no death penalty; officers
+    of the law are not summary executioners. There is no excuse for what happened
+    at Shiawase.\u201D As of writing, there is no indication of why Morrow was present
+    at the parlour. He has been suspended with pay, pending the results of the investigation. "
+  options: []

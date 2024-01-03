@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MainArticle1
+  m_EditorClassIdentifier: 
+  id: MainArticle1
+  headline: Mayoral Race Heats Up
+  content: "Dr. Sara Trenton, prominent neurosurgeon at Civic City\u2019s St. Anne
+    Hospital, and noted childhood friend of billionaire Ted Ebbing, announced her
+    intention today to oppose police chief Andrew Taft\u2019s bid for mayor. \u201CWhen
+    I became a doctor,\u201D Trenton said in her statement, \u201CI took an oath
+    to do no harm. I firmly believe that violence begets violence. What Civic City
+    needs isn\u2019t more police. It\u2019s healing.\u201D Detractors, encouraged
+    by Taft himself, point to Trenton\u2019s lack of relevant experience. \u201CDr.
+    Trenton has fine ideals,\u201D Taft said when asked for comment. \u201CBut we
+    don\u2019t need pie-in-the-sky thinking to save Civic City \u2014 we need strong
+    action.\u201D "
+  options: []
