@@ -15,7 +15,9 @@ MonoBehaviour:
   mainArticles:
   - {fileID: 11400000, guid: d6279ed0eaea36549982648ed91312bd, type: 2}
   - {fileID: 11400000, guid: 0214c8d1796e3354ab4a536b1b37a8c7, type: 2}
-  sideArticles: []
+  - {fileID: 11400000, guid: 3fa217addbce6ef47b09c97703f030d5, type: 2}
+  sideArticles:
+  - {fileID: 11400000, guid: 9c8619a8019971a49b8bd7d729c8d03c, type: 2}
   lawsuits:
   - {fileID: 11400000, guid: 65c03c0b7fdb2824a8c313463828916b, type: 2}
   - {fileID: 11400000, guid: 378609236619c9c4d9cea7ead23367ff, type: 2}

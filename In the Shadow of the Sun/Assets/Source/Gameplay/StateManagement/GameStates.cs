@@ -59,6 +59,12 @@ public class GameState_Home : IGameState
         {
             Newspaper.Instance.Show(false);
         }
+
+        if (gameManager.lawsuits.Count > 0)
+        {
+            bool firstShow = gameManager.completedLawsuits.Count == 0;
+            LawsuitNotice.Instance.Show(firstShow);
+        }
         
         GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
@@ -109,11 +115,13 @@ public class GameState_Home : IGameState
 
 public class GameState_Lawsuit : IGameState
 {
+    private Screen_Lawsuit lawsuitScreen;
     public string StateName { get; } = "Lawsuit";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
+        lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
     }
 
@@ -121,7 +129,15 @@ public class GameState_Lawsuit : IGameState
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameManager.ReturnToHome();
+            if (lawsuitScreen.screenState ==
+                Screen_Lawsuit.ELawsuitScreenState.Settlement)
+            {
+                lawsuitScreen.GoToLawsuitSelect();
+            }
+            else
+            {
+                gameManager.ReturnToHome();    
+            }
         }
     }
 

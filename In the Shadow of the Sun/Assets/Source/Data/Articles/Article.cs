@@ -10,6 +10,5 @@ public class Article : ScriptableObject
     public string content;
     public ArticleOption[] options;
 
-    [NonSerialized]
-    public bool isResolved;
+    [NonSerialized] public int selectedOption = -1;
 }
