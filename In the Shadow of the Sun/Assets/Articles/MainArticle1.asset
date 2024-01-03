@@ -24,4 +24,55 @@ MonoBehaviour:
     Trenton has fine ideals,\u201D Taft said when asked for comment. \u201CBut we
     don\u2019t need pie-in-the-sky thinking to save Civic City \u2014 we need strong
     action.\u201D "
-  options: []
+  options:
+  - content: Make statement supporting Dr. Sara Trenton
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 1000
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Issue statement in support of Andrew Taft
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 500
+      popularity: 1000
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: 'Run a fundraiser for [org] '
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 4
+      Value: 500
+    response:
+      headline: 
+      content: 

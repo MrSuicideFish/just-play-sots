@@ -23,4 +23,55 @@ MonoBehaviour:
     charge of the case. Palin lived in a rooming house and was previously known to
     police. \u201CDrunk and disorderly, we\u2019d gotten calls about him a few times.
     Never anything like this, though.\u201D The trial is set to begin next week. "
-  options: []
+  options:
+  - content: Hold press conference urging guilty verdict
+    cost: 5000
+    civilianEffect:
+      donations: 0
+      popularity: -1000
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Donate to criminal justice organizations
+    cost: -2500
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 4000
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Anonymously contribute to Palin's legal fund
+    cost: -1000
+    civilianEffect:
+      donations: 0
+      popularity: 2500
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 

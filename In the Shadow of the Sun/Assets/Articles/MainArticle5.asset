@@ -26,4 +26,55 @@ MonoBehaviour:
     that statement. My vision for Civic City is one in which all are treated with
     understanding and compassion.\u201D Voters will be able to make their choice
     starting tomorrow. "
-  options: []
+  options:
+  - content: Make statement in support of Taft
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: -3000
+    politicianEffect:
+      donations: 700
+      popularity: 1300
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Donate to police fund
+    cost: -8000
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Lend staff to help run polls
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 4
+      Value: 5000
+    response:
+      headline: 
+      content: 

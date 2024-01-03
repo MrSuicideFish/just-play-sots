@@ -26,4 +26,55 @@ MonoBehaviour:
     of the law are not summary executioners. There is no excuse for what happened
     at Shiawase.\u201D As of writing, there is no indication of why Morrow was present
     at the parlour. He has been suspended with pay, pending the results of the investigation. "
-  options: []
+  options:
+  - content: Donate to police
+    cost: -5000
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 5555
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Issue statement against police overreach
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 6000
+    politicianEffect:
+      donations: 0
+      popularity: -7000
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Lobby for increased protections for workers
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 5000
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 4
+      Value: 1000
+    response:
+      headline: 
+      content: 
