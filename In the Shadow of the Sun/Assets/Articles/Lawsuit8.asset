@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit8
   header: Money Laundering
-  content: Member of public accused [org] of being a front
+  content: Member of public accused GameManager::OrganizationName of being a front
   party: 0
   cost: -2500

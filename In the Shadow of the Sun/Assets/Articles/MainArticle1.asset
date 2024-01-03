@@ -59,7 +59,7 @@ MonoBehaviour:
     response:
       headline: 
       content: 
-  - content: 'Run a fundraiser for [org] '
+  - content: Run a fundraiser for GameManager::OrganizationName
     cost: 0
     civilianEffect:
       donations: 0
