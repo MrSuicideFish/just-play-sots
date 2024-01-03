@@ -121,18 +121,10 @@ public class GameManager : MonoBehaviour
         // save current article as completed
         CurrentArticle.selectedOption = optionIndex;
         CompletedArticles.Add(CurrentArticle);
+        CurrentArticle = null;
+        articleIndex++;
         
         StateMachine.GoToState(new GameState_Results());
-    }
-
-    public void EndArticle()
-    {
-        articleIndex++;
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
-        if (CurrentArticle != null)
-        {
-            ReturnToHome();
-        }
     }
     #endregion
     
@@ -154,6 +146,7 @@ public class GameManager : MonoBehaviour
                 && !lawsuits.Contains(suits[i]))
             {
                 lawsuits.Add(suits[i]);
+                break;
             }
         }
         
