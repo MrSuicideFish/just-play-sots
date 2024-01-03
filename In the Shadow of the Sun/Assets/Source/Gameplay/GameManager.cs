@@ -142,10 +142,11 @@ public class GameManager : MonoBehaviour
     public List<Lawsuit> lawsuits { get; private set;} = new();
     public List<string> completedLawsuits { get; private set; } = new();
     
-    public IEnumerator DeliverLawsuit(EParty fromParty)
+    public void DeliverLawsuit(EParty fromParty)
     {
+        Lawsuit[] allLawsuits = ArticleDb.Instance.lawsuits;
+        
         OnLawsuitDelivered?.Invoke();
-        yield return null;
     }
 
     public void SelectLawsuit(int index)

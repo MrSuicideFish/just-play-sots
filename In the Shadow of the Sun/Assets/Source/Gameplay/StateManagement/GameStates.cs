@@ -210,5 +210,37 @@ public class GameState_Results : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        ///
+        ///  deliver lawsuits after results
+        /// 
+        
+        // obligatory lawsuit
+        gameManager.DeliverLawsuit(EParty.None);
+        
+        // if pop is low, we MUST throw a new lawsuit for that party
+        if (gameManager.Popularity.Civilian 
+            < GameConfig.Instance.LawsuitPopularityLimit)
+        {
+            gameManager.DeliverLawsuit(EParty.Civilian);
+        }
+        
+        if (gameManager.Popularity.Companies 
+            < GameConfig.Instance.LawsuitPopularityLimit)
+        {
+            gameManager.DeliverLawsuit(EParty.Companies);
+        }
+        
+        if (gameManager.Popularity.Politician
+            < GameConfig.Instance.LawsuitPopularityLimit)
+        {
+            gameManager.DeliverLawsuit(EParty.Politician);
+        }
+        
+        // random chance lawsuit
+        float rnd = Random.Range(0.00f, 1.00f);
+        if (rnd < GameConfig.Instance.RandomChanceLawsuit)
+        {
+            gameManager.DeliverLawsuit(EParty.None);
+        }
     }
 }
