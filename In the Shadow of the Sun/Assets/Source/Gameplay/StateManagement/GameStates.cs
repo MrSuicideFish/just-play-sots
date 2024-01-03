@@ -59,6 +59,12 @@ public class GameState_Home : IGameState
         {
             Newspaper.Instance.Show(false);
         }
+
+        if (gameManager.lawsuits.Count > 0)
+        {
+            bool firstShow = gameManager.completedLawsuits.Count == 0;
+            LawsuitNotice.Instance.Show(firstShow);
+        }
         
         GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
@@ -109,11 +115,13 @@ public class GameState_Home : IGameState
 
 public class GameState_Lawsuit : IGameState
 {
+    private Screen_Lawsuit lawsuitScreen;
     public string StateName { get; } = "Lawsuit";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
+        lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
     }
 
@@ -121,12 +129,24 @@ public class GameState_Lawsuit : IGameState
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameManager.ReturnToHome();
+            if (lawsuitScreen.screenState ==
+                Screen_Lawsuit.ELawsuitScreenState.Settlement)
+            {
+                lawsuitScreen.GoToLawsuitSelect();
+            }
+            else
+            {
+                gameManager.ReturnToHome();    
+            }
         }
     }
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        if (gameManager.lawsuits.Count == 0)
+        {
+            LawsuitNotice.Instance.Hide();
+        }
     }
 }
 
@@ -179,6 +199,7 @@ public class GameState_Staff : IGameState
 
 public class GameState_Results : IGameState
 {
+    private static bool isFirstResults = true;
     public string StateName { get; } = "Results";
 
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
@@ -194,5 +215,42 @@ public class GameState_Results : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        ///
+        ///  deliver lawsuits after results
+        /// 
+        
+        // obligatory lawsuit
+        gameManager.DeliverLawsuit(EParty.None);
+
+        // if pop is low, we MUST throw a new lawsuit for that party
+        if (!isFirstResults)
+        {
+            if (gameManager.Popularity.Civilian 
+                < GameConfig.Instance.LawsuitPopularityLimit)
+            {
+                gameManager.DeliverLawsuit(EParty.Civilian);
+            }
+        
+            if (gameManager.Popularity.Companies 
+                < GameConfig.Instance.LawsuitPopularityLimit)
+            {
+                gameManager.DeliverLawsuit(EParty.Companies);
+            }
+        
+            if (gameManager.Popularity.Politician
+                < GameConfig.Instance.LawsuitPopularityLimit)
+            {
+                gameManager.DeliverLawsuit(EParty.Politician);
+            }
+            
+            // random chance lawsuit
+            float rnd = Random.Range(0.00f, 1.00f);
+            if (rnd < GameConfig.Instance.RandomChanceLawsuit)
+            {
+                gameManager.DeliverLawsuit(EParty.None);
+            }
+        }
+
+        isFirstResults = false;
     }
 }

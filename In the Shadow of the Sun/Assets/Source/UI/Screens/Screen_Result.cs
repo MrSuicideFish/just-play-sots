@@ -38,6 +38,6 @@ public class Screen_Result : GameScreen
 
     public void Continue()
     {
-        GameManager.Instance.EndArticle();
+        GameManager.Instance.ReturnToHome();
     }
 }
