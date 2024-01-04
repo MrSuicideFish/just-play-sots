@@ -132,7 +132,6 @@ public class GameManager : MonoBehaviour
     public Lawsuit CurrentLawsuit { get; private set; }
     public List<Lawsuit> lawsuits { get; private set;} = new();
     public List<string> completedLawsuits { get; private set; } = new();
-    
     public void DeliverLawsuit(EParty fromParty)
     {
         Lawsuit[] suits = (fromParty == EParty.None)

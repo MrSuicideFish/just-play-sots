@@ -62,7 +62,7 @@ public class GameState_Home : IGameState
 
         if (gameManager.lawsuits.Count > 0)
         {
-            bool firstShow = gameManager.completedLawsuits.Count == 0;
+            bool firstShow = gameManager.lawsuits.Count == 0;
             LawsuitNotice.Instance.Show(firstShow);
         }
         
