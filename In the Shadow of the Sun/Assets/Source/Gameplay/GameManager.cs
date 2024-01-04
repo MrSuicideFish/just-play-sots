@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public GameStateMachine StateMachine { get; private set; }
 
     // Cache
+    public bool hasCompletedFirstHome = false;
+    public bool hasCompletedFirstResults = false;
     private bool gameHasStarted;
     private bool gameHasEnded;
     
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
     public List<Article> CompletedArticles { get; private set; } = new();
-    
+    public bool hasCompletedFirstArticle = false;
     private int articleIndex = 0;
     
     public void DeliverArticle()
@@ -122,7 +124,8 @@ public class GameManager : MonoBehaviour
         CompletedArticles.Add(CurrentArticle);
         CurrentArticle = null;
         articleIndex++;
-        
+
+        hasCompletedFirstArticle = true;
         StateMachine.GoToState(new GameState_Results());
     }
     #endregion
@@ -132,6 +135,7 @@ public class GameManager : MonoBehaviour
     public Lawsuit CurrentLawsuit { get; private set; }
     public List<Lawsuit> lawsuits { get; private set;} = new();
     public List<string> completedLawsuits { get; private set; } = new();
+    public bool hasCompletedFirstLawsuit = false;
     
     public void DeliverLawsuit(EParty fromParty)
     {
