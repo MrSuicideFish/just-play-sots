@@ -10,10 +10,6 @@ public class Screen_EndGame : GameScreen
     
     public void RestartGame()
     {
-        GameState_Results.isFirstResults = true;
-        GameState_Home.firstTimeUser = true;
-        GameState_Home.hasCompletedFirstArticle = false;
-        
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }

@@ -42,22 +42,29 @@ public class Gamestate_Entry : IGameState
 
 public class GameState_Home : IGameState
 {
-    public static bool firstTimeUser = true;
-    public static bool hasCompletedFirstArticle = false;
-    
     public string StateName { get; } = "Home";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         CameraManager.Instance.GoToCamera(ECameraType.Home);
-        if (firstTimeUser)
+        if (!gameManager.hasCompletedFirstHome)
         {
             gameManager.StartCoroutine(WaitForFTUE(gameManager));
+            gameManager.hasCompletedFirstHome = true;
             return;
         }
 
         if (gameManager.CurrentArticle != null)
         {
             Newspaper.Instance.Show(false);
+        }
+        else if (gameManager.hasCompletedFirstArticle
+                  && gameManager.hasCompletedFirstLawsuit)
+        {
+            if (!gameManager.DeliverArticle())
+            {
+                // we've delivered the last article already, game is over
+                gameManager.EndGame(isWin: true);
+            }
         }
 
         if (gameManager.lawsuits.Count > 0)
@@ -72,7 +79,6 @@ public class GameState_Home : IGameState
 
     private IEnumerator WaitForFTUE(GameManager gameManager)
     {
-        firstTimeUser = false;
         Screen_Home homeScreen = GameUIController.Instance.GetScreen(EScreenType.Home) as Screen_Home;
         homeScreen.firstTimeIntro.Opacity = 0;
         homeScreen.orgNameIntro.text = gameManager.OrganizationName;
@@ -194,12 +200,12 @@ public class GameState_Staff : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        
     }
 }
 
 public class GameState_Results : IGameState
 {
-    public static bool isFirstResults = true;
     public string StateName { get; } = "Results";
 
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
@@ -223,7 +229,7 @@ public class GameState_Results : IGameState
         gameManager.DeliverLawsuit(EParty.None);
 
         // if pop is low, we MUST throw a new lawsuit for that party
-        if (!isFirstResults)
+        if (gameManager.hasCompletedFirstResults)
         {
             if (gameManager.Popularity.Civilian 
                 < GameConfig.Instance.LawsuitPopularityLimit)
@@ -251,6 +257,6 @@ public class GameState_Results : IGameState
             }
         }
 
-        isFirstResults = false;
+        gameManager.hasCompletedFirstResults = true;
     }
 }

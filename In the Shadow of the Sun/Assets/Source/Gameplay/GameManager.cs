@@ -1,8 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameStateMachine StateMachine { get; private set; }
 
     // Cache
+    [NonSerialized] public bool hasCompletedFirstHome = false;
+    [NonSerialized] public bool hasCompletedFirstResults = false;
     private bool gameHasStarted;
     private bool gameHasEnded;
     
@@ -72,13 +73,24 @@ public class GameManager : MonoBehaviour
         StateMachine.GoToState(new Gamestate_Entry());
     }
 
-    public void EndGame()
+    public void EndGame(bool isWin)
     {
         if (gameHasEnded)
         {
             return;
         }
 
+        Debug.Log($"GAME OVER! Is Win? {isWin}");
+        playerController.enabled = false;
+        
+        if (isWin)
+        {
+            // show win screen
+        }
+        else
+        {
+            // show lose screen
+        }
         gameHasEnded = true;
     }
     
@@ -88,14 +100,19 @@ public class GameManager : MonoBehaviour
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
     public List<Article> CompletedArticles { get; private set; } = new();
-    
+    [NonSerialized] public bool hasCompletedFirstArticle = false;
     private int articleIndex = 0;
     
-    public void DeliverArticle()
+    public bool DeliverArticle()
     {
         CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
+        if (CurrentArticle == null)
+        {
+            return false;
+        }
         Newspaper.Instance.Show(true);
         OnPaperDelivered?.Invoke();
+        return true;
     }
 
     public void SelectArticleOption(int optionIndex)
@@ -122,7 +139,8 @@ public class GameManager : MonoBehaviour
         CompletedArticles.Add(CurrentArticle);
         CurrentArticle = null;
         articleIndex++;
-        
+
+        hasCompletedFirstArticle = true;
         StateMachine.GoToState(new GameState_Results());
     }
     #endregion
@@ -132,6 +150,7 @@ public class GameManager : MonoBehaviour
     public Lawsuit CurrentLawsuit { get; private set; }
     public List<Lawsuit> lawsuits { get; private set;} = new();
     public List<string> completedLawsuits { get; private set; } = new();
+    public bool hasCompletedFirstLawsuit = false;
     
     public void DeliverLawsuit(EParty fromParty)
     {
@@ -174,6 +193,7 @@ public class GameManager : MonoBehaviour
 
         lawsuits.Remove(CurrentLawsuit);
         completedLawsuits.Add(CurrentLawsuit.id);
+        hasCompletedFirstLawsuit = true;
         ReturnToHome();
     }
     #endregion
