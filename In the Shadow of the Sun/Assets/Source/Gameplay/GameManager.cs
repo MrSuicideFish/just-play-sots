@@ -85,14 +85,17 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"GAME OVER! Is Win? {isWin}");
         playerController.enabled = false;
-        
+
+        Screen_EndGame endGameScreen = GameUIController.Instance
+            .GetScreen(EScreenType.EndGame) as Screen_EndGame;
+        endGameScreen.gameObject.SetActive(true);
         if (isWin)
         {
-            // show win screen
+            StartCoroutine(endGameScreen.DoWin(0));
         }
         else
         {
-            // show lose screen
+            StartCoroutine(endGameScreen.DoLose());
         }
         gameHasEnded = true;
     }

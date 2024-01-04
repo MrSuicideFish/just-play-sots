@@ -181,7 +181,7 @@ public class Screen_Result : GameScreen
         {
             if (!hasShownFundsResults)
             {
-                StartCoroutine(DoFunds());    
+                StartCoroutine(DoFunds());
             }
             else
             {
@@ -216,13 +216,26 @@ public class Screen_Result : GameScreen
         funds_result_anim.gameObject.SetActive(true);
         funds_result_anim.Play();
         DOTween.To(() => tmp,
-                x => { text_funds_result.text = Funds.Format(x); },
+                x =>
+                {
+                    tmp = x;
+                    text_funds_result.text = Funds.Format(x);
+                },
                 (tmp - cost) + donation, GameConfig.Instance.fundsResultDuration)
             .SetDelay(GameConfig.Instance.fundsResultDelay)
             .OnComplete(() =>
             {
                 button_funds_result_continue.interactable = true;
                 button_funds_result_back.interactable = true;
+            })
+            .OnUpdate(() =>
+            {
+                if (tmp <= 0.0f)
+                {
+                    text_funds_result.color = Color.red;
+                    GameManager.Instance.EndGame(false);
+                    DOTween.PauseAll();
+                }
             });
         
         yield return null;
