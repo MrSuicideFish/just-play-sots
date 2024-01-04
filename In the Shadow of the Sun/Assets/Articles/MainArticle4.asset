@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MainArticle4
+  m_EditorClassIdentifier: 
+  id: MainArticle4
+  headline: Malpractice Suit Makes Mayhem
+  content: "To complicate an already heated mayoral race, a medical malpractice suit
+    has been brought against Dr. Sara Trenton, one of the leading candidates. The
+    suit has been brought by the family of Louis Nostramo, a former patient of Dr.
+    Trenton\u2019s, is dead after a massive brain hemorrhage occurred while he was
+    at home recuperating from surgery. Dr. Trenton referred all requests for comment
+    to her lawyer, but her opponent, police chief Andrew Taft, was quick to make
+    a statement. \u201CDr. Trenton says she wants to heal Civic City. How can she
+    be trusted to do that when she can\u2019t even heal her own patients?\u201D "
+  options:
+  - content: 'Help run press event boosting Dr. Trenton''s image '
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 4
+      Value: 2000
+    response:
+      headline: " {{OrgName}} Runs Presser to Rehabilitate Dr. Trenton\u2019s Public
+        Image"
+      content: Could this be an underhanded effort to interfere with the mayoral
+        race?
+  - content: Donate to medical funds
+    cost: -8000
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Makes Large Donation to Civic City Medical Fund'
+      content: St. Anne Hospital issues personal thanks as they purchase much needed
+        equipment for the children's ward.
+  - content: Cut ties with Dr. Trenton
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 2000
+      popularity: 5000
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Cuts Ties with Dr. Trenton'
+      content: After a jaw-dropping press conference, {{OrgName}} announces its decision
+        to end all connections to Dr. Trenton. Politicians praise the move as 'very
+        savvy'.
