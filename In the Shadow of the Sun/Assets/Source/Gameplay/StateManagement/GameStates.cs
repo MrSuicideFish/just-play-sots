@@ -42,7 +42,6 @@ public class Gamestate_Entry : IGameState
 
 public class GameState_Home : IGameState
 {
-    private static string lastArticleId;
     public string StateName { get; } = "Home";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
@@ -59,11 +58,13 @@ public class GameState_Home : IGameState
             Newspaper.Instance.Show(false);
         }
         else if (gameManager.hasCompletedFirstArticle
-                  && gameManager.hasCompletedFirstLawsuit
-                  && (string.IsNullOrEmpty(lastArticleId) || gameManager.CurrentArticle.id == lastArticleId))
+                  && gameManager.hasCompletedFirstLawsuit)
         {
-            gameManager.DeliverArticle();
-            lastArticleId = gameManager.CurrentArticle.id;
+            if (!gameManager.DeliverArticle())
+            {
+                // we've delivered the last article already, game is over
+                gameManager.EndGame(isWin: true);
+            }
         }
 
         if (gameManager.lawsuits.Count > 0)

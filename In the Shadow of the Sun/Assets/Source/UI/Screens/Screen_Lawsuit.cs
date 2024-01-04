@@ -108,9 +108,4 @@ public class Screen_Lawsuit : GameScreen
     {
         GameManager.Instance.SettleLawsuit(Lawsuit.ESettlementType.Insurance);
     }
-
-    public void DissolveNonProfit()
-    {
-        GameManager.Instance.EndGame();
-    }
 }
