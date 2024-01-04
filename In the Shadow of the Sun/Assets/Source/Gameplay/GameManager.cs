@@ -91,12 +91,11 @@ public class GameManager : MonoBehaviour
     
     private int articleIndex = 0;
     
-    public IEnumerator DeliverArticle()
+    public void DeliverArticle()
     {
         CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
         Newspaper.Instance.Show(true);
         OnPaperDelivered?.Invoke();
-        yield return null;
     }
 
     public void SelectArticleOption(int optionIndex)

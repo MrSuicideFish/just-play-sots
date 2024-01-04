@@ -93,7 +93,7 @@ public class GameState_Home : IGameState
             1.0f, 5.0f).OnComplete(() =>
         {
             // show first article
-            gameManager.StartCoroutine(gameManager.DeliverArticle());
+            gameManager.DeliverArticle();
         });
         
         yield return new WaitForSeconds(8.0f);
