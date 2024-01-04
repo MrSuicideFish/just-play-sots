@@ -53,6 +53,10 @@ public class Screen_Result : GameScreen
                     GameConfig.Instance.ResultsTutorialContent,
                     () => { resultsRoutine = StartCoroutine(DoResults()); });
         }
+        else
+        {
+            resultsRoutine = StartCoroutine(DoResults());
+        }
     }
 
     private IEnumerator DoResults()
@@ -157,6 +161,11 @@ public class Screen_Result : GameScreen
     public void Continue()
     {
         GameManager.Instance.Staff.Count -= option.staffCost;
+        if (GameManager.Instance.Staff.Count < 0)
+        {
+            GameManager.Instance.Staff.Count = 0;
+        }
+        
         GameManager.Instance.ReturnToHome();
     }
 }
