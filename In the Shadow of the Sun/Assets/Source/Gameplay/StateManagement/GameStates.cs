@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public interface IGameState
@@ -29,6 +30,7 @@ public class Gamestate_Entry : IGameState
     {
         if (introScreen.IsComplete)
         {
+            introScreen.radioAudioSrc.Play();
             sm.GoToState(new GameState_Home());
         }
     }
@@ -41,6 +43,8 @@ public class Gamestate_Entry : IGameState
 public class GameState_Home : IGameState
 {
     private static bool firstTimeUser = true;
+    private static bool hasCompletedFirstArticle = false;
+    
     public string StateName { get; } = "Home";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
@@ -50,6 +54,17 @@ public class GameState_Home : IGameState
             gameManager.StartCoroutine(WaitForFTUE(gameManager));
             return;
         }
+
+        if (gameManager.CurrentArticle != null)
+        {
+            Newspaper.Instance.Show(false);
+        }
+
+        if (gameManager.lawsuits.Count > 0)
+        {
+            bool firstShow = gameManager.completedLawsuits.Count == 0;
+            LawsuitNotice.Instance.Show(firstShow);
+        }
         
         GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
@@ -57,6 +72,11 @@ public class GameState_Home : IGameState
 
     private IEnumerator WaitForFTUE(GameManager gameManager)
     {
+        firstTimeUser = false;
+        Screen_Home homeScreen = GameUIController.Instance.GetScreen(EScreenType.Home) as Screen_Home;
+        homeScreen.firstTimeIntro.Opacity = 0;
+        homeScreen.orgNameIntro.text = gameManager.OrganizationName;
+        
         GameUIController.Instance.GoToScreen(EScreenType.Tutorial);
         Screen_Tutorial ftueScreen = GameUIController.Instance.GetScreen(EScreenType.Tutorial) as Screen_Tutorial;
         while (!ftueScreen.isComplete)
@@ -65,8 +85,22 @@ public class GameState_Home : IGameState
         }
         
         gameManager.playerController.enabled = true;
+        homeScreen.firstTimeIntro.Set(0.0f);
         GameUIController.Instance.GoToScreen(EScreenType.Home);
-        firstTimeUser = false;
+        DOTween.To(
+            () => homeScreen.firstTimeIntro.Opacity,
+            (x) => homeScreen.firstTimeIntro.Opacity = x,
+            1.0f, 5.0f).OnComplete(() =>
+        {
+            // show first article
+            gameManager.StartCoroutine(gameManager.DeliverArticle());
+        });
+        
+        yield return new WaitForSeconds(8.0f);
+        DOTween.To(
+            () => homeScreen.firstTimeIntro.Opacity,
+            (x) => homeScreen.firstTimeIntro.Opacity = x,
+            0.0f, 1.0f);
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -81,11 +115,13 @@ public class GameState_Home : IGameState
 
 public class GameState_Lawsuit : IGameState
 {
+    private Screen_Lawsuit lawsuitScreen;
     public string StateName { get; } = "Lawsuit";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
+        lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
     }
 
@@ -93,12 +129,24 @@ public class GameState_Lawsuit : IGameState
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameManager.ReturnToHome();
+            if (lawsuitScreen.screenState ==
+                Screen_Lawsuit.ELawsuitScreenState.Settlement)
+            {
+                lawsuitScreen.GoToLawsuitSelect();
+            }
+            else
+            {
+                gameManager.ReturnToHome();    
+            }
         }
     }
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        if (gameManager.lawsuits.Count == 0)
+        {
+            LawsuitNotice.Instance.Hide();
+        }
     }
 }
 
@@ -110,6 +158,7 @@ public class GameState_Newspaper : IGameState
         GameUIController.Instance.GoToScreen(EScreenType.Article);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
+        Newspaper.Instance.Hide();
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -122,7 +171,6 @@ public class GameState_Newspaper : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
-        
     }
 }
 
@@ -151,6 +199,7 @@ public class GameState_Staff : IGameState
 
 public class GameState_Results : IGameState
 {
+    private static bool isFirstResults = true;
     public string StateName { get; } = "Results";
 
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
@@ -166,5 +215,42 @@ public class GameState_Results : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
+        ///
+        ///  deliver lawsuits after results
+        /// 
+        
+        // obligatory lawsuit
+        gameManager.DeliverLawsuit(EParty.None);
+
+        // if pop is low, we MUST throw a new lawsuit for that party
+        if (!isFirstResults)
+        {
+            if (gameManager.Popularity.Civilian 
+                < GameConfig.Instance.LawsuitPopularityLimit)
+            {
+                gameManager.DeliverLawsuit(EParty.Civilian);
+            }
+        
+            if (gameManager.Popularity.Companies 
+                < GameConfig.Instance.LawsuitPopularityLimit)
+            {
+                gameManager.DeliverLawsuit(EParty.Companies);
+            }
+        
+            if (gameManager.Popularity.Politician
+                < GameConfig.Instance.LawsuitPopularityLimit)
+            {
+                gameManager.DeliverLawsuit(EParty.Politician);
+            }
+            
+            // random chance lawsuit
+            float rnd = Random.Range(0.00f, 1.00f);
+            if (rnd < GameConfig.Instance.RandomChanceLawsuit)
+            {
+                gameManager.DeliverLawsuit(EParty.None);
+            }
+        }
+
+        isFirstResults = false;
     }
 }

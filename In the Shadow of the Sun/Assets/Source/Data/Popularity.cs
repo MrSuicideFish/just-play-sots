@@ -1,5 +1,7 @@
 
 using System;
+using System.Security.Authentication.ExtendedProtection;
+using UnityEditor;
 using UnityEngine;
 
 [Serializable]
@@ -34,6 +36,40 @@ public class Popularity
                 return Companies;
         }
         return Mathf.Infinity;
+    }
+
+    public float GetLowestPopularity(out EParty party)
+    {
+        float tmp;
+        float lowest = Mathf.Infinity;
+        party = EParty.None;
+
+        if ((Civilian == Politician) 
+            && (Politician == Companies))
+        {
+            party = EParty.None;
+            return Civilian;
+        }
+
+        if ((tmp = Get(EParty.Civilian)) < lowest)
+        {
+            lowest = tmp;
+            party = EParty.Civilian;
+        }
+        
+        if ((tmp = Get(EParty.Companies)) < lowest)
+        {
+            lowest = tmp;
+            party = EParty.Companies;
+        }
+
+        if ((tmp = Get(EParty.Politician)) < lowest)
+        {
+            lowest = tmp;
+            party = EParty.Politician;
+        }
+
+        return lowest;
     }
 
     public void Apply(EParty party, float value)
