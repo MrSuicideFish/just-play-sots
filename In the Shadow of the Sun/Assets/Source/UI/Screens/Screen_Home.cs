@@ -9,6 +9,7 @@ public class Screen_Home : GameScreen
 
     [Header("Staff")] 
     public TMP_Text text_costPerEmployee;
+    public TMP_Text text_overtimePay;
     
     [Header("Insurance")]
     public TMP_Text text_payout;
@@ -41,6 +42,7 @@ public class Screen_Home : GameScreen
             
             // staff hover
             text_costPerEmployee.text = Funds.Format(GameConfig.Instance.costPerEmployee);
+            text_overtimePay.text = $"{GameConfig.Instance.overtimeMultiplier}x";
 
             // insurance hover
             text_contributions.text = gm.Insurance.totalContributions.ToString();

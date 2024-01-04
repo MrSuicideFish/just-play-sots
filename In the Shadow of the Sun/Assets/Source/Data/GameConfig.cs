@@ -19,6 +19,13 @@ public class GameConfig : ScriptableObject
     public float StarterPopularity = 50;
     public int StarterStaff = 25;
 
+    [Header("Articles")]
+    [TextArea(2, 5)] public string ArticlesTutorialContent = "";
+    [TextArea(2, 5)] public string ResultsTutorialContent = "";
+    
+    [Header("Staff")]
+    [TextArea(2, 5)] public string StaffTutorialContent = "";
+    
     [Header("Payroll")] 
     public float costPerEmployee = 1.0f;
     public float overtimeMultiplier = 1.0f;
@@ -26,10 +33,12 @@ public class GameConfig : ScriptableObject
     [Header("Lawsuits")]
     public float RandomChanceLawsuit = 0.25f;
     public float LawsuitPopularityLimit = 30;
+    [TextArea(2, 5)] public string LawsuitsTutorialContent = "";
     
     [Header("Insurance")]
     public float StarterInsuranceFee = 250.0F;
     public float InsuranceMultiplier = 2.1f;
+    [TextArea(2, 5)] public string InsuranceTutorialContent = "";
     
     [Space(5)]
 
@@ -51,6 +60,4 @@ public class GameConfig : ScriptableObject
 
     public float insuranceDuration = 1.0f;
     public float insuranceDelay = 1.0f;
-
-    public float overtimeStampDelay = 1.0f;
 }

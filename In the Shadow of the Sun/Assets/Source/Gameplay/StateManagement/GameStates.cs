@@ -136,6 +136,13 @@ public class GameState_Lawsuit : IGameState
         lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
+        
+        if (!gameManager.hasCompletedFirstLawsuit)
+        {
+            GameUIController.Instance
+                .ShowGameMessage("Lawsuits",
+                    GameConfig.Instance.LawsuitsTutorialContent, null);
+        }
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -173,6 +180,13 @@ public class GameState_Newspaper : IGameState
         gameManager.playerController.enabled = false;
         Newspaper.Instance.Hide();
         gameManager.isHomeStateClean = false;
+
+        if (!gameManager.hasCompletedFirstArticle)
+        {
+            GameUIController.Instance
+                .ShowGameMessage("Articles",
+                    GameConfig.Instance.ArticlesTutorialContent, null);
+        }
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -197,6 +211,13 @@ public class GameState_Staff : IGameState
         CameraManager.Instance.GoToCamera(ECameraType.Phone);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
+
+        if (!gameManager.hasCompletedFirstStaff)
+        {
+            GameUIController.Instance
+                .ShowGameMessage("Hiring Staff",
+                    GameConfig.Instance.StaffTutorialContent, null);
+        }
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -209,7 +230,7 @@ public class GameState_Staff : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
-        
+        gameManager.hasCompletedFirstStaff = true;
     }
 }
 
@@ -222,6 +243,7 @@ public class GameState_Results : IGameState
         GameUIController.Instance.GoToScreen(EScreenType.Result);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
+
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)

@@ -1,6 +1,6 @@
 public class Staff
 {
-    public const int StaffPerHire = 10;
+    public const int StaffPerHire = 5;
     
     public int Count { get; set; }
     public int Total { get; private set; }

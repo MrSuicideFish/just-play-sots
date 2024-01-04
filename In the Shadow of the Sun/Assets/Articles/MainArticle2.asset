@@ -25,17 +25,18 @@ MonoBehaviour:
     Never anything like this, though.\u201D The trial is set to begin next week. "
   options:
   - content: Hold press conference urging guilty verdict
-    cost: 5000
+    fundsCost: 1725
+    staffCost: 30
     civilianEffect:
-      donations: 0
-      popularity: -1000
+      donations: 2600
+      popularity: 2
     politicianEffect:
-      donations: 0
-      popularity: 0
+      donations: 1300
+      popularity: 10
     companiesEffect:
-      donations: 0
-      popularity: 0
-    requirement:
+      donations: 50.25
+      popularity: -2
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
@@ -43,7 +44,8 @@ MonoBehaviour:
       content: "Donations to the organization are suspiciously up this quarter following
         the conference; some question founder\u2019s personal motives."
   - content: Donate to criminal justice organizations
-    cost: -2500
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: 0
@@ -53,14 +55,15 @@ MonoBehaviour:
     companiesEffect:
       donations: 0
       popularity: 4000
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
       headline: '{{OrgName}} Makes Large Donation to Support Criminal Justice'
       content: Move praised by various Civic City non-profits.
   - content: Anonymously contribute to Palin's legal fund
-    cost: -1000
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: 2500
@@ -70,7 +73,7 @@ MonoBehaviour:
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
