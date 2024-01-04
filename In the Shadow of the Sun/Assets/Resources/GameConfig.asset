@@ -31,8 +31,8 @@ MonoBehaviour:
     funds. Keep your staff lean to reduce costs.'
   StaffTutorialContent: Staff is required to keep your operation going! Hiring too
     many staff, increases payroll costs.
-  costPerEmployee: 1
-  overtimeMultiplier: 1
+  costPerEmployee: 125.3
+  overtimeMultiplier: 2.5
   RandomChanceLawsuit: 0.25
   LawsuitPopularityLimit: 20
   LawsuitsTutorialContent: Your organization can be sued by others or employees.
