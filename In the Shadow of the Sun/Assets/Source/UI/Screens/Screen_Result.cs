@@ -1,7 +1,6 @@
 using System.Collections;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,12 +18,18 @@ public class Screen_Result : GameScreen
     public TMP_Text text_staff_allocated,
                     text_staff_total;
 
+    public Animation funds_result_anim;
+    public TMP_Text text_funds_result;
+    public Button button_funds_result_back;
+    public Button button_funds_result_continue;
+    
     public Button button_continue;
 
     public Animation text_overtime;
 
     private Coroutine resultsRoutine;
     private ArticleOption option;
+    private bool hasShownFundsResults = false;
     
     public override EScreenType GetScreenType()
     {
@@ -44,6 +49,8 @@ public class Screen_Result : GameScreen
             return;
         }
 
+        funds_result_anim.gameObject.SetActive(false);
+        hasShownFundsResults = false;
         option = GameManager.Instance.SelectedOption;
 
         if (!GameManager.Instance.hasCompletedFirstResults)
@@ -158,14 +165,66 @@ public class Screen_Result : GameScreen
         yield return null;
     }
 
+    public void Back()
+    {
+        funds_result_anim.gameObject.SetActive(false);
+    }
+
     public void Continue()
     {
-        GameManager.Instance.Staff.Count -= option.staffCost;
-        if (GameManager.Instance.Staff.Count < 0)
-        {
-            GameManager.Instance.Staff.Count = 0;
-        }
+        button_funds_result_continue.gameObject.SetActive(false);
+        button_funds_result_back.gameObject.SetActive(false);
         
-        GameManager.Instance.ReturnToHome();
+        button_funds_result_continue.interactable = false;
+        button_funds_result_back.interactable = false;
+        if (!funds_result_anim.gameObject.activeInHierarchy)
+        {
+            if (!hasShownFundsResults)
+            {
+                StartCoroutine(DoFunds());    
+            }
+            else
+            {
+                button_funds_result_continue.gameObject.SetActive(true);
+                button_funds_result_back.gameObject.SetActive(true);
+                button_funds_result_continue.interactable = true;
+                button_funds_result_back.interactable = true;
+                funds_result_anim.gameObject.SetActive(true);
+                text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
+            }
+        }
+        else
+        {
+            GameManager.Instance.ReturnToHome();
+        }
+    }
+
+    private IEnumerator DoFunds()
+    {
+        button_funds_result_continue.gameObject.SetActive(true);
+        button_funds_result_back.gameObject.SetActive(true);
+        
+        hasShownFundsResults = true;
+        float tmp = GameManager.Instance.OrganizationFunds.Value;
+        float cost = GameManager.Instance.CalcTotalCost();
+        float donation = GameManager.Instance.CalcTotalDonations();
+        text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
+        GameManager.Instance.OrganizationFunds.Value -= cost;
+        GameManager.Instance.OrganizationFunds.Value += donation;
+
+        
+        funds_result_anim.gameObject.SetActive(true);
+        funds_result_anim.Play();
+        DOTween.To(() => tmp,
+                x => { text_funds_result.text = Funds.Format(x); },
+                (tmp - cost) + donation, GameConfig.Instance.fundsResultDuration)
+            .SetDelay(GameConfig.Instance.fundsResultDelay)
+            .OnComplete(() =>
+            {
+                button_funds_result_continue.interactable = true;
+                button_funds_result_back.interactable = true;
+            });
+        
+        yield return null;
     }
 }
