@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Screen_Article : GameScreen
 {
@@ -10,6 +11,8 @@ public class Screen_Article : GameScreen
     public ToggleGroup optionsToggleGroup;
     
     public UIArticleOption placeholderOption;
+    public ScrollRect scrollView;
+    
     private UIArticleOption[] options;
     private int selectedOption;
     public override EScreenType GetScreenType()
@@ -19,10 +22,12 @@ public class Screen_Article : GameScreen
 
     private void OnEnable()
     {
+        scrollView.normalizedPosition = new Vector2(0, 1);
+        scrollView.Rebuild(CanvasUpdate.Prelayout);
         placeholderOption.gameObject.SetActive(false);
         Article article = GameManager.Instance.CurrentArticle;
-        text_headline.text = article.headline;
-        text_content.text = article.content;
+        text_headline.text = article.GetHeadline();
+        text_content.text = article.GetContent();
         SetupOptions(article.options);
     }
 
@@ -51,7 +56,7 @@ public class Screen_Article : GameScreen
             options[i].transform.SetParent(optionsToggleGroup.transform);
             options[i].transform.localScale = Vector3.one;
             options[i].gameObject.SetActive(true);
-            options[i].content.text = newOptions[i].content;
+            options[i].content.text = newOptions[i].GetContent();
             options[i].ToggleAvailability(
                 newOptions[i].requirement.Party == EParty.None || GameManager.Instance.Popularity.CompareRequirement(
                     newOptions[i].requirement));

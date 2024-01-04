@@ -11,4 +11,14 @@ public class Article : ScriptableObject
     public ArticleOption[] options;
 
     [NonSerialized] public int selectedOption = -1;
+
+    public string GetHeadline()
+    {
+        return headline.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
+    
+    public string GetContent()
+    {
+        return content.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
 }

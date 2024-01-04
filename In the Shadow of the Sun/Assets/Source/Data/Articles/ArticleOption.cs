@@ -20,4 +20,9 @@ public class ArticleOption
    
     public PopularityRequirement requirement;
     public ArticleOptionResponse response;
+    
+    public string GetContent()
+    {
+        return content.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
 }
