@@ -15,12 +15,33 @@ MonoBehaviour:
   StarterFunds: 5000
   StarterPopularity: 60
   StarterStaff: 25
+  ArticlesTutorialContent: 'Newspapers provide updates on current events. Read through
+    them and choose the outcome. Be careful, actions have consequences!
+
+
+    Each
+    action requires money and staff. Running out of money means bankruptcy and staff
+    shortages lead to more overtime pay!'
+  ResultsTutorialContent: 'Your choices impact your organization''s standing in the
+    public eye. You are more likely to recieve donations based on your actions.
+
+
+    After
+    each article, payroll and insurance fees are deducted from your organization''s
+    funds. Keep your staff lean to reduce costs.'
+  StaffTutorialContent: Staff is required to keep your operation going! Hiring too
+    many staff, increases payroll costs.
   costPerEmployee: 1
   overtimeMultiplier: 1
   RandomChanceLawsuit: 0.25
   LawsuitPopularityLimit: 20
+  LawsuitsTutorialContent: Your organization can be sued by others or employees.
+    These lawsuits can be settled by using company funds or by having insurance cover
+    the costs - but will increase insurance fees.
   StarterInsuranceFee: 500
   InsuranceMultiplier: 2.1
+  InsuranceTutorialContent: Insurance fees are owed after every article. Settling
+    lawsuits with insurance will increase these fees over time.
   donationDuration: 0.5
   civillianDonationDelay: 1
   politicianDonationDelay: 1
@@ -34,4 +55,3 @@ MonoBehaviour:
   payrollDelay: 2.5
   insuranceDuration: 0.5
   insuranceDelay: 3
-  overtimeStampDelay: 1.5

@@ -243,6 +243,7 @@ public class GameState_Results : IGameState
         GameUIController.Instance.GoToScreen(EScreenType.Result);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
+
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)

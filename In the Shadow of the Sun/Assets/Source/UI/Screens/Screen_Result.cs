@@ -45,7 +45,14 @@ public class Screen_Result : GameScreen
         }
 
         option = GameManager.Instance.SelectedOption;
-        resultsRoutine = StartCoroutine(DoResults());
+
+        if (!GameManager.Instance.hasCompletedFirstResults)
+        {
+            GameUIController.Instance
+                .ShowGameMessage("Public Reactions",
+                    GameConfig.Instance.ResultsTutorialContent,
+                    () => { resultsRoutine = StartCoroutine(DoResults()); });
+        }
     }
 
     private IEnumerator DoResults()
