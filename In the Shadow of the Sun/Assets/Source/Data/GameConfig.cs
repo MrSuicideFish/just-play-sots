@@ -60,4 +60,7 @@ public class GameConfig : ScriptableObject
 
     public float insuranceDuration = 1.0f;
     public float insuranceDelay = 1.0f;
+
+    public float fundsResultDuration = 1.0f;
+    public float fundsResultDelay = 1.0f;
 }

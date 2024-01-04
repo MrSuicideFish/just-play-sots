@@ -119,16 +119,16 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void SelectArticleOption(int optionIndex)
+    public float CalcTotalCost()
     {
-        ArticleOption option = CurrentArticle.options[optionIndex];
+        float total = 0.0f;
         
         // bill
-        OrganizationFunds -= option.fundsCost;
+        total += SelectedOption.fundsCost;
         
         // payroll
         float payroll = Staff.Total * GameConfig.Instance.costPerEmployee;
-        float remainingStaff = GameManager.Instance.Staff.Count - option.staffCost;
+        float remainingStaff = Instance.Staff.Count - SelectedOption.staffCost;
         
         // overtime pay
         if (remainingStaff < 0)
@@ -138,23 +138,44 @@ public class GameManager : MonoBehaviour
         }
 
         // staff
-
-        OrganizationFunds -= payroll;
+        total += payroll;
         
         // insurance
-        OrganizationFunds -= Insurance.fee;
-        Insurance.totalContributions += Insurance.fee;
+        total += Insurance.fee.Value;
+        return total;
+    }
 
+    public float CalcTotalDonations()
+    {
+        float total = 0.0f;
+        
         // donations
-        OrganizationFunds += option.civilianEffect.donations;
-        OrganizationFunds += option.politicianEffect.donations;
-        OrganizationFunds += option.companiesEffect.donations;
+        total += SelectedOption.civilianEffect.donations;
+        total += SelectedOption.politicianEffect.donations;
+        total += SelectedOption.companiesEffect.donations;
 
+        return total;
+    }
+
+    public void SelectArticleOption(int optionIndex)
+    {
+        ArticleOption option = CurrentArticle.options[optionIndex];
+
+        // for immediate application
+        Staff.Count -= option.staffCost;
+        if (Staff.Count < 0)
+        {
+            Staff.Count = 0;
+        }
+        
         // popularity
-        Popularity.Apply(EParty.Civilian, option.civilianEffect.popularity);
-        Popularity.Apply(EParty.Politician, option.politicianEffect.popularity);
-        Popularity.Apply(EParty.Companies, option.companiesEffect.popularity);
-
+        Popularity.Apply(EParty.Civilian, SelectedOption.civilianEffect.popularity);
+        Popularity.Apply(EParty.Politician, SelectedOption.politicianEffect.popularity);
+        Popularity.Apply(EParty.Companies, SelectedOption.companiesEffect.popularity);
+        
+        // insurance contributions
+        Insurance.totalContributions += Insurance.fee;
+        
         // save current article as completed
         CurrentResponse = option.response;
         SelectedOption = option;
