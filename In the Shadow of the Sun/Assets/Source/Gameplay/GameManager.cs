@@ -178,6 +178,7 @@ public class GameManager : MonoBehaviour
 
         lawsuits.Remove(CurrentLawsuit);
         completedLawsuits.Add(CurrentLawsuit.id);
+        hasCompletedFirstLawsuit = true;
         ReturnToHome();
     }
     #endregion
