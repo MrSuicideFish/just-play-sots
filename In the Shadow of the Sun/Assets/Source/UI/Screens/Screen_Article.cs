@@ -57,9 +57,6 @@ public class Screen_Article : GameScreen
             options[i].transform.localScale = Vector3.one;
             options[i].gameObject.SetActive(true);
             options[i].content.text = newOptions[i].GetContent();
-            options[i].ToggleAvailability(
-                newOptions[i].requirement.Party == EParty.None || GameManager.Instance.Popularity.CompareRequirement(
-                    newOptions[i].requirement));
             var index = i;
             options[i].toggle.onValueChanged.AddListener(isOn =>
             {
