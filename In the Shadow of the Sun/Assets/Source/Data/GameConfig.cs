@@ -17,7 +17,6 @@ public class GameConfig : ScriptableObject
 
     public float StarterFunds = 1500.00F;
     public float StarterPopularity = 50;
-    public float UnpopularThreshold = 30;
     
     [Header("Lawsuits")]
     public float RandomChanceLawsuit = 0.25f;
