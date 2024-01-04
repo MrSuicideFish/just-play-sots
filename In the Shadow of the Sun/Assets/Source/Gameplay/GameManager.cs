@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     // Cache
     [NonSerialized] public bool hasCompletedFirstHome = false;
     [NonSerialized] public bool hasCompletedFirstResults = false;
+    [NonSerialized] public bool hasCompletedFirstStaff = false;
     private bool gameHasStarted;
     private bool gameHasEnded;
     
