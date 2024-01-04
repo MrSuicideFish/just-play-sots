@@ -111,7 +111,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &448504015571291641
 Transform:
@@ -430,7 +430,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: eb5993600d9c9bf4fb17025487759600, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8d4030aa94b10654aa29eb1e23ef5272, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.627
   m_Pitch: 1
@@ -2304,7 +2304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e057410e0e8b47588bbac6e0bd79d0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_SkipCutscene: 1
+  debug_SkipCutscene: 0
   playerController: {fileID: 0}
   OnPopularityChanged:
     m_PersistentCalls:
@@ -2319,6 +2319,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   hasCompletedFirstLawsuit: 0
+  lawsuitsAddedThisArticle: 0
 --- !u!114 &6270947849993488914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2420,6 +2421,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Documents_01
       objectReference: {fileID: 0}
+    - target: {fileID: 299023517497574148, guid: 346bad1ad8c3e3841b3ecb2e19c4b4ee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2555597587874710749, guid: 346bad1ad8c3e3841b3ecb2e19c4b4ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.000000032251
@@ -2450,7 +2455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2555597587874710749, guid: 346bad1ad8c3e3841b3ecb2e19c4b4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -33.383
+      value: 8.34939
       objectReference: {fileID: 0}
     - target: {fileID: 2555597587874710749, guid: 346bad1ad8c3e3841b3ecb2e19c4b4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2458,7 +2463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2555597587874710749, guid: 346bad1ad8c3e3841b3ecb2e19c4b4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 49.49
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5941865483630862898, guid: 346bad1ad8c3e3841b3ecb2e19c4b4ee, type: 3}

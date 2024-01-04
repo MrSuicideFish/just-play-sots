@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarterFunds: 5000
   StarterPopularity: 60
-  StarterStaff: 25
+  StarterStaff: 5
   ArticlesTutorialContent: 'Newspapers provide updates on current events. Read through
     them and choose the outcome. Be careful, actions have consequences!
 
