@@ -42,8 +42,8 @@ public class Gamestate_Entry : IGameState
 
 public class GameState_Home : IGameState
 {
-    private static bool firstTimeUser = true;
-    private static bool hasCompletedFirstArticle = false;
+    public static bool firstTimeUser = true;
+    public static bool hasCompletedFirstArticle = false;
     
     public string StateName { get; } = "Home";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
@@ -199,7 +199,7 @@ public class GameState_Staff : IGameState
 
 public class GameState_Results : IGameState
 {
-    private static bool isFirstResults = true;
+    public static bool isFirstResults = true;
     public string StateName { get; } = "Results";
 
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
