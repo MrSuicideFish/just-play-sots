@@ -128,13 +128,12 @@ public class GameManager : MonoBehaviour
         
         // payroll
         float payroll = Staff.Total * GameConfig.Instance.costPerEmployee;
-        float staffingPerc = (float) option.staffCost / (float) Staff.Total;
+        float remainingStaff = GameManager.Instance.Staff.Count - option.staffCost;
         
         // overtime pay
-        if (staffingPerc < 1.0f)
+        if (remainingStaff < 0)
         {
-            float remaining = 1.0f - staffingPerc;
-            payroll += (Staff.Total * remaining) *
+            payroll += (Staff.Total * Mathf.Abs(remainingStaff)) *
                        (GameConfig.Instance.costPerEmployee * GameConfig.Instance.overtimeMultiplier);
         }
 

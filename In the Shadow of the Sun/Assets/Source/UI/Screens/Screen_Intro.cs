@@ -12,6 +12,7 @@ public class Screen_Intro : GameScreen
     public TMP_InputField input_OrgName;
     public CinemachineVirtualCamera introCamera;
     public VideoPlayer introVideo;
+    public AudioSource introAudio;
     public Animation radioEntryAnim;
     
     public GameObject namePanel;
@@ -68,6 +69,7 @@ public class Screen_Intro : GameScreen
         namePanel.gameObject.SetActive(false);
         fadeScreen.color = new Color(0, 0, 0, 0);
         introVideo.Play();
+        introAudio.Play();
         yield return new WaitForSeconds(0.2f);
         background.enabled = false;
         yield return new WaitForSeconds(0.7f);
