@@ -16,7 +16,8 @@ public class ClickableEntity : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (view.activeInHierarchy)
+        if (view.activeInHierarchy 
+            && GameManager.Instance.StateMachine.currentState.StateName == "Home")
         {
             DOTween.To(
                 () => indicator.Opacity,
