@@ -22,9 +22,9 @@ public class Screen_Result : GameScreen
         {
             return;
         }
-        
-        text_headline.text = lastSelectedOption.response.headline;
-        text_content.text = lastSelectedOption.response.content;
+
+        text_headline.text = lastSelectedOption.response.GetHeadline();
+        text_content.text = lastSelectedOption.response.GetContent();
         
         // donations
         text_donation_civ.text = Funds.Format(lastSelectedOption.civilianEffect.donations);

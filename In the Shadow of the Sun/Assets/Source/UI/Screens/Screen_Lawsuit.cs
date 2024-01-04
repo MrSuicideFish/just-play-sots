@@ -59,7 +59,7 @@ public class Screen_Lawsuit : GameScreen
                 .GetComponent<UILawsuitEntry>();
 
             newEntry.toggle.group = selectionToggleGroup;
-            newEntry.text_title.text = lawsuit.header;
+            newEntry.text_title.text = lawsuit.GetHeader();
             newEntry.lawsuitId = lawsuit.id;
             
             newEntry.transform.SetParent(entriesParent, true);
@@ -86,8 +86,8 @@ public class Screen_Lawsuit : GameScreen
         Lawsuit currentLawsuit = GameManager.Instance.CurrentLawsuit;
         if (currentLawsuit != null)
         {
-            text_headline.text = currentLawsuit.header;
-            text_content.text = currentLawsuit.content;
+            text_headline.text = currentLawsuit.GetHeader();
+            text_content.text = currentLawsuit.GetContent();
             text_cost.text = Funds.Format(currentLawsuit.cost);
 
             button_payFunds.interactable 
