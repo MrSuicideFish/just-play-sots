@@ -47,9 +47,11 @@ public class GameManager : MonoBehaviour
         StateMachine = new GameStateMachine(this);
         Popularity = new(GameConfig.Instance.StarterPopularity);
         OrganizationFunds = new(GameConfig.Instance.StarterFunds);
-        OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
-        Staff = new();
+        Staff = new(GameConfig.Instance.StarterStaff);
+        
+        //subscribe to events
+        OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         
         StartGame();
     }
@@ -119,23 +121,43 @@ public class GameManager : MonoBehaviour
     public void SelectArticleOption(int optionIndex)
     {
         ArticleOption option = CurrentArticle.options[optionIndex];
-        CurrentResponse = option.response;
+        
+        // bill
+        OrganizationFunds -= option.fundsCost;
+        
+        // payroll
+        float payroll = Staff.Total * GameConfig.Instance.costPerEmployee;
+        float staffingPerc = (float) option.staffCost / (float) Staff.Total;
+        
+        // overtime pay
+        if (staffingPerc < 1.0f)
+        {
+            float remaining = 1.0f - staffingPerc;
+            payroll += (Staff.Total * remaining) *
+                       (GameConfig.Instance.costPerEmployee * GameConfig.Instance.overtimeMultiplier);
+        }
 
-        OrganizationFunds -= option.cost;
+        // staff
+
+        OrganizationFunds -= payroll;
+        
+        // insurance
         OrganizationFunds -= Insurance.fee;
         Insurance.totalContributions += Insurance.fee;
 
+        // donations
         OrganizationFunds += option.civilianEffect.donations;
         OrganizationFunds += option.politicianEffect.donations;
         OrganizationFunds += option.companiesEffect.donations;
 
+        // popularity
         Popularity.Apply(EParty.Civilian, option.civilianEffect.popularity);
         Popularity.Apply(EParty.Politician, option.politicianEffect.popularity);
         Popularity.Apply(EParty.Companies, option.companiesEffect.popularity);
 
-        SelectedOption = option;
-
         // save current article as completed
+        CurrentResponse = option.response;
+        SelectedOption = option;
         CurrentArticle.selectedOption = optionIndex;
         CompletedArticles.Add(CurrentArticle);
         CurrentArticle = null;

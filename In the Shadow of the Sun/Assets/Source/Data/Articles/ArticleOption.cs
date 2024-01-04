@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class ArticleOptionEffect
@@ -12,13 +13,14 @@ public class ArticleOption
 {
     public string content;
 
-    public float cost;
+    public float fundsCost;
+    public int staffCost;
 
     public ArticleOptionEffect civilianEffect;
     public ArticleOptionEffect politicianEffect;
     public ArticleOptionEffect companiesEffect;
-   
-    public PopularityRequirement requirement;
+
+    public PopularityRequirement popularityRequirement;
     public ArticleOptionResponse response;
     
     public string GetContent()

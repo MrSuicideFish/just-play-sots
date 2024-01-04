@@ -26,17 +26,18 @@ MonoBehaviour:
     action.\u201D "
   options:
   - content: Make statement supporting Dr. Sara Trenton
-    cost: 0
+    fundsCost: 375
+    staffCost: 45
     civilianEffect:
-      donations: 0
-      popularity: 1000
+      donations: 350
+      popularity: 3
     politicianEffect:
-      donations: 0
-      popularity: 0
+      donations: 950.5
+      popularity: 1
     companiesEffect:
-      donations: 0
-      popularity: 0
-    requirement:
+      donations: 678.32
+      popularity: 1
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
@@ -44,7 +45,8 @@ MonoBehaviour:
       content: Steadily growing organization, {{OrgName}}, takes stance that brings
         about more support from the populace.
   - content: Issue statement in support of Andrew Taft
-    cost: 0
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: 0
@@ -54,7 +56,7 @@ MonoBehaviour:
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
@@ -62,7 +64,8 @@ MonoBehaviour:
       content: Multiple Civic City politicians rally behind the new organization,
         {{OrgName}}.
   - content: Run a fundraiser for {{OrgName}}
-    cost: 0
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: 0
@@ -72,9 +75,9 @@ MonoBehaviour:
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
-      Party: 4
-      Value: 500
+    popularityRequirement:
+      Party: 0
+      Value: 0
     response:
       headline: 'Civic City Abuzz '
       content: '{{OrgName}} swimming in funds after a successful fundraiser.'

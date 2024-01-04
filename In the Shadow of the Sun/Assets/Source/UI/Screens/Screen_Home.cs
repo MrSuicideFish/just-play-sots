@@ -7,6 +7,9 @@ public class Screen_Home : GameScreen
 {
     public Text text_funds, text_insurance, text_staff, text_popularity;
 
+    [Header("Staff")] 
+    public TMP_Text text_costPerEmployee;
+    
     [Header("Insurance")]
     public TMP_Text text_payout;
     public TMP_Text text_contributions;
@@ -31,10 +34,13 @@ public class Screen_Home : GameScreen
         {
             text_funds.text = $"FUNDS: {gm.OrganizationFunds.ToString()}";
             text_insurance.text = $"INSURANCE: {gm.Insurance.fee.ToString()}";
-            text_staff.text = $"STAFF: {gm.Staff.ToString()}";
+            text_staff.text = $"STAFF: {gm.Staff.Count} / {gm.Staff.Total}";
 
             float totalPop = gm.Popularity.Companies + gm.Popularity.Politician + gm.Popularity.Civilian;
             text_popularity.text = $"POPULARITY: {totalPop} / 300";
+            
+            // staff hover
+            text_costPerEmployee.text = Funds.Format(GameConfig.Instance.costPerEmployee);
 
             // insurance hover
             text_contributions.text = gm.Insurance.totalContributions.ToString();

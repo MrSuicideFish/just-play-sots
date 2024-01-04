@@ -28,6 +28,7 @@ public class Screen_Intro : GameScreen
 
     private void OnEnable()
     {
+        submitButton.interactable = false;
         input_OrgName.onValueChanged.RemoveListener(OnOrgNameEdit);
         input_OrgName.onValueChanged.AddListener(OnOrgNameEdit);
         namePanel.SetActive(true);
@@ -37,6 +38,7 @@ public class Screen_Intro : GameScreen
     private void OnOrgNameEdit(string orgName)
     {
         GameManager.Instance.OrganizationName = orgName;
+        submitButton.interactable = !string.IsNullOrEmpty(orgName);
     }
 
     public void SubmitOrganizationName()
