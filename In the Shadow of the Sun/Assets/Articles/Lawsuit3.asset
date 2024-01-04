@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit3
   header: Animal Abuse
-  content: PETA claims office cat is being abused
+  content: PETA claims office cat is being abused.
   party: 0
   cost: -100

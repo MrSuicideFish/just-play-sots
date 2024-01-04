@@ -38,8 +38,8 @@ MonoBehaviour:
       Party: 4
       Value: 2000
     response:
-      headline: " {{OrgName}} runs presser to rehabilitate Dr. Trenton\u2019s public
-        image"
+      headline: " {{OrgName}} Runs Presser to Rehabilitate Dr. Trenton\u2019s Public
+        Image"
       content: Could this be an underhanded effort to interfere with the mayoral
         race?
   - content: Donate to medical funds
@@ -57,7 +57,7 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: '{{OrgName}} makes large donation to Civic City medical fund'
+      headline: '{{OrgName}} Makes Large Donation to Civic City Medical Fund'
       content: St. Anne Hospital issues personal thanks as they purchase much needed
         equipment for the children's ward.
   - content: Cut ties with Dr. Trenton
@@ -75,7 +75,7 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: '{{OrgName}} cuts ties with Dr. Trenton'
+      headline: '{{OrgName}} Cuts Ties with Dr. Trenton'
       content: After a jaw-dropping press conference, {{OrgName}} announces its decision
         to end all connections to Dr. Trenton. Politicians praise the move as 'very
         savvy'.

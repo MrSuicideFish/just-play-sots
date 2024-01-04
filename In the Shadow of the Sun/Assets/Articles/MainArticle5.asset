@@ -42,7 +42,7 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: '{{OrgName}} makes statement in support of Taft'
+      headline: '{{OrgName}} Makes Statement in Support of Taft'
       content: Politicians praise the stance, in support of the organizations priorities.
         However, numbers seem to dwindle as the company downsizes.
   - content: Donate to police fund
@@ -60,7 +60,7 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: '{{OrgName}} makes donation to Civic City Police force'
+      headline: '{{OrgName}} makes Donation to Civic City Police Force'
       content: Thanks to a generous donation from {{OrgName}}, the Civic City Police
         Department announces their intention to expand operations.
   - content: Lend staff to help run polls
@@ -78,6 +78,6 @@ MonoBehaviour:
       Party: 4
       Value: 5000
     response:
-      headline: '{{OrgName}} staff take their turn as Civic City Pollsters'
+      headline: '{{OrgName}} Staff Take their Turn as Civic City Pollsters'
       content: With a record turn out, {{OrgName}} staff come the the city's rescue
         to help manage the election polls.

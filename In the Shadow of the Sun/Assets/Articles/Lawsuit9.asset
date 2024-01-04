@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit9
   header: Breach of Contract
-  content: Speaker was not paid for GameManager::OrganizationName 's event
+  content: Speaker was not paid for appearance at {{OrgName}}'s event.
   party: 0
   cost: -10000

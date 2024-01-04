@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit4
   header: Property Negligence
-  content: Pedestrian injured due to improperly maintained front walk
+  content: Pedestrian injured due to improperly maintained front walk.
   party: 0
   cost: -1000

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit7
   header: Misuse of Campaign Funds
-  content: Staff member used funds to pay for personal flight
+  content: Staff member used funds to pay for personal flight.
   party: 0
   cost: -3000

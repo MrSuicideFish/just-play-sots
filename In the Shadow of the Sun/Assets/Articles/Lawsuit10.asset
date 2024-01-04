@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit10
   header: Identity Theft
-  content: CEO accused of impersonating the real Ted Ebbing
+  content: CEO accused of impersonating the real Ted Ebbing.
   party: 0
   cost: -5000
