@@ -20,7 +20,8 @@ public class GameConfig : ScriptableObject
     public float UnpopularThreshold = 30;
     
     [Header("Lawsuits")]
-    public float LawsuitProbability = 0.25f;
+    public float RandomChanceLawsuit = 0.25f;
+    public float LawsuitPopularityLimit = 30;
     
     [Header("Insurance")]
     public float StarterInsuranceFee = 250.0F;

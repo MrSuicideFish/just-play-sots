@@ -14,14 +14,18 @@ public class ClickableEntity : MonoBehaviour
             OnSelected();
         }
     }
-    
-    public void Show()
+
+    protected virtual void OnShow(bool firstShow){}
+    public void Show(bool firstShow)
     {
         view.SetActive(true);
+        OnShow(firstShow);
     }
 
+    protected virtual void OnHide(){}
     public void Hide()
     {
         view.SetActive(false);
+        OnHide();
     }
 }
