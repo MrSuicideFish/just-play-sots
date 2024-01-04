@@ -39,8 +39,9 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} holds press conference condemning Joseph Palin'
+      content: "Donations to the organization are suspiciously up this quarter; some
+        question founder\u2019s personal motives."
   - content: Donate to criminal justice organizations
     cost: -2500
     civilianEffect:
@@ -56,8 +57,8 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} makes large donation to support criminal justice'
+      content: Move praised by various Civic City non-profits.
   - content: Anonymously contribute to Palin's legal fund
     cost: -1000
     civilianEffect:
@@ -73,5 +74,5 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: Anonymous benefactor covers legal fees
+      content: "Citizens praise donor\u2019s support of the legal process"

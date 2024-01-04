@@ -42,8 +42,8 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} makes donation to Civic City Police force'
+      content: Politicians praise {{OrgName}}'s support to make city safer
   - content: Issue statement against police overreach
     cost: 0
     civilianEffect:
@@ -59,8 +59,9 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} issues statement about police overreach'
+      content: Controversial move is criticized by politicians, though the organization
+        continues to grow in size.
   - content: Lobby for increased protections for workers
     cost: 0
     civilianEffect:
@@ -76,5 +77,6 @@ MonoBehaviour:
       Party: 4
       Value: 1000
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} lobbies for increased worker protections'
+      content: Bystander says "{{OrgName}} is truly dedicated to the betterment of
+        the common man!"

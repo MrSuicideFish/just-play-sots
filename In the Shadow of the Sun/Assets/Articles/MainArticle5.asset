@@ -42,8 +42,9 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} makes statement in support of Taft'
+      content: Politicians praise the stance, in support of the organizations priorities.
+        However, numbers seem to dwindle as the company downsizes.
   - content: Donate to police fund
     cost: -8000
     civilianEffect:
@@ -59,16 +60,17 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} makes donation to Civic City Police force'
+      content: Thanks to a generous donation from {{OrgName}}, the Civic City Police
+        Department announces their intention to expand operations.
   - content: Lend staff to help run polls
     cost: 0
     civilianEffect:
       donations: 0
-      popularity: 0
+      popularity: 500
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: 500
     companiesEffect:
       donations: 0
       popularity: 0
@@ -76,5 +78,6 @@ MonoBehaviour:
       Party: 4
       Value: 5000
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} staff take their turn as Civic City Pollsters'
+      content: With a record turn out, {{OrgName}} staff come the the city's rescue
+        to help manage the election polls.

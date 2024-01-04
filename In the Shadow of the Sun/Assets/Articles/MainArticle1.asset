@@ -40,8 +40,9 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} issues statement in support of Dr. Sara Trenton'
+      content: Steadily growing organization, {{OrgName}}, takes stance that brings
+        about more support from the populace.
   - content: Issue statement in support of Andrew Taft
     cost: 0
     civilianEffect:
@@ -57,8 +58,9 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: '{{OrgName}} issues statement in support of Andrew Taft'
+      content: Multiple Civic City politicians rally behind the new organization,
+        {{OrgName}}.
   - content: Run a fundraiser for GameManager::OrganizationName
     cost: 0
     civilianEffect:
@@ -74,5 +76,5 @@ MonoBehaviour:
       Party: 4
       Value: 500
     response:
-      headline: 
-      content: 
+      headline: 'Civic City Abuzz '
+      content: '{{OrgName}} swimming in funds after a successful fundraiser.'
