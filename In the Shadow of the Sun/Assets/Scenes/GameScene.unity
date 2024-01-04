@@ -16459,25 +16459,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5170748180561610369, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5170748180561610369, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
-      propertyPath: m_FlexibleHeight
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5170748180561610369, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
-      propertyPath: m_PreferredHeight
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 7388300544807249481, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_Name
       value: GAME_UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7566659699969109769, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
-      propertyPath: m_VerticalFit
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7837561408960724888, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_TargetCamera

@@ -2,10 +2,11 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class Screen_Article : GameScreen
 {
+    public Button button_select;
     public TMP_Text text_headline;
     public TMP_Text text_content;
     public ToggleGroup optionsToggleGroup;
@@ -29,6 +30,7 @@ public class Screen_Article : GameScreen
         text_headline.text = article.GetHeadline();
         text_content.text = article.GetContent();
         SetupOptions(article.options);
+        button_select.interactable = false;
     }
 
     private void ClearOptions()
@@ -61,6 +63,7 @@ public class Screen_Article : GameScreen
             options[i].toggle.onValueChanged.AddListener(isOn =>
             {
                 selectedOption = index;
+                button_select.interactable = optionsToggleGroup.AnyTogglesOn();
             });
             options[i].toggle.group = optionsToggleGroup;
         }
