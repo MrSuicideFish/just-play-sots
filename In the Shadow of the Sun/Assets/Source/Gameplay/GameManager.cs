@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,32 +20,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IntroModule introModule;
-
-    // player
-    public PlayerController playerController;
-
-    // Cache
-    private bool gameHasStarted;
-    private bool gameHasEnded;
-
     [Header("Debugging")] 
     public bool debug_SkipCutscene;
-
-    public Article CurrentArticle { get; private set; }
-    public ArticleOption SelectedOption { get; set; }
-    public ArticleOptionResponse CurrentResponse { get; private set; }
-    public Lawsuit CurrentLawsuit { get; private set; }
-
-    private int articleIndex = 0;
+    
+    public PlayerController playerController;
     public string OrganizationName { get; set; }
     public Popularity Popularity { get; private set; }
     public Funds OrganizationFunds { get; private set; }
     public Insurance Insurance { get; private set; }
     public Staff Staff { get; private set; }
-    
     public GameStateMachine StateMachine { get; private set; }
 
+    // Cache
+    private bool gameHasStarted;
+    private bool gameHasEnded;
+    
     // Events
     public UnityEvent<Popularity> OnPopularityChanged;
     public UnityEvent<float> OnFundsChanged;
@@ -62,77 +52,9 @@ public class GameManager : MonoBehaviour
         
         StartGame();
     }
-
-    public void SelectArticleOption(int optionIndex)
-    {
-        ArticleOption option = CurrentArticle.options[optionIndex];
-        CurrentResponse = option.response;
-
-        OrganizationFunds -= option.cost;
-        OrganizationFunds -= Insurance.fee;
-        Insurance.totalContributions += Insurance.fee;
-
-        OrganizationFunds += option.civilianEffect.donations;
-        OrganizationFunds += option.politicianEffect.donations;
-        OrganizationFunds += option.companiesEffect.donations;
-
-        Popularity.Apply(EParty.Civilian, option.civilianEffect.popularity);
-        Popularity.Apply(EParty.Politician, option.politicianEffect.popularity);
-        Popularity.Apply(EParty.Companies, option.companiesEffect.popularity);
-
-        SelectedOption = option;
-        StateMachine.GoToState(new GameState_Results());
-    }
-
-    private EParty RollForLawsuit()
-    {
-        List<EParty> unpopularity = new();
-        for (int i = 0; i < EParty.Count.GetHashCode(); i++)
-        {
-            EParty p = (EParty) i;
-            if (Popularity.Get(p) < GameConfig.Instance.UnpopularThreshold)
-            {
-                unpopularity.Add(p);
-            }
-        }
-
-        return (unpopularity.Count > 0 && UnityEngine.Random.Range(0.0000f, 1.0000f) < GameConfig.Instance.LawsuitProbability)
-            ? unpopularity[UnityEngine.Random.Range(0, unpopularity.Count)]
-            : EParty.None;
-    }
-
-    public void SettleLawsuit(Lawsuit.ESettlementType settlementType)
-    {
-        if (settlementType == Lawsuit.ESettlementType.Funds)
-        {
-            OrganizationFunds -= CurrentLawsuit.cost;
-        }else if (settlementType == Lawsuit.ESettlementType.Insurance)
-        {
-            Insurance.SettleLawsuit(CurrentLawsuit.cost);
-        }
-
-        ReturnToHome();
-    }
-
-    public void EndArticle()
-    {
-        articleIndex++;
-        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
-        if (CurrentArticle != null)
-        {
-            ReturnToHome();
-        }
-    }
-
+    
     public void ReturnToHome()
     {
-        EParty pendingLawsuitRequest = RollForLawsuit();
-        if (pendingLawsuitRequest != EParty.None)
-        {
-            int rndLawsuit = Random.Range(0, ArticleDb.Instance.lawsuits.Length);
-            CurrentLawsuit = ArticleDb.Instance.lawsuits[rndLawsuit];
-        }
-        
         StateMachine.GoToState(new GameState_Home());
     }
 
@@ -159,4 +81,102 @@ public class GameManager : MonoBehaviour
 
         gameHasEnded = true;
     }
+    
+    
+    #region Article
+    public Article CurrentArticle { get; private set; }
+    public ArticleOption SelectedOption { get; set; }
+    public ArticleOptionResponse CurrentResponse { get; private set; }
+    public List<Article> CompletedArticles { get; private set; } = new();
+    
+    private int articleIndex = 0;
+    
+    public IEnumerator DeliverArticle()
+    {
+        CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
+        Newspaper.Instance.Show(true);
+        OnPaperDelivered?.Invoke();
+        yield return null;
+    }
+
+    public void SelectArticleOption(int optionIndex)
+    {
+        ArticleOption option = CurrentArticle.options[optionIndex];
+        CurrentResponse = option.response;
+
+        OrganizationFunds -= option.cost;
+        OrganizationFunds -= Insurance.fee;
+        Insurance.totalContributions += Insurance.fee;
+
+        OrganizationFunds += option.civilianEffect.donations;
+        OrganizationFunds += option.politicianEffect.donations;
+        OrganizationFunds += option.companiesEffect.donations;
+
+        Popularity.Apply(EParty.Civilian, option.civilianEffect.popularity);
+        Popularity.Apply(EParty.Politician, option.politicianEffect.popularity);
+        Popularity.Apply(EParty.Companies, option.companiesEffect.popularity);
+
+        SelectedOption = option;
+
+        // save current article as completed
+        CurrentArticle.selectedOption = optionIndex;
+        CompletedArticles.Add(CurrentArticle);
+        CurrentArticle = null;
+        articleIndex++;
+        
+        StateMachine.GoToState(new GameState_Results());
+    }
+    #endregion
+    
+    
+    #region Lawsuits
+    public Lawsuit CurrentLawsuit { get; private set; }
+    public List<Lawsuit> lawsuits { get; private set;} = new();
+    public List<string> completedLawsuits { get; private set; } = new();
+    
+    public void DeliverLawsuit(EParty fromParty)
+    {
+        Lawsuit[] suits = (fromParty == EParty.None)
+            ? ArticleDb.Instance.lawsuits
+            : ArticleDb.Instance.GetLawsuitsByParty(fromParty);
+
+        for (int i = 0; i < suits.Length; i++)
+        {
+            if (!completedLawsuits.Contains(suits[i].id)
+                && !lawsuits.Contains(suits[i]))
+            {
+                lawsuits.Add(suits[i]);
+                break;
+            }
+        }
+        
+        OnLawsuitDelivered?.Invoke();
+    }
+
+    public void SelectLawsuit(int index)
+    {
+        if (index < 0 || index >= lawsuits.Count)
+        {
+            return;
+        }
+        
+        CurrentLawsuit = lawsuits[index];
+    }
+    
+    public void SettleLawsuit(Lawsuit.ESettlementType settlementType)
+    {
+        if (settlementType == Lawsuit.ESettlementType.Funds)
+        {
+            OrganizationFunds -= CurrentLawsuit.cost;
+        }else if (settlementType == Lawsuit.ESettlementType.Insurance)
+        {
+            Insurance.SettleLawsuit(CurrentLawsuit.cost);
+        }
+
+        lawsuits.Remove(CurrentLawsuit);
+        completedLawsuits.Add(CurrentLawsuit.id);
+        ReturnToHome();
+    }
+    #endregion
+    
 }
