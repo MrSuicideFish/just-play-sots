@@ -12,7 +12,7 @@ public class Lawsuit : ScriptableObject
     
     public string id;
     public string header;
-    public string content;
+    [TextArea(1,3)]public string content;
     public EParty party;
     public float cost;
 }
