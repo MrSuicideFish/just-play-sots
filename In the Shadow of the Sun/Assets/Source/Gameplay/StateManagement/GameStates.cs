@@ -66,10 +66,16 @@ public class GameState_Home : IGameState
                 gameManager.EndGame(isWin: true);
             }
         }
-
+        
         if (gameManager.lawsuits.Count > 0)
         {
-            bool firstShow = gameManager.completedLawsuits.Count == 0;
+            bool firstShow = gameManager.completedLawsuits.Count == 0
+            || gameManager.lawsuitsAddedThisArticle == gameManager.lawsuits.Count;
+            
+            if (!gameManager.isHomeStateClean)
+            {
+                firstShow = false;
+            }
             LawsuitNotice.Instance.Show(firstShow);
         }
         
@@ -129,6 +135,7 @@ public class GameState_Lawsuit : IGameState
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
         lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
+        gameManager.isHomeStateClean = false;
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -165,6 +172,7 @@ public class GameState_Newspaper : IGameState
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
         Newspaper.Instance.Hide();
+        gameManager.isHomeStateClean = false;
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -188,6 +196,7 @@ public class GameState_Staff : IGameState
         GameUIController.Instance.GoToScreen(EScreenType.Staff);
         CameraManager.Instance.GoToCamera(ECameraType.Phone);
         gameManager.playerController.enabled = false;
+        gameManager.isHomeStateClean = false;
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -256,7 +265,6 @@ public class GameState_Results : IGameState
                 gameManager.DeliverLawsuit(EParty.None);
             }
         }
-
         gameManager.hasCompletedFirstResults = true;
     }
 }

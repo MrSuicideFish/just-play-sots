@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClickableEntity : MonoBehaviour
 {
     public GameObject view;
+    public Animation animComponent;
     public FadeController indicator;
     
     protected virtual void OnSelected(){}
@@ -48,6 +49,11 @@ public class ClickableEntity : MonoBehaviour
     public void Show(bool firstShow)
     {
         view.SetActive(true);
+        if (firstShow && animComponent != null)
+        {
+            animComponent.Play();
+        }
+        
         OnShow(firstShow);
     }
 
