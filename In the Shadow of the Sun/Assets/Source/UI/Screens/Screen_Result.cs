@@ -21,6 +21,7 @@ public class Screen_Result : GameScreen
     public Animation funds_result_anim;
     public TMP_Text text_funds_result;
     public Button button_funds_result_back;
+    public Button button_funds_result_continue;
     
     public Button button_continue;
 
@@ -48,6 +49,7 @@ public class Screen_Result : GameScreen
             return;
         }
 
+        funds_result_anim.gameObject.SetActive(false);
         hasShownFundsResults = false;
         option = GameManager.Instance.SelectedOption;
 
@@ -163,8 +165,18 @@ public class Screen_Result : GameScreen
         yield return null;
     }
 
+    public void Back()
+    {
+        funds_result_anim.gameObject.SetActive(false);
+    }
+
     public void Continue()
     {
+        button_funds_result_continue.gameObject.SetActive(false);
+        button_funds_result_back.gameObject.SetActive(false);
+        
+        button_funds_result_continue.interactable = false;
+        button_funds_result_back.interactable = false;
         if (!funds_result_anim.gameObject.activeInHierarchy)
         {
             if (!hasShownFundsResults)
@@ -173,6 +185,10 @@ public class Screen_Result : GameScreen
             }
             else
             {
+                button_funds_result_continue.gameObject.SetActive(true);
+                button_funds_result_back.gameObject.SetActive(true);
+                button_funds_result_continue.interactable = true;
+                button_funds_result_back.interactable = true;
                 funds_result_anim.gameObject.SetActive(true);
                 text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
             }
@@ -185,25 +201,29 @@ public class Screen_Result : GameScreen
 
     private IEnumerator DoFunds()
     {
+        button_funds_result_continue.gameObject.SetActive(true);
+        button_funds_result_back.gameObject.SetActive(true);
+        
         hasShownFundsResults = true;
         float tmp = GameManager.Instance.OrganizationFunds.Value;
         float cost = GameManager.Instance.CalcTotalCost();
         float donation = GameManager.Instance.CalcTotalDonations();
-        
+        text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
         GameManager.Instance.OrganizationFunds.Value -= cost;
         GameManager.Instance.OrganizationFunds.Value += donation;
 
+        
         funds_result_anim.gameObject.SetActive(true);
         funds_result_anim.Play();
         DOTween.To(() => tmp,
                 x => { text_funds_result.text = Funds.Format(x); },
                 (tmp - cost) + donation, GameConfig.Instance.fundsResultDuration)
-            .SetDelay(GameConfig.Instance.fundsResultDelay);
-
-        
-        yield return new WaitForSeconds(GameConfig.Instance.fundsResultDelay);
-        button_continue.interactable = true;
-        button_funds_result_back.interactable = true;
+            .SetDelay(GameConfig.Instance.fundsResultDelay)
+            .OnComplete(() =>
+            {
+                button_funds_result_continue.interactable = true;
+                button_funds_result_back.interactable = true;
+            });
         
         yield return null;
     }

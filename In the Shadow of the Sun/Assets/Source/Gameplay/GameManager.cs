@@ -160,7 +160,9 @@ public class GameManager : MonoBehaviour
     public void SelectArticleOption(int optionIndex)
     {
         ArticleOption option = CurrentArticle.options[optionIndex];
-
+        CurrentResponse = option.response;
+        SelectedOption = option;
+        
         // for immediate application
         Staff.Count -= option.staffCost;
         if (Staff.Count < 0)
@@ -177,8 +179,6 @@ public class GameManager : MonoBehaviour
         Insurance.totalContributions += Insurance.fee;
         
         // save current article as completed
-        CurrentResponse = option.response;
-        SelectedOption = option;
         CurrentArticle.selectedOption = optionIndex;
         CompletedArticles.Add(CurrentArticle);
         CurrentArticle = null;
