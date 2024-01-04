@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +27,11 @@ public class FadeController : MonoBehaviour
     private void PopulateCache(GameObject parent)
     {
         Graphic component = parent.GetComponent<Graphic>();
-        cache.Add(component);
+        if (component != null)
+        {
+            cache.Add(component);
+        }
+        
         for (int i = 0; i < parent.transform.childCount; i++)
         {
             PopulateCache(parent.transform.GetChild(i).gameObject);
@@ -39,9 +42,12 @@ public class FadeController : MonoBehaviour
     {
         for (int i = 0; i < cache.Count; i++)
         {
-            Color currentColor = cache[i].color;
-            currentColor.a = Opacity;
-            cache[i].color = currentColor;
+            if (cache[i])
+            {
+                Color currentColor = cache[i].color;
+                currentColor.a = Opacity;
+                cache[i].color = currentColor;
+            }
         }
     }
 }
