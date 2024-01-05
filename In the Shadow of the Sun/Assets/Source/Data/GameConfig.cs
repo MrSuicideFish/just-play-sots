@@ -63,4 +63,6 @@ public class GameConfig : ScriptableObject
 
     public float fundsResultDuration = 1.0f;
     public float fundsResultDelay = 1.0f;
+
+    public float captionsFadeSpeed = 1.0f;
 }
