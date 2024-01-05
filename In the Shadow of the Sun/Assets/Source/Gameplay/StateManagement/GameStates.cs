@@ -1,47 +1,57 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
-public interface IGameState
+public interface IGameState<T> where T : IGameScreen
 {
-    string StateName { get; }
+    EScreenType ScreenType { get; }
+
+    T Screen
+    {
+        get
+        {
+            return GameUIController.Instance.GetScreen(ScreenType) as T;
+        }
+    }
+
     void OnStateEnter(GameManager gameManager, GameStateMachine sm);
     void OnStateUpdate(GameManager gameManager, GameStateMachine sm);
     void OnStateExit(GameManager gameManager, GameStateMachine sm);
     
-    void ShowFTUE()
+    void ShowFTUE(UnityAction onComplete = null)
     {
-        switch (StateName)
+        switch (ScreenType)
         {
-            case "Home":
+            case EScreenType.Home:
                 GameUIController.Instance
-                    .ShowGameMessage(StateName,
-                        GameConfig.Instance.HomeTutorialContent, null);
+                    .ShowGameMessage(GameConfig.Instance.HomeTutorialTitle,
+                        GameConfig.Instance.HomeTutorialContent, onComplete);
                 break;
-            case "Lawsuit":
+            case EScreenType.Lawsuit:
                 GameUIController.Instance
-                    .ShowGameMessage(StateName,
-                        GameConfig.Instance.LawsuitsTutorialContent, null);
+                    .ShowGameMessage(GameConfig.Instance.LawsuitsTutorialTitle,
+                        GameConfig.Instance.LawsuitsTutorialContent, onComplete);
                 break;
-            case "Newspaper":
+            case EScreenType.Article:
                 GameUIController.Instance
-                    .ShowGameMessage(StateName,
-                        GameConfig.Instance.ArticlesTutorialContent, null);
+                    .ShowGameMessage(GameConfig.Instance.ArticlesTutorialTitle,
+                        GameConfig.Instance.ArticlesTutorialContent, onComplete);
                 break;
-            case "Staff":
+            case EScreenType.Staff:
                 GameUIController.Instance
-                    .ShowGameMessage(StateName,
-                        GameConfig.Instance.StaffTutorialContent, null);
+                    .ShowGameMessage(GameConfig.Instance.StaffTutorialTitle,
+                        GameConfig.Instance.StaffTutorialContent, onComplete);
                 break;
         }
     }
 }
 
-public class Gamestate_Entry : IGameState
+public class Gamestate_Entry : IGameState<Screen_Intro>
 {
     private Screen_Intro introScreen;
-    
-    public string StateName { get; } = "Entry";
+    public EScreenType ScreenType { get; } = EScreenType.Intro;
+
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         Newspaper.Instance.Hide();
@@ -58,7 +68,9 @@ public class Gamestate_Entry : IGameState
         if (introScreen.IsComplete)
         {
             introScreen.radioAudioSrc.Play();
-            sm.GoToState(new GameState_Home());
+            GameState_Home home = new GameState_Home();
+            sm.GoToState()
+            sm.GoToState<GameState_Home>();
         }
     }
 
@@ -67,16 +79,15 @@ public class Gamestate_Entry : IGameState
     }
 }
 
-public class GameState_Home : IGameState
+public class GameState_Home : IGameState<Screen_Home>
 {
-    public string StateName { get; } = "Home";
+    public EScreenType ScreenType { get; } = EScreenType.Home;
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         CameraManager.Instance.GoToCamera(ECameraType.Home);
         if (!gameManager.hasCompletedFirstHome)
         {
             gameManager.StartCoroutine(WaitForFTUE(gameManager));
-            gameManager.hasCompletedFirstHome = true;
             return;
         }
 
@@ -115,13 +126,8 @@ public class GameState_Home : IGameState
         Screen_Home homeScreen = GameUIController.Instance.GetScreen(EScreenType.Home) as Screen_Home;
         homeScreen.firstTimeIntro.Opacity = 0;
         homeScreen.orgNameIntro.text = gameManager.OrganizationName;
-        
-        GameUIController.Instance.GoToScreen(EScreenType.Tutorial);
-        Screen_Tutorial ftueScreen = GameUIController.Instance.GetScreen(EScreenType.Tutorial) as Screen_Tutorial;
-        while (!ftueScreen.isComplete)
-        {
-            yield return null;
-        }
+
+        // do ftue here
         
         gameManager.playerController.enabled = true;
         homeScreen.firstTimeIntro.Set(0.0f);
@@ -152,10 +158,9 @@ public class GameState_Home : IGameState
     }
 }
 
-public class GameState_Lawsuit : IGameState
+public class GameState_Lawsuit : IGameState<Screen_Lawsuit>
 {
-    private Screen_Lawsuit lawsuitScreen;
-    public string StateName { get; } = "Lawsuit";
+    public EScreenType ScreenType { get; } = EScreenType.Lawsuit;
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
@@ -163,11 +168,6 @@ public class GameState_Lawsuit : IGameState
         lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
-        
-        if (!gameManager.hasCompletedFirstLawsuit)
-        {
-            lawsuitScreen.ShowFTUE();
-        }
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -195,9 +195,9 @@ public class GameState_Lawsuit : IGameState
     }
 }
 
-public class GameState_Newspaper : IGameState
+public class GameState_Newspaper : IGameState<Screen_Article>
 {
-    public string StateName { get; } = "Newspaper";
+    public EScreenType ScreenType { get; } = EScreenType.Article;
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Article);
@@ -205,13 +205,6 @@ public class GameState_Newspaper : IGameState
         gameManager.playerController.enabled = false;
         Newspaper.Instance.Hide();
         gameManager.isHomeStateClean = false;
-
-        if (!gameManager.hasCompletedFirstArticle)
-        {
-            GameUIController.Instance
-                .ShowGameMessage("Articles",
-                    GameConfig.Instance.ArticlesTutorialContent, null);
-        }
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -227,22 +220,15 @@ public class GameState_Newspaper : IGameState
     }
 }
 
-public class GameState_Staff : IGameState
+public class GameState_Staff : IGameState<Screen_Staff>
 {
-    public string StateName { get; } = "Staff";
+    public EScreenType ScreenType { get; } = EScreenType.Staff;
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Staff);
         CameraManager.Instance.GoToCamera(ECameraType.Phone);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
-
-        if (!gameManager.hasCompletedFirstStaff)
-        {
-            GameUIController.Instance
-                .ShowGameMessage("Hiring Staff",
-                    GameConfig.Instance.StaffTutorialContent, null);
-        }
     }
 
     public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -255,14 +241,12 @@ public class GameState_Staff : IGameState
 
     public void OnStateExit(GameManager gameManager, GameStateMachine sm)
     {
-        gameManager.hasCompletedFirstStaff = true;
     }
 }
 
-public class GameState_Results : IGameState
+public class GameState_Results : IGameState<Screen_Result>
 {
-    public string StateName { get; } = "Results";
-
+    public EScreenType ScreenType { get; } = EScreenType.Result;
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Result);
@@ -285,33 +269,32 @@ public class GameState_Results : IGameState
         gameManager.DeliverLawsuit(EParty.None);
 
         // if pop is low, we MUST throw a new lawsuit for that party
-        if (gameManager.hasCompletedFirstResults)
+        if (gameManager.Popularity.Civilian 
+            < GameConfig.Instance.LawsuitPopularityLimit)
         {
-            if (gameManager.Popularity.Civilian 
-                < GameConfig.Instance.LawsuitPopularityLimit)
-            {
-                gameManager.DeliverLawsuit(EParty.Civilian);
-            }
+            gameManager.DeliverLawsuit(EParty.Civilian);
+        }
         
-            if (gameManager.Popularity.Companies 
-                < GameConfig.Instance.LawsuitPopularityLimit)
-            {
-                gameManager.DeliverLawsuit(EParty.Companies);
-            }
+        if (gameManager.Popularity.Companies 
+            < GameConfig.Instance.LawsuitPopularityLimit)
+        {
+            gameManager.DeliverLawsuit(EParty.Companies);
+        }
         
-            if (gameManager.Popularity.Politician
-                < GameConfig.Instance.LawsuitPopularityLimit)
-            {
-                gameManager.DeliverLawsuit(EParty.Politician);
-            }
+        if (gameManager.Popularity.Politician
+            < GameConfig.Instance.LawsuitPopularityLimit)
+        {
+            gameManager.DeliverLawsuit(EParty.Politician);
+        }
             
-            // random chance lawsuit
+        // random chance lawsuit
+        if (gameManager.CompletedArticles.Count > 1)
+        {
             float rnd = Random.Range(0.00f, 1.00f);
             if (rnd < GameConfig.Instance.RandomChanceLawsuit)
             {
                 gameManager.DeliverLawsuit(EParty.None);
             }
         }
-        gameManager.hasCompletedFirstResults = true;
     }
 }

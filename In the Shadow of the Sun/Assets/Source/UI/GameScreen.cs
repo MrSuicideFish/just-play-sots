@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,32 +11,38 @@ public enum EScreenType
     Lawsuit,
     EndGame,
     Staff,
-    Tutorial,
     Empty
 }
 
+public interface IGameScreen
+{
+    
+}
 public abstract class GameScreen : MonoBehaviour
 {
     [Header("Events")]
-    public UnityEvent OnScreenShow;
+    public UnityEvent OnScreenShow, OnScreenHide;
 
     public abstract EScreenType GetScreenType();
 
     private bool HasShown = false;
     
-    public void ShowFTUE()
+    public void ShowFTUE(UnityAction onComplete)
     {
-        GameManager.Instance.StateMachine.currentState.ShowFTUE();
+        GameManager.Instance
+            .StateMachine.currentState.ShowFTUE(onComplete);
     }
 
     private void OnEnable()
     {
         StartCoroutine(Show(!HasShown));
+        OnScreenShow?.Invoke();
         HasShown = true;
     }
 
     private void OnDisable()
     {
+        OnScreenHide?.Invoke();
         Hide();
     }
 

@@ -1,20 +1,25 @@
+using System;
+
 public class GameStateMachine
 {
-    public string lastStateName { get; private set; }
-    public IGameState currentState { get; private set; }
+    public IGameState<GameScreen> currentState { get; private set; }
     
     public GameStateMachine(GameManager gameManager){}
 
-    public void GoToState(IGameState newState)
+    public void GoToState(IGameState<IGameScreen> state)
+    {
+        
+    }
+    
+    public void GoToState<T>() where T : IGameState<GameScreen>
     {
         if (currentState != null)
         {
-            lastStateName = currentState.StateName;
             currentState.OnStateExit(GameManager.Instance, this);
             currentState = null;
         }
 
-        currentState = newState;
+        currentState = Activator.CreateInstance<T>();
         currentState.OnStateEnter(GameManager.Instance,this);
     }
 

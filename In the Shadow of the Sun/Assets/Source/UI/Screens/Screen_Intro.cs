@@ -45,7 +45,7 @@ public class Screen_Intro : GameScreen
 
     public override void Hide()
     {
-        
+        captionsParent.gameObject.SetActive(false);
     }
 
     private void OnOrgNameEdit(string orgName)
