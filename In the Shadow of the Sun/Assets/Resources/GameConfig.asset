@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1904f9796c4d8399ed2539dc2b1213, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  StarterFunds: 5000
+  StarterFunds: 15000
   StarterPopularity: 60
   StarterStaff: 5
   ArticlesTutorialContent: 'Newspapers provide updates on current events. Read through
@@ -55,3 +55,6 @@ MonoBehaviour:
   payrollDelay: 2.5
   insuranceDuration: 0.5
   insuranceDelay: 3
+  fundsResultDuration: 1
+  fundsResultDelay: 1
+  captionsFadeSpeed: 5
