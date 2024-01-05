@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c734337408e641ac8ef4a961000f02ac, type: 3}
-  m_Name: Lawsuit7
+  m_Name: Lawsuit12
   m_EditorClassIdentifier: 
-  id: Lawsuit7
-  header: Misuse of Campaign Funds
-  content: Staff member uses funds to pay for personal flight.
+  id: Lawsuit12
+  header: Man Sues for Disturbance
+  content: Man unable to sleep while {{OrgName}}'s previous event was held in the
+    city park.
   party: 0
-  cost: -3000
+  cost: -100

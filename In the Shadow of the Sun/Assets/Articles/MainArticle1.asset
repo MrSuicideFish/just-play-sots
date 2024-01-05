@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: MainArticle1
   headline: Mayoral Race Heats Up
-  subtitle: 
+  subtitle: Doctor Promises to Heal the City
   content: "Dr. Sara Trenton, prominent neurosurgeon at Civic City\u2019s St. Anne
-    Hospital, and noted childhood friend of billionaire Ted Ebbing, announced her
-    intention today to oppose police chief Andrew Taft\u2019s bid for mayor. \u201CWhen
-    I became a doctor,\u201D Trenton said in her statement, \u201CI took an oath
-    to do no harm. I firmly believe that violence begets violence. What Civic City
-    needs isn\u2019t more police. It\u2019s healing.\u201D Detractors, encouraged
+    Hospital, and noted childhood friend of billionaire Theodore Ebbing, announced
+    her intention today to oppose police chief Andrew Taft\u2019s bid for mayor.
+    \u201CWhen I became a doctor,\u201D Trenton said in her statement, \u201CI took
+    an oath to do no harm. I firmly believe that violence begets violence. What Civic
+    City needs isn\u2019t more police. It\u2019s healing.\u201D Detractors, encouraged
     by Taft himself, point to Trenton\u2019s lack of relevant experience. \u201CDr.
     Trenton has fine ideals,\u201D Taft said when asked for comment. \u201CBut we
     don\u2019t need pie-in-the-sky thinking to save Civic City \u2014 we need strong
@@ -53,7 +53,7 @@ MonoBehaviour:
       popularity: 0
     politicianEffect:
       donations: 500
-      popularity: 1000
+      popularity: 1
     companiesEffect:
       donations: 0
       popularity: 0
@@ -74,8 +74,8 @@ MonoBehaviour:
       donations: 0
       popularity: 0
     companiesEffect:
-      donations: 0
-      popularity: 0
+      donations: 8000
+      popularity: 5
     popularityRequirement:
       Party: 0
       Value: 0

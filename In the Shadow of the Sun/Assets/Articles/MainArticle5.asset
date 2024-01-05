@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: MainArticle5
   headline: Police Chief Disarms Bomb Threat
+  subtitle: Culprit Remains Anonymous
   content: "An already fraught mayoral race turned violent today with police chief
     Andrew Taft\u2019s announcement of a bomb threat delivered to his home. Police
     presence at the dwelling has been increased in response to what Taft says is
@@ -28,7 +29,8 @@ MonoBehaviour:
     starting tomorrow. "
   options:
   - content: Make statement in support of Taft
-    cost: 0
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: -3000
@@ -38,7 +40,7 @@ MonoBehaviour:
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
@@ -46,7 +48,8 @@ MonoBehaviour:
       content: Politicians praise the stance, in support of the organizations priorities.
         However, numbers seem to dwindle as the company downsizes.
   - content: Donate to police fund
-    cost: -8000
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: 0
@@ -56,7 +59,7 @@ MonoBehaviour:
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
@@ -64,7 +67,8 @@ MonoBehaviour:
       content: Thanks to a generous donation from {{OrgName}}, the Civic City Police
         Department announces their intention to expand operations.
   - content: Lend staff to help run polls
-    cost: 0
+    fundsCost: 0
+    staffCost: -10
     civilianEffect:
       donations: 0
       popularity: 500
@@ -73,10 +77,10 @@ MonoBehaviour:
       popularity: 500
     companiesEffect:
       donations: 0
-      popularity: 0
-    requirement:
-      Party: 4
-      Value: 5000
+      popularity: -4
+    popularityRequirement:
+      Party: 0
+      Value: 0
     response:
       headline: '{{OrgName}} Staff Take their Turn as Civic City Pollsters'
       content: With a record turn out, {{OrgName}} staff come the the city's rescue

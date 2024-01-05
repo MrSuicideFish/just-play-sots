@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: MainArticle3
   headline: Massage Parlour Bust Turns Deadly
+  subtitle: Worker Shot in Altercation
   content: "Shiawase Beauty Parlour is closed pending a special unit investigation
     of an officer-involved shooting that occurred on the premises late last night.
     Constable Jim Morrow has been named in connection with an arrest that turned
@@ -28,34 +29,36 @@ MonoBehaviour:
     at the parlour. He has been suspended with pay, pending the results of the investigation. "
   options:
   - content: Donate to police
-    cost: -5000
+    fundsCost: -5000
+    staffCost: 0
     civilianEffect:
       donations: 0
       popularity: 0
     politicianEffect:
-      donations: 0
-      popularity: 5555
+      donations: 1000
+      popularity: 5
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
       headline: '{{OrgName}} Makes Donation to Civic City Police Force'
       content: Politicians praise {{OrgName}}'s support to make city safer.
   - content: Issue statement against police overreach
-    cost: 0
+    fundsCost: 0
+    staffCost: 0
     civilianEffect:
       donations: 0
-      popularity: 6000
+      popularity: 6
     politicianEffect:
       donations: 0
-      popularity: -7000
+      popularity: -7
     companiesEffect:
       donations: 0
       popularity: 0
-    requirement:
+    popularityRequirement:
       Party: 0
       Value: 0
     response:
@@ -63,19 +66,20 @@ MonoBehaviour:
       content: Controversial move is criticized by politicians, though the organization
         continues to grow in size.
   - content: Lobby for increased protections for workers
-    cost: 0
+    fundsCost: 0
+    staffCost: 10
     civilianEffect:
-      donations: 0
-      popularity: 5000
+      donations: 500
+      popularity: 6
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: -2
     companiesEffect:
       donations: 0
-      popularity: 0
-    requirement:
-      Party: 4
-      Value: 1000
+      popularity: 3
+    popularityRequirement:
+      Party: 0
+      Value: 0
     response:
       headline: '{{OrgName}} Lobbies for Increased Worker Protections'
       content: Bystander says "{{OrgName}} is truly dedicated to the betterment of

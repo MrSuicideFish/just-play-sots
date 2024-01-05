@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MinorArticle5
+  m_EditorClassIdentifier: 
+  id: MinorArticle5
+  headline: Looters Strike Again
+  subtitle: Popular Department Store in Peril
+  content: "West Galen, Civic City\u2019s largest department store chain and one
+    of {{OrgName}}'s biggest donors, reported a sudden rash of thefts late last night.
+    Police are urging anyone with information to come forward."
+  options:
+  - content: Support West Galen
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: -1
+    politicianEffect:
+      donations: 2000
+      popularity: 3
+    companiesEffect:
+      donations: 0
+      popularity: -2
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Looters No Swiping!
+      content: "{{OrgName}} issued a statement today in support of their donor, West
+        Galen. \u201CThey just want to protect their golden goose,\u201D says a detractor,
+        who wishes to remain anonymous, in response to the statement."
+  - content: Donate to food bank
+    fundsCost: -1500
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 5
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 5
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Feeds Controversy'
+      content: "\u201CThis will feed a lot of hungry bellies,\u201D says the owner
+        of Sparrow Field Food Bank. {{OrgName}}\u2019s silence on the West Galen
+        thefts on the other hand have drawn concerning rhetoric."
