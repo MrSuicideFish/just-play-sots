@@ -23,13 +23,13 @@ MonoBehaviour:
     staffCost: 0
     civilianEffect:
       donations: 500
-      popularity: 1000
+      popularity: 6
     politicianEffect:
       donations: 0
       popularity: 0
     companiesEffect:
       donations: 1000
-      popularity: 5000
+      popularity: 5
     popularityRequirement:
       Party: 0
       Value: 0

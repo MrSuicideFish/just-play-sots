@@ -15,5 +15,5 @@ MonoBehaviour:
   id: Lawsuit2
   header: Defamation
   content: Politician accuses {{OrgName}} of slander.
-  party: 0
+  party: 2
   cost: -1000

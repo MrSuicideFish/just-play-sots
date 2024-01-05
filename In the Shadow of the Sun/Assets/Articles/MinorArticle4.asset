@@ -21,16 +21,16 @@ MonoBehaviour:
   options:
   - content: Support renaming
     fundsCost: 0
-    staffCost: 500
+    staffCost: -5
     civilianEffect:
       donations: 0
-      popularity: 0
+      popularity: 1
     politicianEffect:
       donations: 0
       popularity: 0
     companiesEffect:
-      donations: 500
-      popularity: 200
+      donations: 700
+      popularity: 3
     popularityRequirement:
       Party: 0
       Value: 0
@@ -39,8 +39,8 @@ MonoBehaviour:
       content: 'The vote is expected to pass at City Hall. A competition to decide
         the new name will begin next year. '
   - content: "Don\u2019t support renaming"
-    fundsCost: 2000
-    staffCost: 1000
+    fundsCost: 0
+    staffCost: -10
     civilianEffect:
       donations: 0
       popularity: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
       popularity: 0
     companiesEffect:
       donations: 0
-      popularity: 0
+      popularity: 2
     popularityRequirement:
       Party: 0
       Value: 0

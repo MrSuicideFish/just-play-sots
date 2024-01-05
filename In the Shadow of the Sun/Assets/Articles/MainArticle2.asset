@@ -45,8 +45,8 @@ MonoBehaviour:
       content: "Donations to the organization are suspiciously up this quarter following
         the conference; some question founder\u2019s personal motives."
   - content: Donate to criminal justice organizations
-    fundsCost: 0
-    staffCost: 0
+    fundsCost: -900
+    staffCost: 5
     civilianEffect:
       donations: 0
       popularity: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
       popularity: 0
     companiesEffect:
       donations: 0
-      popularity: 4000
+      popularity: 4
     popularityRequirement:
       Party: 0
       Value: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     staffCost: 0
     civilianEffect:
       donations: 3000
-      popularity: 2500
+      popularity: 8
     politicianEffect:
       donations: 0
       popularity: 0

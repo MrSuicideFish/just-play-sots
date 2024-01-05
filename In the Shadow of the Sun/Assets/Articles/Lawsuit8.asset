@@ -15,5 +15,5 @@ MonoBehaviour:
   id: Lawsuit8
   header: Money Laundering
   content: Member of the public accuses {{OrgName}} of being a front.
-  party: 0
+  party: 1
   cost: -2500

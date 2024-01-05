@@ -24,13 +24,13 @@ MonoBehaviour:
     staffCost: 0
     civilianEffect:
       donations: 0
-      popularity: -500
+      popularity: -1
     politicianEffect:
-      donations: 200
-      popularity: 300
+      donations: 2000
+      popularity: 3
     companiesEffect:
       donations: 0
-      popularity: 0
+      popularity: -2
     popularityRequirement:
       Party: 0
       Value: 0
@@ -40,17 +40,17 @@ MonoBehaviour:
         Galen. \u201CThey just want to protect their golden goose,\u201D says a detractor,
         who wishes to remain anonymous, in response to the statement."
   - content: Donate to food bank
-    fundsCost: 0
+    fundsCost: -1500
     staffCost: 0
     civilianEffect:
       donations: 0
-      popularity: 500
+      popularity: 5
     politicianEffect:
       donations: 0
       popularity: 0
     companiesEffect:
       donations: 0
-      popularity: 0
+      popularity: 5
     popularityRequirement:
       Party: 0
       Value: 0

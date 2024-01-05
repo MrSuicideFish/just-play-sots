@@ -15,5 +15,5 @@ MonoBehaviour:
   id: Lawsuit1
   header: Worker's Compensation
   content: Staff member burned by hot coffee.
-  party: 0
+  party: 3
   cost: -200

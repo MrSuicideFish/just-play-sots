@@ -15,5 +15,5 @@ MonoBehaviour:
   id: Lawsuit6
   header: Wage Theft
   content: Failure to pay wages on time.
-  party: 0
+  party: 3
   cost: -12000

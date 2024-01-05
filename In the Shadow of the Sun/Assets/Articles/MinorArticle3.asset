@@ -24,10 +24,10 @@ MonoBehaviour:
     staffCost: 0
     civilianEffect:
       donations: 0
-      popularity: -2000
+      popularity: -6
     politicianEffect:
-      donations: 0
-      popularity: 0
+      donations: 2000
+      popularity: 3
     companiesEffect:
       donations: 0
       popularity: 0
@@ -42,17 +42,16 @@ MonoBehaviour:
     staffCost: 0
     civilianEffect:
       donations: 0
-      popularity: 200
+      popularity: 5
     politicianEffect:
       donations: 0
-      popularity: -1000
+      popularity: -1
     companiesEffect:
       donations: 0
-      popularity: 0
+      popularity: 4
     popularityRequirement:
       Party: 0
       Value: 0
     response:
       headline: Civic City Oil Goes Under
-      content: "\u201CThis will lead to dark days for the city,\u201D says company
-        president."
+      content: "\u201CThis spells dark days for the city,\u201D says company president."
