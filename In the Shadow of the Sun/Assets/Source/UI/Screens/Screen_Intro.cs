@@ -31,7 +31,7 @@ public class Screen_Intro : GameScreen
         return EScreenType.Intro;
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         captionsParent.gameObject.SetActive(false);
         submitButton.interactable = false;
@@ -39,6 +39,13 @@ public class Screen_Intro : GameScreen
         input_OrgName.onValueChanged.AddListener(OnOrgNameEdit);
         namePanel.SetActive(true);
         introCamera.m_Lens.FarClipPlane = 5000;
+        
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        captionsParent.gameObject.SetActive(false);
     }
 
     private void OnOrgNameEdit(string orgName)

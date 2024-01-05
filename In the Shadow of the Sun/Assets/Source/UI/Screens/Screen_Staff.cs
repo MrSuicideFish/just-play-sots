@@ -1,6 +1,5 @@
-
+using System.Collections;
 using TMPro;
-using UnityEngine.Events;
 
 public class Screen_Staff : GameScreen
 {
@@ -11,9 +10,15 @@ public class Screen_Staff : GameScreen
         return EScreenType.Staff;
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         text_count.text = GameManager.Instance.Staff.ToString();
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     public void HireEmployees()

@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Screen_Home : GameScreen
@@ -20,12 +22,22 @@ public class Screen_Home : GameScreen
     public TMP_Text text_politicians;
     public TMP_Text text_organizations;
 
-    public FadeController firstTimeIntro;
-    public TMP_Text orgNameIntro;
+    [FormerlySerializedAs("firstTimeIntro")] public FadeController orgNamePanel;
+    [FormerlySerializedAs("orgNameIntro")] public TMP_Text text_orgName;
     
     public override EScreenType GetScreenType()
     {
         return EScreenType.Home;
+    }
+
+    public override IEnumerator Show(bool isFirstShow)
+    {
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     private void Update()
@@ -53,6 +65,5 @@ public class Screen_Home : GameScreen
             text_politicians.text = gm.Popularity.Politician.ToString();
             text_organizations.text = gm.Popularity.Companies.ToString();
         }
-
     }
 }

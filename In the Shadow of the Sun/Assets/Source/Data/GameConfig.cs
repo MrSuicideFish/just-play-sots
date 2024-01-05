@@ -19,11 +19,19 @@ public class GameConfig : ScriptableObject
     public float StarterPopularity = 50;
     public int StarterStaff = 25;
 
-    [Header("Articles")]
+    [Header("Home")] 
+    public string HomeTutorialTitle;
+    [TextArea(2, 5)] public string HomeTutorialContent;
+
+    [Header("Articles")] 
+    public string ArticlesTutorialTitle;
     [TextArea(2, 5)] public string ArticlesTutorialContent = "";
+    
+    public string ResultsTutorialTitle;
     [TextArea(2, 5)] public string ResultsTutorialContent = "";
     
     [Header("Staff")]
+    public string StaffTutorialTitle;
     [TextArea(2, 5)] public string StaffTutorialContent = "";
     
     [Header("Payroll")] 
@@ -33,11 +41,13 @@ public class GameConfig : ScriptableObject
     [Header("Lawsuits")]
     public float RandomChanceLawsuit = 0.25f;
     public float LawsuitPopularityLimit = 30;
+    public string LawsuitsTutorialTitle;
     [TextArea(2, 5)] public string LawsuitsTutorialContent = "";
     
     [Header("Insurance")]
     public float StarterInsuranceFee = 250.0F;
     public float InsuranceMultiplier = 2.1f;
+    public string InsuranceTutorialTitle;
     [TextArea(2, 5)] public string InsuranceTutorialContent = "";
     
     [Space(5)]
