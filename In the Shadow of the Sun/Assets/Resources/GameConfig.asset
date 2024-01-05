@@ -15,8 +15,8 @@ MonoBehaviour:
   StarterFunds: 15000
   StarterPopularity: 60
   StarterStaff: 5
-  HomeTutorialTitle: Welcome
-  HomeTutorialContent: "A new hope for Civic City! Theodore Ebbing, son of the late
+  introArticleHeadline: '{{OrgName}} OPENS FOR BUSINESS!'
+  introArticleContent: "A new hope for Civic City! Theodore Ebbing, son of the late
     Marta and Tomas Ebbing, has announced his intention to found [org name here],
     in an attempt to combat increasing poverty and sky-high crime rates. When asked
     about the focus of his organization, Ebbing had this to say: \r\n\u201CYou can\u2019t
@@ -28,6 +28,19 @@ MonoBehaviour:
     but misguided. Increased police presence will keep Civic City safe, and might
     even have prevented the tragedy that befell his parents. When I am mayor, I intend
     to increase the law enforcement budget, and nothing of the kind will happen again.\u201D"
+  HomeTutorialTitle: How To Play
+  HomeTutorialContent: 'Left-Click: Interact
+
+    Right-Click (Hold): Look Around
+
+
+    Newspaper:
+    Read / React to Articles
+
+    Lawsuit: Settle Incoming Suits
+
+    Phone: Hire
+    / Fire Staff'
   ArticlesTutorialTitle: Newspaper Articles
   ArticlesTutorialContent: 'Newspapers provide updates on current events. Read through
     them and choose the outcome. Be careful, actions have consequences!
@@ -47,7 +60,7 @@ MonoBehaviour:
   StaffTutorialTitle: Managing Staff
   StaffTutorialContent: Staff is required to keep your operation going! Hiring too
     many staff, increases payroll costs.
-  costPerEmployee: 125.3
+  costPerEmployee: 120
   overtimeMultiplier: 2.5
   RandomChanceLawsuit: 0.25
   LawsuitPopularityLimit: 20

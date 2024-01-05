@@ -155,18 +155,22 @@ public class GameManager : MonoBehaviour
         return total;
     }
 
+    public void ApplyStaffChanges()
+    {
+        Staff.Count -= SelectedOption.staffCost;
+        if (Staff.Count < 0)
+        {
+            Staff.Count = 0;
+        }
+    }
+
     public void SelectArticleOption(int optionIndex)
     {
         ArticleOption option = CurrentArticle.options[optionIndex];
         CurrentResponse = option.response;
         SelectedOption = option;
         
-        // for immediate application
-        Staff.Count -= option.staffCost;
-        if (Staff.Count < 0)
-        {
-            Staff.Count = 0;
-        }
+
         
         // popularity
         Popularity.Apply(EParty.Civilian, SelectedOption.civilianEffect.popularity);
