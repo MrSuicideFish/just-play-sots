@@ -1,93 +1,127 @@
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
-public interface IGameState<T> where T : IGameScreen
+public abstract class GameState
 {
-    EScreenType ScreenType { get; }
+    public abstract EScreenType ScreenType { get; }
+    private Dictionary<Type, GameScreen> screenCache = new();
 
-    T Screen
+    public T GetScreen<T>() where T : GameScreen
     {
-        get
+        if (!screenCache.ContainsKey(typeof(T)))
         {
-            return GameUIController.Instance.GetScreen(ScreenType) as T;
+            screenCache[typeof(T)] = GameUIController.Instance.GetScreen(ScreenType);
         }
+        return screenCache[typeof(T)] as T;
     }
-
-    void OnStateEnter(GameManager gameManager, GameStateMachine sm);
-    void OnStateUpdate(GameManager gameManager, GameStateMachine sm);
-    void OnStateExit(GameManager gameManager, GameStateMachine sm);
     
-    void ShowFTUE(UnityAction onComplete = null)
+    public abstract void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter);
+    public abstract void OnStateUpdate(GameManager gameManager, GameStateMachine sm);
+    public abstract void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit);
+    
+    public void ShowFTUE(string overrideTitle = null, UnityAction onComplete = null)
     {
         switch (ScreenType)
         {
             case EScreenType.Home:
                 GameUIController.Instance
-                    .ShowGameMessage(GameConfig.Instance.HomeTutorialTitle,
+                    .ShowGameMessage(overrideTitle ?? GameConfig.Instance.HomeTutorialTitle,
                         GameConfig.Instance.HomeTutorialContent, onComplete);
-                break;
-            case EScreenType.Lawsuit:
-                GameUIController.Instance
-                    .ShowGameMessage(GameConfig.Instance.LawsuitsTutorialTitle,
-                        GameConfig.Instance.LawsuitsTutorialContent, onComplete);
                 break;
             case EScreenType.Article:
                 GameUIController.Instance
-                    .ShowGameMessage(GameConfig.Instance.ArticlesTutorialTitle,
+                    .ShowGameMessage(overrideTitle ?? GameConfig.Instance.ArticlesTutorialTitle,
                         GameConfig.Instance.ArticlesTutorialContent, onComplete);
+                break;
+            case EScreenType.Result:
+                GameUIController.Instance
+                    .ShowGameMessage(overrideTitle ?? GameConfig.Instance.ResultsTutorialTitle,
+                        GameConfig.Instance.ResultsTutorialContent, onComplete);
+                break;
+            case EScreenType.Lawsuit:
+                GameUIController.Instance
+                    .ShowGameMessage(overrideTitle ?? GameConfig.Instance.LawsuitsTutorialTitle,
+                        GameConfig.Instance.LawsuitsTutorialContent, onComplete);
                 break;
             case EScreenType.Staff:
                 GameUIController.Instance
-                    .ShowGameMessage(GameConfig.Instance.StaffTutorialTitle,
+                    .ShowGameMessage(overrideTitle ?? GameConfig.Instance.StaffTutorialTitle,
                         GameConfig.Instance.StaffTutorialContent, onComplete);
                 break;
         }
     }
 }
 
-public class Gamestate_Entry : IGameState<Screen_Intro>
+public class Gamestate_Entry : GameState
 {
-    private Screen_Intro introScreen;
-    public EScreenType ScreenType { get; } = EScreenType.Intro;
+    public override EScreenType ScreenType { get; } = EScreenType.Intro;
 
-    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         Newspaper.Instance.Hide();
         LawsuitNotice.Instance.Hide();
         gameManager.playerController.enabled = false;
         CameraManager.Instance.GoToCamera(ECameraType.Intro);
-
-        introScreen = GameUIController.Instance.GetScreen(EScreenType.Intro) as Screen_Intro;
-        GameUIController.Instance.GoToScreen(EScreenType.Intro);
+        GameUIController.Instance.GoToScreen(ScreenType);
     }
 
-    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
-        if (introScreen.IsComplete)
+        if (GetScreen<Screen_Intro>().IsComplete)
         {
-            introScreen.radioAudioSrc.Play();
-            GameState_Home home = new GameState_Home();
-            sm.GoToState()
-            sm.GoToState<GameState_Home>();
+            GetScreen<Screen_Intro>().radioAudioSrc.Play();
+            sm.GoToState(new GameState_Home());
         }
     }
 
-    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
     {
     }
 }
 
-public class GameState_Home : IGameState<Screen_Home>
+public class GameState_Home : GameState
 {
-    public EScreenType ScreenType { get; } = EScreenType.Home;
-    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    public override EScreenType ScreenType { get; } = EScreenType.Home;
+    public override void OnStateEnter(
+        GameManager gameManager, 
+        GameStateMachine sm,
+        bool isFirstEnter)
     {
         CameraManager.Instance.GoToCamera(ECameraType.Home);
-        if (!gameManager.hasCompletedFirstHome)
+        if (isFirstEnter)
         {
-            gameManager.StartCoroutine(WaitForFTUE(gameManager));
+            ShowFTUE(null,() =>
+            {
+                // enable player controls
+                gameManager.playerController.enabled = true;
+                
+                GetScreen<Screen_Home>().orgNamePanel.Opacity = 0;
+                GetScreen<Screen_Home>().text_orgName.text = gameManager.OrganizationName;
+                GetScreen<Screen_Home>().orgNamePanel.Set(0.0f);
+                
+                GameUIController.Instance.GoToScreen(EScreenType.Home);
+                
+                // fade in org name and deliver first article
+                DOTween.To(
+                    () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
+                    (x) => GetScreen<Screen_Home>().orgNamePanel.Opacity = x,
+                    1.0f, 5.0f).OnComplete(() =>
+                {
+                    
+                    gameManager.DeliverArticle();
+                    
+                    // fade out org name
+                    DOTween.To(
+                            () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
+                            (x) => GetScreen<Screen_Home>().orgNamePanel.Opacity = x,
+                            0.0f, 2.5f)
+                        .SetDelay(3.0f);
+                });
+            });
             return;
         }
 
@@ -95,8 +129,8 @@ public class GameState_Home : IGameState<Screen_Home>
         {
             Newspaper.Instance.Show(false);
         }
-        else if (gameManager.hasCompletedFirstArticle
-                  && gameManager.hasCompletedFirstLawsuit)
+        else if (gameManager.CompletedArticles.Count > 0
+                  && gameManager.completedLawsuits.Count > 0)
         {
             if (!gameManager.DeliverArticle())
             {
@@ -120,64 +154,40 @@ public class GameState_Home : IGameState<Screen_Home>
         GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
     }
-
-    private IEnumerator WaitForFTUE(GameManager gameManager)
-    {
-        Screen_Home homeScreen = GameUIController.Instance.GetScreen(EScreenType.Home) as Screen_Home;
-        homeScreen.firstTimeIntro.Opacity = 0;
-        homeScreen.orgNameIntro.text = gameManager.OrganizationName;
-
-        // do ftue here
-        
-        gameManager.playerController.enabled = true;
-        homeScreen.firstTimeIntro.Set(0.0f);
-        GameUIController.Instance.GoToScreen(EScreenType.Home);
-        DOTween.To(
-            () => homeScreen.firstTimeIntro.Opacity,
-            (x) => homeScreen.firstTimeIntro.Opacity = x,
-            1.0f, 5.0f).OnComplete(() =>
-        {
-            // show first article
-            gameManager.DeliverArticle();
-        });
-        
-        yield return new WaitForSeconds(8.0f);
-        DOTween.To(
-            () => homeScreen.firstTimeIntro.Opacity,
-            (x) => homeScreen.firstTimeIntro.Opacity = x,
-            0.0f, 1.0f);
-    }
-
-    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    
+    public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
 
     }
 
-    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
     {
     }
 }
 
-public class GameState_Lawsuit : IGameState<Screen_Lawsuit>
+public class GameState_Lawsuit : GameState
 {
-    public EScreenType ScreenType { get; } = EScreenType.Lawsuit;
-    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    public override EScreenType ScreenType { get; } = EScreenType.Lawsuit;
+    public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
-        lawsuitScreen = GameUIController.Instance.GetScreen(EScreenType.Lawsuit) as Screen_Lawsuit;
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
+        if (isFirstEnter)
+        {
+            ShowFTUE();
+        }
     }
 
-    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (lawsuitScreen.screenState ==
+            if (GetScreen<Screen_Lawsuit>().screenState ==
                 Screen_Lawsuit.ELawsuitScreenState.Settlement)
             {
-                lawsuitScreen.GoToLawsuitSelect();
+                GetScreen<Screen_Lawsuit>().GoToLawsuitSelect();
             }
             else
             {
@@ -186,7 +196,7 @@ public class GameState_Lawsuit : IGameState<Screen_Lawsuit>
         }
     }
 
-    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
     {
         if (gameManager.lawsuits.Count == 0)
         {
@@ -195,19 +205,23 @@ public class GameState_Lawsuit : IGameState<Screen_Lawsuit>
     }
 }
 
-public class GameState_Newspaper : IGameState<Screen_Article>
+public class GameState_Newspaper : GameState
 {
-    public EScreenType ScreenType { get; } = EScreenType.Article;
-    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    public override EScreenType ScreenType { get; } = EScreenType.Article;
+    public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Article);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
         Newspaper.Instance.Hide();
         gameManager.isHomeStateClean = false;
+        if (isFirstEnter)
+        {
+            ShowFTUE();
+        }
     }
 
-    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -215,23 +229,28 @@ public class GameState_Newspaper : IGameState<Screen_Article>
         }
     }
 
-    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
     {
     }
 }
 
-public class GameState_Staff : IGameState<Screen_Staff>
+public class GameState_Staff : GameState
 {
-    public EScreenType ScreenType { get; } = EScreenType.Staff;
-    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    public override EScreenType ScreenType { get; } = EScreenType.Staff;
+    public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Staff);
         CameraManager.Instance.GoToCamera(ECameraType.Phone);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
+        
+        if (isFirstEnter)
+        {
+            ShowFTUE();
+        }
     }
 
-    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -239,27 +258,39 @@ public class GameState_Staff : IGameState<Screen_Staff>
         }
     }
 
-    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
     {
     }
 }
 
-public class GameState_Results : IGameState<Screen_Result>
+public class GameState_Results : GameState
 {
-    public EScreenType ScreenType { get; } = EScreenType.Result;
-    public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
+    public override EScreenType ScreenType { get; } = EScreenType.Result;
+
+    private ArticleOption selectedOption;
+    public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Result);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
-
+        if (isFirstEnter)
+        {
+            ShowFTUE("Public Reactions", () =>
+            {
+                GetScreen<Screen_Result>().CountResults(gameManager.SelectedOption);
+            });
+        }
+        else
+        {
+            GetScreen<Screen_Result>().CountResults(gameManager.SelectedOption);
+        }
     }
 
-    public void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
     }
 
-    public void OnStateExit(GameManager gameManager, GameStateMachine sm)
+    public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
     {
         ///
         ///  deliver lawsuits after results

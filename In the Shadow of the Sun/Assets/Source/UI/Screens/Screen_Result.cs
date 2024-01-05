@@ -28,7 +28,6 @@ public class Screen_Result : GameScreen
     public Animation text_overtime;
 
     private Coroutine resultsRoutine;
-    private ArticleOption option;
     private bool hasShownFundsResults = false;
     
     public override EScreenType GetScreenType()
@@ -38,40 +37,25 @@ public class Screen_Result : GameScreen
 
     public override IEnumerator Show(bool isFirstShow)
     {
+        funds_result_anim.gameObject.SetActive(false);
+        hasShownFundsResults = false;
+        yield break;
+    }
+
+    public override void Hide(){}
+
+    public void CountResults(ArticleOption option)
+    {
         if (resultsRoutine != null)
         {
             StopCoroutine(resultsRoutine);
             resultsRoutine = null;
         }
         
-        if (GameManager.Instance.SelectedOption == null)
-        {
-            yield break;
-        }
-
-        funds_result_anim.gameObject.SetActive(false);
-        hasShownFundsResults = false;
-        option = GameManager.Instance.SelectedOption;
-
-        if (!GameManager.Instance.hasCompletedFirstResults)
-        {
-            GameUIController.Instance
-                .ShowGameMessage("Public Reactions",
-                    GameConfig.Instance.ResultsTutorialContent,
-                    () => { resultsRoutine = StartCoroutine(DoResults()); });
-        }
-        else
-        {
-            resultsRoutine = StartCoroutine(DoResults());
-        }
+        resultsRoutine = StartCoroutine(DoResults(option));
     }
 
-    public override void Hide()
-    {
-        
-    }
-
-    private IEnumerator DoResults()
+    private IEnumerator DoResults(ArticleOption option)
     {
         text_overtime.gameObject.SetActive(false);
         button_continue.interactable = false;

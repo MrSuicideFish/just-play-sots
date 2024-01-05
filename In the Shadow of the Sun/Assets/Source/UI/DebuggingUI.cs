@@ -29,7 +29,7 @@ public class DebuggingUI : MonoBehaviour
         text_insurance_payout.text = GameManager.Instance.Insurance.totalPayout.ToString();
         text_insurance_fees.text = GameManager.Instance.Insurance.fee.ToString();
 
-        text_gamestate.text = GameManager.Instance.StateMachine.currentState?.StateName;
+        text_gamestate.text = GameManager.Instance.StateMachine.currentState?.ScreenType.ToString();
         text_staff_count.text = GameManager.Instance.Staff.ToString();
     }
 }

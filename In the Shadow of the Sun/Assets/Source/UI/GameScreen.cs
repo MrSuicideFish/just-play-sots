@@ -14,10 +14,6 @@ public enum EScreenType
     Empty
 }
 
-public interface IGameScreen
-{
-    
-}
 public abstract class GameScreen : MonoBehaviour
 {
     [Header("Events")]
@@ -27,10 +23,10 @@ public abstract class GameScreen : MonoBehaviour
 
     private bool HasShown = false;
     
-    public void ShowFTUE(UnityAction onComplete)
+    public void ShowFTUE()
     {
         GameManager.Instance
-            .StateMachine.currentState.ShowFTUE(onComplete);
+            .StateMachine.currentState.ShowFTUE(null);
     }
 
     private void OnEnable()

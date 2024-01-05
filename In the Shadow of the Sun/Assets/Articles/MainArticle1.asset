@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: MainArticle1
   headline: Mayoral Race Heats Up
+  subtitle: 
   content: "Dr. Sara Trenton, prominent neurosurgeon at Civic City\u2019s St. Anne
     Hospital, and noted childhood friend of billionaire Ted Ebbing, announced her
     intention today to oppose police chief Andrew Taft\u2019s bid for mayor. \u201CWhen
@@ -27,7 +28,7 @@ MonoBehaviour:
   options:
   - content: Make statement supporting Dr. Sara Trenton
     fundsCost: 375
-    staffCost: 45
+    staffCost: 2
     civilianEffect:
       donations: 350
       popularity: 3

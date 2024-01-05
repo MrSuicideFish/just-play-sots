@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour
         }
 
         gameHasStarted = true;
-        Newspaper.Instance.Hide();
-        LawsuitNotice.Instance.Hide();
+
         
         StateMachine.GoToState(new Gamestate_Entry());
     }

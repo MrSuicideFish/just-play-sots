@@ -26,6 +26,8 @@ public class GameConfig : ScriptableObject
     [Header("Articles")] 
     public string ArticlesTutorialTitle;
     [TextArea(2, 5)] public string ArticlesTutorialContent = "";
+    
+    public string ResultsTutorialTitle;
     [TextArea(2, 5)] public string ResultsTutorialContent = "";
     
     [Header("Staff")]
