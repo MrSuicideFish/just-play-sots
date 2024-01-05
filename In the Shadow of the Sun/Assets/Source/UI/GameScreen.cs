@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,4 +21,31 @@ public abstract class GameScreen : MonoBehaviour
     public UnityEvent OnScreenShow;
 
     public abstract EScreenType GetScreenType();
+
+    private bool HasShownFirstTime = false;
+    
+    public void ShowFTUE()
+    {
+        GameManager.Instance.StateMachine.currentState.ShowFTUE();
+    }
+
+    private void OnEnable()
+    {
+        Show();
+    }
+
+    private void OnDisable()
+    {
+        Hide();
+    }
+
+    public virtual void Show()
+    {
+        
+    }
+
+    public virtual void Hide()
+    {
+        
+    }
 }

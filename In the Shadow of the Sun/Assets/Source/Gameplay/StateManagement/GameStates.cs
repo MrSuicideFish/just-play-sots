@@ -8,6 +8,33 @@ public interface IGameState
     void OnStateEnter(GameManager gameManager, GameStateMachine sm);
     void OnStateUpdate(GameManager gameManager, GameStateMachine sm);
     void OnStateExit(GameManager gameManager, GameStateMachine sm);
+    
+    void ShowFTUE()
+    {
+        switch (StateName)
+        {
+            case "Home":
+                GameUIController.Instance
+                    .ShowGameMessage(StateName,
+                        GameConfig.Instance.HomeTutorialContent, null);
+                break;
+            case "Lawsuit":
+                GameUIController.Instance
+                    .ShowGameMessage(StateName,
+                        GameConfig.Instance.LawsuitsTutorialContent, null);
+                break;
+            case "Newspaper":
+                GameUIController.Instance
+                    .ShowGameMessage(StateName,
+                        GameConfig.Instance.ArticlesTutorialContent, null);
+                break;
+            case "Staff":
+                GameUIController.Instance
+                    .ShowGameMessage(StateName,
+                        GameConfig.Instance.StaffTutorialContent, null);
+                break;
+        }
+    }
 }
 
 public class Gamestate_Entry : IGameState
@@ -139,9 +166,7 @@ public class GameState_Lawsuit : IGameState
         
         if (!gameManager.hasCompletedFirstLawsuit)
         {
-            GameUIController.Instance
-                .ShowGameMessage("Lawsuits",
-                    GameConfig.Instance.LawsuitsTutorialContent, null);
+            lawsuitScreen.ShowFTUE();
         }
     }
 
@@ -204,7 +229,7 @@ public class GameState_Newspaper : IGameState
 
 public class GameState_Staff : IGameState
 {
-    public string StateName { get; } = "Staff Management";
+    public string StateName { get; } = "Staff";
     public void OnStateEnter(GameManager gameManager, GameStateMachine sm)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Staff);
