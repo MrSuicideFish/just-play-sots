@@ -60,6 +60,7 @@ public class Screen_Intro : GameScreen
             else
             {
                 IsComplete = true;
+                captionsParent.gameObject.SetActive(false);
             }
 #else
             StartCoroutine(DoIntroduction());
@@ -120,7 +121,8 @@ public class Screen_Intro : GameScreen
 
             yield return null;
         }
-
+        
+        captionsParent.gameObject.SetActive(false);
         Tween fade = fadeScreen.DOFade(1, 1);
         while (fade.active)
         {
