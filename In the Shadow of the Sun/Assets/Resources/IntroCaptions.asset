@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6f04cbd3e8b1944ae1d7360b0a3391, type: 3}
+  m_Name: IntroCaptions
+  m_EditorClassIdentifier: 
+  captions:
+  - time: 0
+    text: "TRAGEDY strikes Civic City! Marta and Tomas Ebbing, known to all as the
+      \u201Croyal couple\u201D of the city\u2019s high society, were struck down
+      last night, victims of a terrible crime. The shooter remains at large."
+  - time: 3
+    text: The only witness to the crime, their young son, is now the heir to the
+      Ebbing empire and fortune
+  - time: 6
+    text: "Andrew Taft, Civic City chief of police, has gone on record saying that
+      the members of law enforcement \u201Cwill not rest\u201D until the killer is
+      brought to justice."

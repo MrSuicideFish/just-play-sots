@@ -19,6 +19,8 @@ public class Screen_Intro : GameScreen
     public Image fadeScreen;
     public Image background;
     public AudioSource radioAudioSrc;
+    public CaptionsInfo captions;
+    public TMP_Text text_captions;
     
     public bool IsComplete { get; private set; }
     
@@ -74,9 +76,15 @@ public class Screen_Intro : GameScreen
         background.enabled = false;
         yield return new WaitForSeconds(0.7f);
         
+        double videoTime = introVideo.time;
+        int captionIndex = 0;
         while (introVideo.isPlaying)
         {
-            Debug.Log("Is Playing");
+            videoTime = introVideo.time;
+            if (videoTime >= captions.captions[captionIndex+1].time)
+            {
+                text_captions.text = captions.captions[++captionIndex].text;
+            }
             yield return null;
         }
 
