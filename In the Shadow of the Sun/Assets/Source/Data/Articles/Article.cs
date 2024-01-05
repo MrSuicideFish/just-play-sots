@@ -7,8 +7,19 @@ public class Article : ScriptableObject
 {
     public string id;
     public string headline;
-    public string content;
+    [TextArea(2,30)]public string subtitle;
+    [TextArea(2,30)]public string content;
     public ArticleOption[] options;
 
     [NonSerialized] public int selectedOption = -1;
+
+    public string GetHeadline()
+    {
+        return headline.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
+    
+    public string GetContent()
+    {
+        return content.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
 }

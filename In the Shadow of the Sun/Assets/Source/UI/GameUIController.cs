@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameUIController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameUIController : MonoBehaviour
             return _instance;
         }
     }
+
+    public GameMessageUI gameMessage; 
 
     [SerializeField] private GameScreen[] screens;
     public void GoToScreen(EScreenType screen)
@@ -36,5 +39,26 @@ public class GameUIController : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void ShowGameMessage(
+        string title,
+        string content,
+        UnityAction onCompleteAction)
+    {
+        gameMessage.gameObject.SetActive(true);
+        gameMessage.text_title.text = title;
+        gameMessage.text_content.text = content;
+        gameMessage.button_continue.onClick.RemoveAllListeners();
+
+        if (onCompleteAction != null)
+        {
+            gameMessage.button_continue.onClick.AddListener(onCompleteAction);    
+        }
+
+        gameMessage.button_continue.onClick.AddListener(() =>
+        {
+            gameMessage.gameObject.SetActive(false);
+        });
     }
 }

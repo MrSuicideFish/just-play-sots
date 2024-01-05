@@ -13,12 +13,20 @@ MonoBehaviour:
   m_Name: ArticleDatabase
   m_EditorClassIdentifier: 
   mainArticles:
-  - {fileID: 11400000, guid: d6279ed0eaea36549982648ed91312bd, type: 2}
-  - {fileID: 11400000, guid: 0214c8d1796e3354ab4a536b1b37a8c7, type: 2}
-  - {fileID: 11400000, guid: 3fa217addbce6ef47b09c97703f030d5, type: 2}
-  sideArticles:
-  - {fileID: 11400000, guid: 9c8619a8019971a49b8bd7d729c8d03c, type: 2}
+  - {fileID: 11400000, guid: 332c5f4bd5b988c42be7dbdc7cd7cc87, type: 2}
+  - {fileID: 11400000, guid: fef57e1e3e1bc7e4fad24e79b9ffd3ed, type: 2}
+  - {fileID: 11400000, guid: 745abf25f1aaa454cb75b2881c627e02, type: 2}
+  - {fileID: 11400000, guid: 53fd6ef15d745434095ebbb959b43c72, type: 2}
+  - {fileID: 11400000, guid: e002f6811c702da4a9be1d2456137665, type: 2}
+  sideArticles: []
   lawsuits:
-  - {fileID: 11400000, guid: 65c03c0b7fdb2824a8c313463828916b, type: 2}
-  - {fileID: 11400000, guid: 378609236619c9c4d9cea7ead23367ff, type: 2}
-  - {fileID: 11400000, guid: fa3f617894583ce4191fa31aac7c80d1, type: 2}
+  - {fileID: 11400000, guid: fe174004fa1503c478659370ba727e08, type: 2}
+  - {fileID: 11400000, guid: c82b56e23ed2ee24bb7fd02d61a7e342, type: 2}
+  - {fileID: 11400000, guid: 5d75c476e42037242ae9eacc45a39ea6, type: 2}
+  - {fileID: 11400000, guid: 60193dafc9dda984bae9c96d3f211a6c, type: 2}
+  - {fileID: 11400000, guid: a617affc819a3d547aee947b7d23ab48, type: 2}
+  - {fileID: 11400000, guid: e08134329e4825f4ea26886888c665c1, type: 2}
+  - {fileID: 11400000, guid: 615bbc45e419927448684025dc4cab7f, type: 2}
+  - {fileID: 11400000, guid: 278dbc99623ef4e4d923fdce984a87f9, type: 2}
+  - {fileID: 11400000, guid: 5bf58a8aa5794044c95b4eb29dd0b3c0, type: 2}
+  - {fileID: 11400000, guid: fa9c42d1cbb7ddf498803d8ffdea9e9d, type: 2}

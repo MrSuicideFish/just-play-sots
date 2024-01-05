@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MainArticle5
+  m_EditorClassIdentifier: 
+  id: MainArticle5
+  headline: Police Chief Disarms Bomb Threat
+  content: "An already fraught mayoral race turned violent today with police chief
+    Andrew Taft\u2019s announcement of a bomb threat delivered to his home. Police
+    presence at the dwelling has been increased in response to what Taft says is
+    an \u201Cunacceptable\u201D threat to his family. \u201CWe won\u2019t rest until
+    we find out who\u2019s responsible.\u201D  Opponent Dr. Sara Trenton, who is
+    currently fighting a malpractice lawsuit, decried the action, saying: \u201CEveryone
+    deserves peace and security for their family. While violence is never the answer,
+    I think of the many families for whom police presence is not a reassurance. When
+    I announced my run for mayor, I said that violence begets violence. I stand by
+    that statement. My vision for Civic City is one in which all are treated with
+    understanding and compassion.\u201D Voters will be able to make their choice
+    starting tomorrow. "
+  options:
+  - content: Make statement in support of Taft
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: -3000
+    politicianEffect:
+      donations: 700
+      popularity: 1300
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Makes Statement in Support of Taft'
+      content: Politicians praise the stance, in support of the organizations priorities.
+        However, numbers seem to dwindle as the company downsizes.
+  - content: Donate to police fund
+    cost: -8000
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} makes Donation to Civic City Police Force'
+      content: Thanks to a generous donation from {{OrgName}}, the Civic City Police
+        Department announces their intention to expand operations.
+  - content: Lend staff to help run polls
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 500
+    politicianEffect:
+      donations: 0
+      popularity: 500
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 4
+      Value: 5000
+    response:
+      headline: '{{OrgName}} Staff Take their Turn as Civic City Pollsters'
+      content: With a record turn out, {{OrgName}} staff come the the city's rescue
+        to help manage the election polls.

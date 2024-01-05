@@ -12,15 +12,20 @@ public class Screen_Intro : GameScreen
     public TMP_InputField input_OrgName;
     public CinemachineVirtualCamera introCamera;
     public VideoPlayer introVideo;
+    public AudioSource introAudio;
     public Animation radioEntryAnim;
-    
+
     public GameObject namePanel;
     public Image fadeScreen;
     public Image background;
     public AudioSource radioAudioSrc;
-    
+    public CaptionsInfo captions;
+    public GameObject captionsParent;
+    public FadeController captionsPanel;
+    public TMP_Text text_captions;
+
     public bool IsComplete { get; private set; }
-    
+
     public override EScreenType GetScreenType()
     {
         return EScreenType.Intro;
@@ -28,6 +33,8 @@ public class Screen_Intro : GameScreen
 
     private void OnEnable()
     {
+        captionsParent.gameObject.SetActive(false);
+        submitButton.interactable = false;
         input_OrgName.onValueChanged.RemoveListener(OnOrgNameEdit);
         input_OrgName.onValueChanged.AddListener(OnOrgNameEdit);
         namePanel.SetActive(true);
@@ -37,6 +44,7 @@ public class Screen_Intro : GameScreen
     private void OnOrgNameEdit(string orgName)
     {
         GameManager.Instance.OrganizationName = orgName;
+        submitButton.interactable = !string.IsNullOrEmpty(orgName);
     }
 
     public void SubmitOrganizationName()
@@ -52,13 +60,14 @@ public class Screen_Intro : GameScreen
             else
             {
                 IsComplete = true;
+                captionsParent.gameObject.SetActive(false);
             }
 #else
             StartCoroutine(DoIntroduction());
 #endif
         });
     }
-    
+
     private IEnumerator DoIntroduction()
     {
         yield return new WaitForSeconds(1.5f);
@@ -66,16 +75,54 @@ public class Screen_Intro : GameScreen
         namePanel.gameObject.SetActive(false);
         fadeScreen.color = new Color(0, 0, 0, 0);
         introVideo.Play();
+        introAudio.Play();
         yield return new WaitForSeconds(0.2f);
         background.enabled = false;
         yield return new WaitForSeconds(0.7f);
-        
+
+        captionsParent.gameObject.SetActive(true);
+        double videoTime = introVideo.time;
+        int captionIndex = -1;
         while (introVideo.isPlaying)
         {
-            Debug.Log("Is Playing");
+            videoTime = introVideo.time;
+            if (videoTime < captions.startTime)
+            {
+                text_captions.text = captions.preShowLabel;
+                captionsPanel.Opacity
+                    = Mathf.Lerp(captionsPanel.Opacity, 1,
+                        GameConfig.Instance.captionsFadeSpeed * Time.deltaTime);
+            }else if (videoTime > captions.endTime)
+            {
+                text_captions.text = "";
+                captionsPanel.Opacity
+                    = Mathf.Lerp(captionsPanel.Opacity, 0,
+                        GameConfig.Instance.captionsFadeSpeed * Time.deltaTime);
+            }
+            else
+            {
+                if (captionIndex + 1 < captions.captions.Length
+                    && videoTime >= captions.captions[captionIndex + 1].time)
+                {
+                    captionIndex++;
+                }
+
+                if (captionIndex > -1)
+                {
+                    text_captions.color = new Color(1, 1, 1, 1);
+                    text_captions.text = captions.captions[captionIndex].text;
+                }
+                else
+                {
+                    text_captions.color = new Color(0, 0, 0, 0);
+                    text_captions.text = "";
+                }
+            }
+
             yield return null;
         }
-
+        
+        captionsParent.gameObject.SetActive(false);
         Tween fade = fadeScreen.DOFade(1, 1);
         while (fade.active)
         {
@@ -94,7 +141,7 @@ public class Screen_Intro : GameScreen
         {
             yield return null;
         }
-        
+
         IsComplete = true;
     }
 }

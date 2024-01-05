@@ -1,5 +1,6 @@
 public class GameStateMachine
 {
+    public string lastStateName { get; private set; }
     public IGameState currentState { get; private set; }
     
     public GameStateMachine(GameManager gameManager){}
@@ -8,6 +9,7 @@ public class GameStateMachine
     {
         if (currentState != null)
         {
+            lastStateName = currentState.StateName;
             currentState.OnStateExit(GameManager.Instance, this);
             currentState = null;
         }

@@ -12,7 +12,17 @@ public class Lawsuit : ScriptableObject
     
     public string id;
     public string header;
-    public string content;
+    [TextArea(1,3)]public string content;
     public EParty party;
     public float cost;
+    
+    public string GetHeader()
+    {
+        return header.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
+    
+    public string GetContent()
+    {
+        return content.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
 }

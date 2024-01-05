@@ -1,8 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +31,9 @@ public class GameManager : MonoBehaviour
     public GameStateMachine StateMachine { get; private set; }
 
     // Cache
+    [NonSerialized] public bool hasCompletedFirstHome = false;
+    [NonSerialized] public bool hasCompletedFirstResults = false;
+    [NonSerialized] public bool hasCompletedFirstStaff = false;
     private bool gameHasStarted;
     private bool gameHasEnded;
     
@@ -46,9 +48,11 @@ public class GameManager : MonoBehaviour
         StateMachine = new GameStateMachine(this);
         Popularity = new(GameConfig.Instance.StarterPopularity);
         OrganizationFunds = new(GameConfig.Instance.StarterFunds);
-        OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         Insurance = new(GameConfig.Instance.StarterInsuranceFee);
-        Staff = new();
+        Staff = new(GameConfig.Instance.StarterStaff);
+        
+        //subscribe to events
+        OrganizationFunds.OnValueChange += (val) => OnFundsChanged.Invoke(val);
         
         StartGame();
     }
@@ -72,13 +76,27 @@ public class GameManager : MonoBehaviour
         StateMachine.GoToState(new Gamestate_Entry());
     }
 
-    public void EndGame()
+    public void EndGame(bool isWin)
     {
         if (gameHasEnded)
         {
             return;
         }
 
+        Debug.Log($"GAME OVER! Is Win? {isWin}");
+        playerController.enabled = false;
+
+        Screen_EndGame endGameScreen = GameUIController.Instance
+            .GetScreen(EScreenType.EndGame) as Screen_EndGame;
+        endGameScreen.gameObject.SetActive(true);
+        if (isWin)
+        {
+            StartCoroutine(endGameScreen.DoWin(0));
+        }
+        else
+        {
+            StartCoroutine(endGameScreen.DoLose());
+        }
         gameHasEnded = true;
     }
     
@@ -88,42 +106,90 @@ public class GameManager : MonoBehaviour
     public ArticleOption SelectedOption { get; set; }
     public ArticleOptionResponse CurrentResponse { get; private set; }
     public List<Article> CompletedArticles { get; private set; } = new();
-    
+    [NonSerialized] public bool hasCompletedFirstArticle = false;
+    [NonSerialized] public bool isHomeStateClean = false;
     private int articleIndex = 0;
     
-    public IEnumerator DeliverArticle()
+    public bool DeliverArticle()
     {
         CurrentArticle = ArticleDb.Instance.GetArticleByIndex(articleIndex);
+        if (CurrentArticle == null)
+        {
+            return false;
+        }
         Newspaper.Instance.Show(true);
         OnPaperDelivered?.Invoke();
-        yield return null;
+        return true;
+    }
+
+    public float CalcTotalCost()
+    {
+        float total = 0.0f;
+        
+        // bill
+        total += SelectedOption.fundsCost;
+        
+        // payroll
+        float payroll = Staff.Total * GameConfig.Instance.costPerEmployee;
+        float remainingStaff = Instance.Staff.Count - SelectedOption.staffCost;
+        
+        // overtime pay
+        if (remainingStaff < 0)
+        {
+            payroll += (Staff.Total * Mathf.Abs(remainingStaff)) *
+                       (GameConfig.Instance.costPerEmployee * GameConfig.Instance.overtimeMultiplier);
+        }
+
+        // staff
+        total += payroll;
+        
+        // insurance
+        total += Insurance.fee.Value;
+        return total;
+    }
+
+    public float CalcTotalDonations()
+    {
+        float total = 0.0f;
+        
+        // donations
+        total += SelectedOption.civilianEffect.donations;
+        total += SelectedOption.politicianEffect.donations;
+        total += SelectedOption.companiesEffect.donations;
+
+        return total;
     }
 
     public void SelectArticleOption(int optionIndex)
     {
         ArticleOption option = CurrentArticle.options[optionIndex];
         CurrentResponse = option.response;
-
-        OrganizationFunds -= option.cost;
-        OrganizationFunds -= Insurance.fee;
-        Insurance.totalContributions += Insurance.fee;
-
-        OrganizationFunds += option.civilianEffect.donations;
-        OrganizationFunds += option.politicianEffect.donations;
-        OrganizationFunds += option.companiesEffect.donations;
-
-        Popularity.Apply(EParty.Civilian, option.civilianEffect.popularity);
-        Popularity.Apply(EParty.Politician, option.politicianEffect.popularity);
-        Popularity.Apply(EParty.Companies, option.companiesEffect.popularity);
-
         SelectedOption = option;
-
+        
+        // for immediate application
+        Staff.Count -= option.staffCost;
+        if (Staff.Count < 0)
+        {
+            Staff.Count = 0;
+        }
+        
+        // popularity
+        Popularity.Apply(EParty.Civilian, SelectedOption.civilianEffect.popularity);
+        Popularity.Apply(EParty.Politician, SelectedOption.politicianEffect.popularity);
+        Popularity.Apply(EParty.Companies, SelectedOption.companiesEffect.popularity);
+        
+        // insurance contributions
+        Insurance.totalContributions += Insurance.fee;
+        
         // save current article as completed
         CurrentArticle.selectedOption = optionIndex;
         CompletedArticles.Add(CurrentArticle);
         CurrentArticle = null;
         articleIndex++;
-        
+
+        hasCompletedFirstArticle = true;
+        isHomeStateClean = true;
+        lawsuitsAddedThisArticle = 0;
         StateMachine.GoToState(new GameState_Results());
     }
     #endregion
@@ -133,6 +199,8 @@ public class GameManager : MonoBehaviour
     public Lawsuit CurrentLawsuit { get; private set; }
     public List<Lawsuit> lawsuits { get; private set;} = new();
     public List<string> completedLawsuits { get; private set; } = new();
+    public bool hasCompletedFirstLawsuit = false;
+    public int lawsuitsAddedThisArticle = 0;
     
     public void DeliverLawsuit(EParty fromParty)
     {
@@ -146,11 +214,11 @@ public class GameManager : MonoBehaviour
                 && !lawsuits.Contains(suits[i]))
             {
                 lawsuits.Add(suits[i]);
+                OnLawsuitDelivered?.Invoke();
+                lawsuitsAddedThisArticle++;
                 break;
             }
         }
-        
-        OnLawsuitDelivered?.Invoke();
     }
 
     public void SelectLawsuit(int index)
@@ -175,6 +243,7 @@ public class GameManager : MonoBehaviour
 
         lawsuits.Remove(CurrentLawsuit);
         completedLawsuits.Add(CurrentLawsuit.id);
+        hasCompletedFirstLawsuit = true;
         ReturnToHome();
     }
     #endregion

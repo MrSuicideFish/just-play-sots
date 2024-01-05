@@ -27,4 +27,9 @@ public class Screen_Staff : GameScreen
         GameManager.Instance.Staff.Fire();
         text_count.text = GameManager.Instance.Staff.ToString();
     }
+
+    public void Continue()
+    {
+        GameManager.Instance.ReturnToHome();
+    }
 }
