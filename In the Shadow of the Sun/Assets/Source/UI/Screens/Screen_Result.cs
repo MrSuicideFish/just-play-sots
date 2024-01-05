@@ -211,7 +211,6 @@ public class Screen_Result : GameScreen
         text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
         GameManager.Instance.OrganizationFunds.Value -= cost;
         GameManager.Instance.OrganizationFunds.Value += donation;
-
         
         funds_result_anim.gameObject.SetActive(true);
         funds_result_anim.Play();
@@ -225,16 +224,16 @@ public class Screen_Result : GameScreen
             .SetDelay(GameConfig.Instance.fundsResultDelay)
             .OnComplete(() =>
             {
-                button_funds_result_continue.interactable = true;
-                button_funds_result_back.interactable = true;
-            })
-            .OnUpdate(() =>
-            {
                 if (tmp <= 0.0f)
                 {
                     text_funds_result.color = Color.red;
                     GameManager.Instance.EndGame(false);
                     DOTween.PauseAll();
+                }
+                else
+                {
+                    button_funds_result_continue.interactable = true;
+                    button_funds_result_back.interactable = true;
                 }
             });
         

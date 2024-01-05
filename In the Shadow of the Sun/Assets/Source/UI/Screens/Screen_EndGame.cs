@@ -9,7 +9,7 @@ public class Screen_EndGame : GameScreen
     public TMP_Text text_headline;
     public TMP_Text text_subtext;
     
-    public GameObject winScreen, loseScreen;
+    public Animation winScreen, loseScreen;
     
     public override EScreenType GetScreenType()
     {
