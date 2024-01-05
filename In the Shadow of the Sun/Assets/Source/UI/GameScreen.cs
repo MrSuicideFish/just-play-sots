@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,7 +24,7 @@ public abstract class GameScreen : MonoBehaviour
 
     public abstract EScreenType GetScreenType();
 
-    private bool HasShownFirstTime = false;
+    private bool HasShown = false;
     
     public void ShowFTUE()
     {
@@ -31,7 +33,8 @@ public abstract class GameScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        Show();
+        StartCoroutine(Show(!HasShown));
+        HasShown = true;
     }
 
     private void OnDisable()
@@ -39,13 +42,7 @@ public abstract class GameScreen : MonoBehaviour
         Hide();
     }
 
-    public virtual void Show()
-    {
-        
-    }
+    public abstract IEnumerator Show(bool isFirstShow);
 
-    public virtual void Hide()
-    {
-        
-    }
+    public abstract void Hide();
 }

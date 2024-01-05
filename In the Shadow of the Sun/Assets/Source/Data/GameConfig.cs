@@ -19,8 +19,8 @@ public class GameConfig : ScriptableObject
     public float StarterPopularity = 50;
     public int StarterStaff = 25;
 
-    [Header("Home")] 
-    public string HomeTutorialContent;
+    [Header("Home")]
+    [TextArea(2, 5)] public string HomeTutorialContent;
 
     [Header("Articles")]
     [TextArea(2, 5)] public string ArticlesTutorialContent = "";

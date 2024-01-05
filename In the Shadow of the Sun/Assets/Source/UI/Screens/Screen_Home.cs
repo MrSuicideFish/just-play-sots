@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +27,16 @@ public class Screen_Home : GameScreen
     public override EScreenType GetScreenType()
     {
         return EScreenType.Home;
+    }
+
+    public override IEnumerator Show(bool isFirstShow)
+    {
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     private void Update()

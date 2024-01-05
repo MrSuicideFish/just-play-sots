@@ -16,10 +16,16 @@ public class Screen_EndGame : GameScreen
         return EScreenType.EndGame;
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         winScreen.gameObject.SetActive(false);
         loseScreen.gameObject.SetActive(false);
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     public IEnumerator DoWin(int ending)

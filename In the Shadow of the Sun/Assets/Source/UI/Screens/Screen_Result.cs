@@ -36,7 +36,7 @@ public class Screen_Result : GameScreen
         return EScreenType.Result;
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         if (resultsRoutine != null)
         {
@@ -46,7 +46,7 @@ public class Screen_Result : GameScreen
         
         if (GameManager.Instance.SelectedOption == null)
         {
-            return;
+            yield break;
         }
 
         funds_result_anim.gameObject.SetActive(false);
@@ -64,6 +64,11 @@ public class Screen_Result : GameScreen
         {
             resultsRoutine = StartCoroutine(DoResults());
         }
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     private IEnumerator DoResults()

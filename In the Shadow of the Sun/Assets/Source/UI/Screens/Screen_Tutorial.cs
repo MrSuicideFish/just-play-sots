@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 public class Screen_Tutorial : GameScreen
 {
@@ -9,9 +10,15 @@ public class Screen_Tutorial : GameScreen
         return EScreenType.Tutorial;
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         isComplete = false;
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     public void Continue()

@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using Button = UnityEngine.UI.Button;
 
 public class Screen_Article : GameScreen
@@ -21,7 +22,7 @@ public class Screen_Article : GameScreen
         return EScreenType.Article;
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         scrollView.normalizedPosition = new Vector2(0, 1);
         scrollView.Rebuild(CanvasUpdate.Prelayout);
@@ -31,6 +32,13 @@ public class Screen_Article : GameScreen
         text_content.text = article.GetContent();
         SetupOptions(article.options);
         button_select.interactable = false;
+
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     private void ClearOptions()
