@@ -97,6 +97,7 @@ public class GameState_Home : GameState
         {
             GetScreen<Screen_Home>().BeginIntroArticle(() =>
             {
+                GetScreen<Screen_Home>().EndIntroArticle();
                 ShowFTUE(null,() =>
                 {
                     // enable player controls

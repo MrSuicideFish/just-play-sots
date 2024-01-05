@@ -27,7 +27,7 @@ public class Screen_Home : GameScreen
     [FormerlySerializedAs("orgNameIntro")] public TMP_Text text_orgName;
 
     [Header("Intro Article")] 
-    public GameObject introArticleParent;
+    public Animation introArticleParent;
     public TMP_Text text_introArticleHeadline;
     public TMP_Text text_introArticleContent;
     public Button button_introArticleContinue;
@@ -57,7 +57,13 @@ public class Screen_Home : GameScreen
             .introArticleContent.Replace("{{OrgName}}",
                 GameManager.Instance.OrganizationName);
         
-        introArticleParent.SetActive(true);
+        introArticleParent.gameObject.SetActive(true);
+        introArticleParent.Play();
+    }
+
+    public void EndIntroArticle()
+    {
+        introArticleParent.gameObject.SetActive(false);
     }
 
     private void Update()

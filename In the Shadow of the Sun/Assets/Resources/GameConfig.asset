@@ -17,8 +17,8 @@ MonoBehaviour:
   StarterStaff: 5
   introArticleHeadline: '{{OrgName}} OPENS FOR BUSINESS!'
   introArticleContent: "A new hope for Civic City! Theodore Ebbing, son of the late
-    Marta and Tomas Ebbing, has announced his intention to found [org name here],
-    in an attempt to combat increasing poverty and sky-high crime rates. When asked
+    Marta and Tomas Ebbing, has announced his intention to found {{OrgName}}, in
+    an attempt to combat increasing poverty and sky-high crime rates. When asked
     about the focus of his organization, Ebbing had this to say: \r\n\u201CYou can\u2019t
     address one without the other. I choose to believe that when people have their
     needs met, they won\u2019t be driven to violent crime.That\u2019s why I don\u2019t
