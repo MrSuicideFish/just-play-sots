@@ -42,13 +42,20 @@ public class Screen_Lawsuit : GameScreen
         entryPrototype.gameObject.SetActive(false);
     }
 
-    private void OnEnable()
+    public override IEnumerator Show(bool isFirstShow)
     {
         hasSettled = false;
         button_payFunds.gameObject.SetActive(true);
         button_payInsurance.gameObject.SetActive(true);
         paidStampAnim.gameObject.SetActive(false);
         GoToLawsuitSelect();
+
+        yield return null;
+    }
+
+    public override void Hide()
+    {
+        
     }
 
     public void GoToLawsuitSelect()

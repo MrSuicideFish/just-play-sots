@@ -16,7 +16,7 @@ public class GameUIController : MonoBehaviour
         }
     }
 
-    public GameMessageUI gameMessage; 
+    public GameMessageUI gameMessage;
 
     [SerializeField] private GameScreen[] screens;
     public void GoToScreen(EScreenType screen)
@@ -53,7 +53,7 @@ public class GameUIController : MonoBehaviour
 
         if (onCompleteAction != null)
         {
-            gameMessage.button_continue.onClick.AddListener(onCompleteAction);    
+            gameMessage.button_continue.onClick.AddListener(onCompleteAction);
         }
 
         gameMessage.button_continue.onClick.AddListener(() =>

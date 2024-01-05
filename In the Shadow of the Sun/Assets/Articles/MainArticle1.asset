@@ -28,7 +28,7 @@ MonoBehaviour:
   options:
   - content: Make statement supporting Dr. Sara Trenton
     fundsCost: 375
-    staffCost: 45
+    staffCost: 2
     civilianEffect:
       donations: 350
       popularity: 3
