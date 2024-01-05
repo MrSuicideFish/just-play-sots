@@ -52,6 +52,11 @@ public class GameConfig : ScriptableObject
     public float InsuranceMultiplier = 2.1f;
     public string InsuranceTutorialTitle;
     [TextArea(2, 5)] public string InsuranceTutorialContent = "";
+
+    [Header("Game Over")] 
+    public string GameFailHeadline;
+    public string GameFailReasonPopularity;
+    public string GameFailReasonFunds;
     
     [Space(5)]
 

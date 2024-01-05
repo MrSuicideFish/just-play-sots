@@ -26,6 +26,8 @@ public class Screen_Result : GameScreen
     public Button button_continue;
 
     public Animation text_overtime;
+    public AnimationClip animClip_show;
+    public AnimationClip animClip_bankrupt;
 
     private Coroutine resultsRoutine;
     private bool hasShownFundsResults = false;
@@ -150,14 +152,25 @@ public class Screen_Result : GameScreen
             {
                 button_continue.interactable = true;
             });
-
-
+        
         yield return null;
     }
 
     public void Back()
     {
         funds_result_anim.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DoBankrupt()
+    {
+        funds_result_anim.Play(animClip_bankrupt.name);
+        while (funds_result_anim.isPlaying)
+        {
+            yield return null;
+        }
+        
+        GameManager.Instance.EndGame(false);
+        yield return null;
     }
 
     public void Continue()
@@ -183,7 +196,7 @@ public class Screen_Result : GameScreen
                 GameManager.Instance.OrganizationFunds.Value += donation;
         
                 funds_result_anim.gameObject.SetActive(true);
-                funds_result_anim.Play();
+                funds_result_anim.Play(animClip_show.name);
                 DOTween.To(() => tmp,
                         x =>
                         {
@@ -197,7 +210,7 @@ public class Screen_Result : GameScreen
                         if (tmp <= 0.0f)
                         {
                             text_funds_result.color = Color.red;
-                            GameManager.Instance.EndGame(false);
+                            StartCoroutine(DoBankrupt());
                             DOTween.PauseAll();
                         }
                         else

@@ -4,6 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum EGameFailType
+{
+    Funds,
+    Popularity
+}
+
 public class Screen_EndGame : GameScreen
 {
     public TMP_Text text_headline;
@@ -31,12 +37,26 @@ public class Screen_EndGame : GameScreen
     public IEnumerator DoWin(int ending)
     {
         winScreen.gameObject.SetActive(true);
+        winScreen.Play();
         yield break;
     }
 
-    public IEnumerator DoLose()
+    public IEnumerator DoLose(bool failedByPop = false)
     {
+        // fail headline
+        text_headline.text = GameConfig.Instance
+            .GameFailHeadline.Replace("{{OrgName}}",
+                GameManager.Instance.OrganizationName);
+        
+        // fail reason
+        text_subtext.text = failedByPop
+            ? GameConfig.Instance.GameFailReasonPopularity.Replace("{{OrgName}}",
+                GameManager.Instance.OrganizationName)
+            : GameConfig.Instance.GameFailReasonFunds.Replace("{{OrgName}}",
+                GameManager.Instance.OrganizationName);
+        
         loseScreen.gameObject.SetActive(true);
+        loseScreen.Play();
         yield break;
     }
     
