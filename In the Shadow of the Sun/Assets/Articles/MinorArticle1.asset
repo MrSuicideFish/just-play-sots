@@ -12,8 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
   m_Name: MinorArticle1
   m_EditorClassIdentifier: 
-  id: 
-  headline: 
-  subtitle: 
-  content: 
-  options: []
+  id: MinorArticle1
+  headline: 'Civic City Takes to the Streets '
+  subtitle: Police Brutality Sparks Outrage
+  content: "The city has been swamped by a recent wave of protests over an increasing
+    number of police shootings. Activists say the number of people killed by police
+    is unacceptable, while the police union insists officers need to make difficult
+    decisions in dangerous situations.\r"
+  options:
+  - content: Donate to protest legal fund
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 1000
+      popularity: 500
+    politicianEffect:
+      donations: 0
+      popularity: -300
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Takes a Stand Against Police Brutality'
+      content: 'Grateful activists say their work has been strengthened while others
+        question the organization''s motives. '
+  - content: Issue statement in support of police union
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 1500
+      popularity: 500
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Supports Police Union, Condemns Protests'
+      content: "\u201CIt\u2019s good to know some still stand for law and order in
+        this city,\u201D says Civic City Police spokesman"

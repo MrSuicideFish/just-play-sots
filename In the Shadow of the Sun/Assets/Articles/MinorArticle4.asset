@@ -12,8 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
   m_Name: MinorArticle4
   m_EditorClassIdentifier: 
-  id: 
-  headline: 
-  subtitle: 
-  content: 
-  options: []
+  id: MinorArticle4
+  headline: The Street Where It Happens
+  subtitle: Historical Society Speaks Out
+  content: "Civic City Historical Society says the time has come to rename Hamilton
+    Avenue, and that its namesake\u2019s connections to slavery should not be lauded.
+    Business owners disagree, citing the expenses that come with rebranding."
+  options:
+  - content: Support renaming
+    fundsCost: 0
+    staffCost: 500
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 500
+      popularity: 200
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Says No More Hamilton'
+      content: 'The vote is expected to pass at City Hall. A competition to decide
+        the new name will begin next year. '
+  - content: "Don\u2019t support renaming"
+    fundsCost: 2000
+    staffCost: 1000
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Passes on Rename Alliance'
+      content: Business owners laud the decision, while some {{OrgName}} staff jump
+        ship in response.

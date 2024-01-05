@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lawsuit9
   header: Breach of Contract
-  content: Speaker was not paid for appearance at {{OrgName}}'s event.
+  content: Speaker not paid for appearance at {{OrgName}}'s event earlier this month.
   party: 0
   cost: -10000

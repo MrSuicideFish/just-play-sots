@@ -12,8 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
   m_Name: MinorArticle5
   m_EditorClassIdentifier: 
-  id: 
-  headline: 
-  subtitle: 
-  content: 
-  options: []
+  id: MinorArticle5
+  headline: Looters Strike Again
+  subtitle: Popular Department Store in Peril
+  content: "West Galen, Civic City\u2019s largest department store chain and one
+    of {{OrgName}}'s biggest donors, reported a sudden rash of thefts late last night.
+    Police are urging anyone with information to come forward."
+  options:
+  - content: Support West Galen
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: -500
+    politicianEffect:
+      donations: 200
+      popularity: 300
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Looters No Swiping!
+      content: "{{OrgName}} issued a statement today in support of their donor, West
+        Galen. \u201CThey just want to protect their golden goose,\u201D says a detractor,
+        who wishes to remain anonymous, in response to the statement."
+  - content: Donate to food bank
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 500
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Feeds Controversy'
+      content: "\u201CThis will feed a lot of hungry bellies,\u201D says the owner
+        of Sparrow Field Food Bank. {{OrgName}}\u2019s silence on the West Galen
+        thefts on the other hand have drawn concerning rhetoric."

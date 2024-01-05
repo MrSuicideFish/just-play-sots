@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: MainArticle2
   headline: Cold Case Defrosted
+  subtitle: Decade-Old Killings Finally Get Answers
   content: "Civic City Police announced that an arrest has been made in the decade-old
     case of the slaying of Tom and Marta Ebbing. The killer has been identified as
     Joseph Palin, 41, a former convenience store clerk. Palin was arrested in the
@@ -62,10 +63,10 @@ MonoBehaviour:
       headline: '{{OrgName}} Makes Large Donation to Support Criminal Justice'
       content: Move praised by various Civic City non-profits.
   - content: Anonymously contribute to Palin's legal fund
-    fundsCost: 0
+    fundsCost: -1000
     staffCost: 0
     civilianEffect:
-      donations: 0
+      donations: 3000
       popularity: 2500
     politicianEffect:
       donations: 0

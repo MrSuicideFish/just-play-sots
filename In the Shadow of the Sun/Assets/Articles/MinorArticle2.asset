@@ -12,8 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
   m_Name: MinorArticle2
   m_EditorClassIdentifier: 
-  id: 
-  headline: 
-  subtitle: 
-  content: 
-  options: []
+  id: MinorArticle1
+  headline: No Room at the Inn
+  subtitle: Homeless Population Reaches Critical Highs
+  content: "Civic City\u2019s homeless shelters are currently above capacity. Officials
+    warn incidents of squatting and fatalities will increase drastically this winter."
+  options:
+  - content: Donate to homeless organizations
+    fundsCost: -7000
+    staffCost: 0
+    civilianEffect:
+      donations: 500
+      popularity: 1000
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 1000
+      popularity: 5000
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Helps the Homeless'
+      content: In From the Cold, an organization supporting unhoused individuals,
+        says it will be able to keep a lot more people warm this season.
+  - content: Advocate for housing programs
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 500
+      popularity: 500
+    politicianEffect:
+      donations: 0
+      popularity: -1000
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Give them Homes!
+      content: "{{OrgName}} lobbies for radical housing programs. \u201CThe city
+        spends millions on homeless shelters,\u201D says a spokesperson, \"It\u2019s
+        simply cheaper to give every unhoused person a home.\u201D The city councilmen
+        reportedly appear to have been swayed by the argument, considering to move
+        the bill forward.."

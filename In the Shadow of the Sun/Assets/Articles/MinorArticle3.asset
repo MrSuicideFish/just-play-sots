@@ -12,8 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
   m_Name: MinorArticle3
   m_EditorClassIdentifier: 
-  id: 
-  headline: 
-  subtitle: 
-  content: 
-  options: []
+  id: MinorArticle3
+  headline: A Bay Of Liquid Gold
+  subtitle: Civic City Oil Seeks Eager Investors
+  content: "The city\u2019s largest petroleum producer, Civic City Oil, is seeking
+    capital to develop a new offshore mining rig. The venture is expected to be very
+    profitable, and generate many new jobs.\r"
+  options:
+  - content: Choose to invest in oil drilling
+    fundsCost: 10000
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: -2000
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Buys in to Fossil Fuel Operation'
+      content: "Climate activists decry this \u201Cshort-sighted\u201D move. "
+  - content: Choose not to invest
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 200
+    politicianEffect:
+      donations: 0
+      popularity: -1000
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Civic City Oil Goes Under
+      content: "\u201CThis will lead to dark days for the city,\u201D says company
+        president."
