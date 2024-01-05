@@ -2244,7 +2244,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
+  far clip plane: 1
   field of view: 60.000004
   orthographic: 0
   orthographic size: 10
@@ -2271,7 +2271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.022104826, y: 0.905776, z: -0.047615632, w: 0.42049256}
+  m_LocalRotation: {x: 0.022104822, y: 0.90577596, z: -0.04761562, w: 0.4204926}
   m_LocalPosition: {x: 3.409149, y: -0.5822265, z: -10.295594}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6245,6 +6245,7 @@ GameObject:
   - component: {fileID: 1163579681}
   - component: {fileID: 1163579683}
   - component: {fileID: 1163579682}
+  - component: {fileID: 1163579684}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -6310,6 +6311,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163579680}
   m_CullTransparentMesh: 1
+--- !u!114 &1163579684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163579680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527a5673d8b64898bc852ab2ddbc8f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Opacity: 1
 --- !u!1001 &1166859146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10332,7 +10346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791897370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.022104826, y: 0.905776, z: -0.047615632, w: 0.42049256}
+  m_LocalRotation: {x: 0.022104822, y: 0.90577596, z: -0.04761562, w: 0.4204926}
   m_LocalPosition: {x: -0.885, y: 0.1582283, z: 0.643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10364,7 +10378,7 @@ MonoBehaviour:
     FieldOfView: 60.000004
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 1
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -16810,6 +16824,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
+      propertyPath: captions
+      value: 
+      objectReference: {fileID: 11400000, guid: 43584cacd7b7c5443b14b82834e52b33, type: 2}
+    - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: introAudio
       value: 
       objectReference: {fileID: 1006092731}
@@ -16818,9 +16836,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1791897372}
     - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
+      propertyPath: captionsPanel
+      value: 
+      objectReference: {fileID: 1163579684}
+    - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: radioAudioSrc
       value: 
       objectReference: {fileID: 581210585}
+    - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
+      propertyPath: text_captions
+      value: 
+      objectReference: {fileID: 867074597}
+    - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
+      propertyPath: captionsParent
+      value: 
+      objectReference: {fileID: 2040776690}
     - target: {fileID: 294461573976182694, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: radioEntryAnim
       value: 
@@ -16983,7 +17013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7388300544807249481, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7545554614669941100, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_IsActive

@@ -11,5 +11,8 @@ public class Caption
 [CreateAssetMenu(menuName = "In the Shadow of the Sun/Captions Info")]
 public class CaptionsInfo : ScriptableObject
 {
+    public string preShowLabel = "[ ENGLISH CAPTIONS ]";
+    public double startTime, endTime;
     public Caption[] captions;
+    
 }

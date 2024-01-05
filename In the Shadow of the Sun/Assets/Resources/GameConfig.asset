@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1904f9796c4d8399ed2539dc2b1213, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  StarterFunds: 25000
+  StarterFunds: 15000
   StarterPopularity: 60
   StarterStaff: 5
   ArticlesTutorialContent: 'Newspapers provide updates on current events. Read through
@@ -31,7 +31,7 @@ MonoBehaviour:
     funds. Keep your staff lean to reduce costs.'
   StaffTutorialContent: Staff is required to keep your operation going! Hiring too
     many staff, increases payroll costs.
-  costPerEmployee: 5
+  costPerEmployee: 125.3
   overtimeMultiplier: 2.5
   RandomChanceLawsuit: 0.25
   LawsuitPopularityLimit: 20
@@ -57,3 +57,4 @@ MonoBehaviour:
   insuranceDelay: 3
   fundsResultDuration: 1
   fundsResultDelay: 1
+  captionsFadeSpeed: 5

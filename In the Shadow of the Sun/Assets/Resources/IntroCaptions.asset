@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6f04cbd3e8b1944ae1d7360b0a3391, type: 3}
   m_Name: IntroCaptions
   m_EditorClassIdentifier: 
+  preShowLabel: '[ ENGLISH CAPTIONS ]'
+  startTime: 3.5
+  endTime: 30
   captions:
-  - time: 0
+  - time: 3.5
     text: "TRAGEDY strikes Civic City! Marta and Tomas Ebbing, known to all as the
       \u201Croyal couple\u201D of the city\u2019s high society, were struck down
       last night, victims of a terrible crime. The shooter remains at large."
-  - time: 3
+  - time: 13
     text: The only witness to the crime, their young son, is now the heir to the
       Ebbing empire and fortune
-  - time: 6
+  - time: 19
     text: "Andrew Taft, Civic City chief of police, has gone on record saying that
       the members of law enforcement \u201Cwill not rest\u201D until the killer is
       brought to justice."
