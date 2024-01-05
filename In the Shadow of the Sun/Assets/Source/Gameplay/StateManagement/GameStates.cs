@@ -91,37 +91,43 @@ public class GameState_Home : GameState
         GameStateMachine sm,
         bool isFirstEnter)
     {
+        GameUIController.Instance.GoToScreen(EScreenType.Home);
         CameraManager.Instance.GoToCamera(ECameraType.Home);
         if (isFirstEnter)
         {
-            ShowFTUE(null,() =>
+            GetScreen<Screen_Home>().BeginIntroArticle(() =>
             {
-                // enable player controls
-                gameManager.playerController.enabled = true;
-                
-                GetScreen<Screen_Home>().orgNamePanel.Opacity = 0;
-                GetScreen<Screen_Home>().text_orgName.text = gameManager.OrganizationName;
-                GetScreen<Screen_Home>().orgNamePanel.Set(0.0f);
-                
-                GameUIController.Instance.GoToScreen(EScreenType.Home);
-                
-                // fade in org name and deliver first article
-                DOTween.To(
-                    () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
-                    (x) => GetScreen<Screen_Home>().orgNamePanel.Opacity = x,
-                    1.0f, 5.0f).OnComplete(() =>
+                GetScreen<Screen_Home>().EndIntroArticle();
+                ShowFTUE(null,() =>
                 {
-                    
-                    gameManager.DeliverArticle();
-                    
-                    // fade out org name
+                    // enable player controls
+                    gameManager.playerController.enabled = true;
+                
+                    GetScreen<Screen_Home>().orgNamePanel.Opacity = 0;
+                    GetScreen<Screen_Home>().text_orgName.text = gameManager.OrganizationName;
+                    GetScreen<Screen_Home>().orgNamePanel.Set(0.0f);
+                
+                    GameUIController.Instance.GoToScreen(EScreenType.Home);
+                
+                    // fade in org name and deliver first article
                     DOTween.To(
-                            () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
-                            (x) => GetScreen<Screen_Home>().orgNamePanel.Opacity = x,
-                            0.0f, 2.5f)
-                        .SetDelay(3.0f);
+                        () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
+                        (x) => GetScreen<Screen_Home>().orgNamePanel.Opacity = x,
+                        1.0f, 5.0f).OnComplete(() =>
+                    {
+                    
+                        gameManager.DeliverArticle();
+                    
+                        // fade out org name
+                        DOTween.To(
+                                () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
+                                (x) => GetScreen<Screen_Home>().orgNamePanel.Opacity = x,
+                                0.0f, 2.5f)
+                            .SetDelay(3.0f);
+                    });
                 });
             });
+           
             return;
         }
 
@@ -151,7 +157,6 @@ public class GameState_Home : GameState
             LawsuitNotice.Instance.Show(firstShow);
         }
         
-        GameUIController.Instance.GoToScreen(EScreenType.Home);
         gameManager.playerController.enabled = true;
     }
     

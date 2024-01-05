@@ -20,6 +20,9 @@ public class GameConfig : ScriptableObject
     public int StarterStaff = 25;
 
     [Header("Home")] 
+    [TextArea(2, 5)] public string introArticleHeadline;
+    [TextArea(2, 5)] public string introArticleContent;
+    
     public string HomeTutorialTitle;
     [TextArea(2, 5)] public string HomeTutorialContent;
 

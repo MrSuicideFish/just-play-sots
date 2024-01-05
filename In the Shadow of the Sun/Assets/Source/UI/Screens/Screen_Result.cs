@@ -112,13 +112,14 @@ public class Screen_Result : GameScreen
         float tmpBill = 0;
         DOTween.To(() => tmpBill,
                 x => { text_charges.text = Funds.Format(x); },
-                option.civilianEffect.donations, 
+                option.fundsCost, 
                 GameConfig.Instance.billDuration)
             .SetDelay(GameConfig.Instance.billDelay);
         
         // payroll
         float tmpPayroll = 0;
-        float payroll = GameManager.Instance.Staff.Total * GameConfig.Instance.costPerEmployee;
+        float payroll = GameManager.Instance.Staff.Total 
+                        * GameConfig.Instance.costPerEmployee;
         float remainingStaff = GameManager.Instance.Staff.Count - option.staffCost;
         bool staffHasOvertime = remainingStaff < 0;
         if (staffHasOvertime)
@@ -170,7 +171,43 @@ public class Screen_Result : GameScreen
         {
             if (!hasShownFundsResults)
             {
-                StartCoroutine(DoFunds());
+                button_funds_result_continue.gameObject.SetActive(true);
+                button_funds_result_back.gameObject.SetActive(true);
+        
+                hasShownFundsResults = true;
+                float tmp = GameManager.Instance.OrganizationFunds.Value;
+                float cost = GameManager.Instance.CalcTotalCost();
+                float donation = GameManager.Instance.CalcTotalDonations();
+                text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
+                GameManager.Instance.OrganizationFunds.Value -= cost;
+                GameManager.Instance.OrganizationFunds.Value += donation;
+        
+                funds_result_anim.gameObject.SetActive(true);
+                funds_result_anim.Play();
+                DOTween.To(() => tmp,
+                        x =>
+                        {
+                            tmp = x;
+                            text_funds_result.text = Funds.Format(x);
+                        },
+                        (tmp - cost) + donation, GameConfig.Instance.fundsResultDuration)
+                    .SetDelay(GameConfig.Instance.fundsResultDelay)
+                    .OnComplete(() =>
+                    {
+                        if (tmp <= 0.0f)
+                        {
+                            text_funds_result.color = Color.red;
+                            GameManager.Instance.EndGame(false);
+                            DOTween.PauseAll();
+                        }
+                        else
+                        {
+                            button_funds_result_continue.interactable = true;
+                            button_funds_result_back.interactable = true;
+                        }
+                    });
+                
+                GameManager.Instance.ApplyStaffChanges();
             }
             else
             {
@@ -186,46 +223,5 @@ public class Screen_Result : GameScreen
         {
             GameManager.Instance.ReturnToHome();
         }
-    }
-
-    private IEnumerator DoFunds()
-    {
-        button_funds_result_continue.gameObject.SetActive(true);
-        button_funds_result_back.gameObject.SetActive(true);
-        
-        hasShownFundsResults = true;
-        float tmp = GameManager.Instance.OrganizationFunds.Value;
-        float cost = GameManager.Instance.CalcTotalCost();
-        float donation = GameManager.Instance.CalcTotalDonations();
-        text_funds_result.text = GameManager.Instance.OrganizationFunds.ToString();
-        GameManager.Instance.OrganizationFunds.Value -= cost;
-        GameManager.Instance.OrganizationFunds.Value += donation;
-        
-        funds_result_anim.gameObject.SetActive(true);
-        funds_result_anim.Play();
-        DOTween.To(() => tmp,
-                x =>
-                {
-                    tmp = x;
-                    text_funds_result.text = Funds.Format(x);
-                },
-                (tmp - cost) + donation, GameConfig.Instance.fundsResultDuration)
-            .SetDelay(GameConfig.Instance.fundsResultDelay)
-            .OnComplete(() =>
-            {
-                if (tmp <= 0.0f)
-                {
-                    text_funds_result.color = Color.red;
-                    GameManager.Instance.EndGame(false);
-                    DOTween.PauseAll();
-                }
-                else
-                {
-                    button_funds_result_continue.interactable = true;
-                    button_funds_result_back.interactable = true;
-                }
-            });
-        
-        yield return null;
     }
 }

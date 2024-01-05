@@ -28,7 +28,7 @@ MonoBehaviour:
   options:
   - content: Make statement supporting Dr. Sara Trenton
     fundsCost: 375
-    staffCost: 2
+    staffCost: 5
     civilianEffect:
       donations: 350
       popularity: 3
@@ -47,7 +47,7 @@ MonoBehaviour:
         about more support from the populace.
   - content: Issue statement in support of Andrew Taft
     fundsCost: 0
-    staffCost: 0
+    staffCost: 5
     civilianEffect:
       donations: 0
       popularity: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
         {{OrgName}}.
   - content: Run a fundraiser for {{OrgName}}
     fundsCost: 0
-    staffCost: 0
+    staffCost: 5
     civilianEffect:
       donations: 0
       popularity: 0
