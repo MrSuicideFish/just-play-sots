@@ -26,3 +26,9 @@ public class Lawsuit : ScriptableObject
         return content.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
     }
 }
+
+public class DeliveredLawsuit
+{
+    public Lawsuit lawsuit;
+    public bool isMature;
+}

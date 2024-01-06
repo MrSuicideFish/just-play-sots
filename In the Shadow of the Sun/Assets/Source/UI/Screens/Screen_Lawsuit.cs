@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ public class Screen_Lawsuit : GameScreen
 
     public Transform entriesParent;
     public Animation paidStampAnim;
+    public GameObject finalNotice;
     private List<UILawsuitEntry> entries = new();
 
     public bool hasSettled;
@@ -70,13 +72,14 @@ public class Screen_Lawsuit : GameScreen
 
         for (int i = 0; i < GameManager.Instance.lawsuits.Count; i++)
         {
-            Lawsuit lawsuit = GameManager.Instance.lawsuits[i];
+            Lawsuit lawsuit = GameManager.Instance.lawsuits[i].lawsuit;
             UILawsuitEntry newEntry = Instantiate(entryPrototype.gameObject)
                 .GetComponent<UILawsuitEntry>();
 
             newEntry.toggle.group = selectionToggleGroup;
             newEntry.text_title.text = lawsuit.GetHeader();
             newEntry.lawsuitId = lawsuit.id;
+            newEntry.finalNotice.SetActive(GameManager.Instance.lawsuits[i].isMature);
             
             newEntry.transform.SetParent(entriesParent, true);
             newEntry.transform.localScale = Vector3.one;
@@ -105,6 +108,19 @@ public class Screen_Lawsuit : GameScreen
             text_headline.text = currentLawsuit.GetHeader();
             text_content.text = currentLawsuit.GetContent();
             text_cost.text = Funds.Format(currentLawsuit.cost);
+
+            finalNotice.SetActive(false);
+            for (int i = 0; i < GameManager.Instance.lawsuits.Count; i++)
+            {
+                if (GameManager.Instance.lawsuits[i].lawsuit == currentLawsuit)
+                {
+                    if (GameManager.Instance.lawsuits[i].isMature)
+                    {
+                        finalNotice.SetActive(true);
+                    }
+                    break;
+                }
+            }
 
             if (GameManager.Instance.OrganizationFunds.Value < currentLawsuit.cost)
             {

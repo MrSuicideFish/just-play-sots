@@ -172,6 +172,24 @@ public class GameState_Home : GameState
                 {
                     firstShow = false;
                 }
+                else
+                {
+                    // settle lawsuits
+                    int lawsuitCount = gameManager.expiredLawsuits.Count;
+                    if (lawsuitCount > 0)
+                    {
+                        for (int i = 0; i < gameManager.expiredLawsuits.Count; i++)
+                        {
+                            gameManager.SettleLawsuit(gameManager.expiredLawsuits[i]);
+                            gameManager.expiredLawsuits.RemoveAt(i);
+                        }
+
+                        GameUIController.Instance.ShowGameMessage(
+                            "Expired Lawsuits",
+                            $"{lawsuitCount} lawsuit(s) have been settled automatically.", null);
+                    }
+                    
+                }
                 
                 LawsuitNotice.Instance.Show(firstShow);   
             }
@@ -328,6 +346,20 @@ public class GameState_Results : GameState
         ///
         ///  deliver lawsuits after results
         /// 
+        
+        // mature current suits
+        for (int i = 0; i < gameManager.lawsuits.Count; i++)
+        {
+            DeliveredLawsuit lawsuit = gameManager.lawsuits[i];
+            if (lawsuit.isMature)
+            {
+                gameManager.expiredLawsuits.Add(lawsuit.lawsuit.id);
+            }
+            else
+            {
+                gameManager.lawsuits[i].isMature = true;    
+            }
+        }
         
         // obligatory lawsuit
         gameManager.DeliverLawsuit(EParty.None);

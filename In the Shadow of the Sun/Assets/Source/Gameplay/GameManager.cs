@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -193,8 +194,6 @@ public class GameManager : MonoBehaviour
         CurrentResponse = option.response;
         SelectedOption = option;
         
-
-        
         // popularity
         Popularity.Apply(EParty.Civilian, SelectedOption.citizenEffect.popularity);
         Popularity.Apply(EParty.Politician, SelectedOption.politicianEffect.popularity);
@@ -218,9 +217,10 @@ public class GameManager : MonoBehaviour
     
     #region Lawsuits
     public Lawsuit CurrentLawsuit { get; private set; }
-    public List<Lawsuit> lawsuits { get; private set;} = new();
+    public List<DeliveredLawsuit> lawsuits { get; private set;} = new();
     public List<string> completedLawsuits { get; private set; } = new();
     public int lawsuitsAddedThisArticle = 0;
+    public List<string> expiredLawsuits = new();
     
     public void DeliverLawsuit(EParty fromParty)
     {
@@ -228,16 +228,37 @@ public class GameManager : MonoBehaviour
             ? ArticleDb.Instance.lawsuits
             : ArticleDb.Instance.GetLawsuitsByParty(fromParty);
 
+        List<Lawsuit> eligableSuits = new();
         for (int i = 0; i < suits.Length; i++)
         {
-            if (!completedLawsuits.Contains(suits[i].id)
-                && !lawsuits.Contains(suits[i]))
+            bool hasSuitAlready = false;
+            for (int j = 0; j < lawsuits.Count; j++)
             {
-                lawsuits.Add(suits[i]);
-                OnLawsuitDelivered?.Invoke();
-                lawsuitsAddedThisArticle++;
-                break;
+                if (lawsuits[j].lawsuit == suits[i])
+                {
+                    hasSuitAlready = true;
+                    break;
+                }
             }
+
+            if (hasSuitAlready)
+            {
+                continue;
+            }
+
+            if (!completedLawsuits.Contains(suits[i].id))
+            {
+                eligableSuits.Add(suits[i]);
+            }
+        }
+
+        if (eligableSuits.Count > 0)
+        {
+            DeliveredLawsuit newDelivery = new DeliveredLawsuit();
+            newDelivery.lawsuit = eligableSuits[Random.Range(0, eligableSuits.Count)];
+            lawsuits.Add(newDelivery);
+            OnLawsuitDelivered?.Invoke();
+            lawsuitsAddedThisArticle++;
         }
     }
 
@@ -247,11 +268,24 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        
-        CurrentLawsuit = lawsuits[index];
+
+        CurrentLawsuit = lawsuits[index].lawsuit;
+    }
+
+    public void SettleLawsuit(string id)
+    {
+        for (int i = 0; i < lawsuits.Count; i++)
+        {
+            if (lawsuits[i].lawsuit.id == id)
+            {
+                CurrentLawsuit = lawsuits[i].lawsuit;
+                SettleLawsuit(Lawsuit.ESettlementType.Insurance, false);
+                break;
+            }
+        }
     }
     
-    public void SettleLawsuit(Lawsuit.ESettlementType settlementType)
+    public void SettleLawsuit(Lawsuit.ESettlementType settlementType, bool returnToHomeAutomatically = true)
     {
         if (settlementType == Lawsuit.ESettlementType.Funds)
         {
@@ -261,9 +295,22 @@ public class GameManager : MonoBehaviour
             Insurance.SettleLawsuit(CurrentLawsuit.cost);
         }
 
-        lawsuits.Remove(CurrentLawsuit);
+        for (int i = 0; i < lawsuits.Count; i++)
+        {
+            if (lawsuits[i].lawsuit == CurrentLawsuit)
+            {
+                lawsuits.RemoveAt(i);
+                break;
+            }
+        }
+
         completedLawsuits.Add(CurrentLawsuit.id);
-        ReturnToHome();
+        CurrentLawsuit = null;
+
+        if (returnToHomeAutomatically)
+        {
+            ReturnToHome();    
+        }
     }
     #endregion
     
