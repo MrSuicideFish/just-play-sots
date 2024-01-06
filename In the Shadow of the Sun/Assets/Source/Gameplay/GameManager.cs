@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         StateMachine.GoToState(new Gamestate_Entry());
     }
 
-    public void EndGame(bool isWin)
+    public void EndGame(bool isWin, bool failByPop = false)
     {
         if (gameHasEnded)
         {
@@ -88,15 +88,37 @@ public class GameManager : MonoBehaviour
         endGameScreen.gameObject.SetActive(true);
         if (isWin)
         {
-            StartCoroutine(endGameScreen.DoWin(0));
+            StartCoroutine(endGameScreen.DoWin(
+                Popularity.Politician > Popularity.Civilian
+                && Popularity.Politician >= Popularity.Companies
+                    ? 1 : 0));
         }
         else
         {
-            StartCoroutine(endGameScreen.DoLose());
+            StartCoroutine(endGameScreen.DoLose(failByPop));
         }
         gameHasEnded = true;
     }
     
+    #if UNITY_EDITOR
+    [ContextMenu("Game Win")]
+    public void DoWinGame()
+    {
+        EndGame(true);
+    }
+
+    [ContextMenu("Game Fail (Popularity)")]
+    public void DoGameFailByPop()
+    {
+        EndGame(false, true);
+    }
+
+    [ContextMenu("Game Fail (Funds)")]
+    public void DoGameFailByFunds()
+    {
+        EndGame(false, false);
+    }
+    #endif
     
     #region Article
     public Article CurrentArticle { get; private set; }

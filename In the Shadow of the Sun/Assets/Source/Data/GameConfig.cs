@@ -67,6 +67,10 @@ public class GameConfig : ScriptableObject
     public string GameWinHeadline;
     public string GameWinSubtext;
     public string GameWinContent;
+
+    public string GameWinAltHeadline;
+    public string GameWinAltSubtext;
+    public string GameWinAltContent;
     
     [Space(5)]
 

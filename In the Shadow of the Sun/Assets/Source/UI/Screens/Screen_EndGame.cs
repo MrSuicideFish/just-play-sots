@@ -30,9 +30,18 @@ public class Screen_EndGame : GameScreen
 
     public IEnumerator DoWin(int ending)
     {
-        text_winHeadline.text = GameConfig.Instance.GameWinHeadline;
-        text_winSubtext.text = GameConfig.Instance.GameWinContent;
-        text_winContent.text = GameConfig.Instance.GameWinContent;
+        if (ending == 0)
+        {
+            text_winHeadline.text = GameConfig.Instance.GameWinHeadline;
+            text_winSubtext.text = GameConfig.Instance.GameWinSubtext;
+            text_winContent.text = GameConfig.Instance.GameWinContent;
+        }
+        else
+        {
+            text_winHeadline.text = GameConfig.Instance.GameWinAltHeadline;
+            text_winSubtext.text = GameConfig.Instance.GameWinAltSubtext;
+            text_winContent.text = GameConfig.Instance.GameWinAltContent;
+        }
         
         winScreen.gameObject.SetActive(true);
         winScreen.Play();

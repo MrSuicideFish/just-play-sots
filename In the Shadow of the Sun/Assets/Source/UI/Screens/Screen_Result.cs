@@ -170,7 +170,7 @@ public class Screen_Result : GameScreen
             yield return null;
         }
         
-        GameManager.Instance.EndGame(false);
+        GameManager.Instance.EndGame(false, failByPop: false);
         yield return null;
     }
 

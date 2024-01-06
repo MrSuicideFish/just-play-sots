@@ -78,9 +78,22 @@ MonoBehaviour:
   InsuranceTutorialTitle: Lawsuit Insurance
   InsuranceTutorialContent: Insurance fees are owed after every article. Settling
     lawsuits with insurance will increase these fees over time.
-  GameFailHeadline: '{{OrgName}} COLLAPSES!'
+  GameFailHeadline: Out With A Whimper
   GameFailReasonPopularity: '{{OrgName}} closes it''s doors amid deep unpopularity.'
-  GameFailReasonFunds: '{{OrgName}} declares bankruptcy just days into operation.'
+  GameFailReasonFunds: Upon filing for bankruptcy today, founder Ted Ebbing says
+    he hasn't given up hope. "I still want to help Civic City. I thought it was right
+    to spend my fortune in service of others. Maybe this was just the wrong way."
+  GameWinHeadline: Dr. Sara Trenton Elected Mayor!
+  GameWinSubtext: Result presages exciting new direction
+  GameWinContent: 'Dr. Trenton thanked the people of Civic City for putting their
+    faith in her, saying: "I will do my utmost to be worthy of that trust. Under
+    my leadership, I vow that this city will become a more welcoming, equitable place
+    for all."'
+  GameWinAltHeadline: Andrew Taft Elected Mayor
+  GameWinAltSubtext: Police Chief swears to clean up city
+  GameWinAltContent: '"The people have made their voices heard," Taft said in his
+    acceptance speech. "Law and order have won the day. Civic City will be safe with
+    me." In the same speech, he vowed to increase police spending by 200 percent.'
   donationDuration: 0.5
   civillianDonationDelay: 1
   politicianDonationDelay: 1

@@ -176,6 +176,14 @@ public class GameState_Home : GameState
                 LawsuitNotice.Instance.Show(firstShow);   
             }
         }
+
+        if (gameManager.Popularity.Civilian <= 0
+            || gameManager.Popularity.Companies <= 0
+            || gameManager.Popularity.Politician <= 0)
+        {
+            gameManager.EndGame(false, true);
+            return;
+        }
         
         gameManager.playerController.enabled = true;
     }
