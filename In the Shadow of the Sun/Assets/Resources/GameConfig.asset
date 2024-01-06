@@ -60,6 +60,9 @@ MonoBehaviour:
   StaffTutorialTitle: Managing Staff
   StaffTutorialContent: Staff is required to keep your operation going! Hiring too
     many staff, increases payroll costs.
+  StaffNoticeTitle: Out of staff
+  StaffNoticeContent: You are short of staff. Use the Phone to hire or fire employees
+    before responding to the next article.
   costPerEmployee: 120
   overtimeMultiplier: 2.5
   RandomChanceLawsuit: 0.25
@@ -73,6 +76,9 @@ MonoBehaviour:
   InsuranceTutorialTitle: Lawsuit Insurance
   InsuranceTutorialContent: Insurance fees are owed after every article. Settling
     lawsuits with insurance will increase these fees over time.
+  GameFailHeadline: '{{OrgName}} COLLAPSES!'
+  GameFailReasonPopularity: '{{OrgName}} closes it''s doors amid deep unpopularity.'
+  GameFailReasonFunds: '{{OrgName}} declares bankruptcy just days into operation.'
   donationDuration: 0.5
   civillianDonationDelay: 1
   politicianDonationDelay: 1

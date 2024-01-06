@@ -7,21 +7,9 @@ public class UIArticleOption : MonoBehaviour
 {
     public Toggle toggle;
     public TMP_Text content;
+
+    public Image staffImage;
     
     public UnityEvent OnBecameAvailable;
     public UnityEvent OnBecameUnavailable;
-
-    public void ToggleAvailability(bool onOff)
-    {
-        toggle.interactable = onOff;
-        if (onOff)
-        {
-            OnBecameAvailable.Invoke();
-        }
-        else
-        {
-            OnBecameUnavailable.Invoke();
-        }
-
-    }
 }

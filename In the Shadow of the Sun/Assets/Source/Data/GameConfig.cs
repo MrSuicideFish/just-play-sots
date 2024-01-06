@@ -36,6 +36,9 @@ public class GameConfig : ScriptableObject
     [Header("Staff")]
     public string StaffTutorialTitle;
     [TextArea(2, 5)] public string StaffTutorialContent = "";
+    public string StaffNoticeTitle;
+    [TextArea(2, 5)] public string StaffNoticeContent = "";
+    [Space] [Range(0f, 0.9f)] public float staffRequirementWidth = 0.3f;
     
     [Header("Payroll")] 
     public float costPerEmployee = 1.0f;

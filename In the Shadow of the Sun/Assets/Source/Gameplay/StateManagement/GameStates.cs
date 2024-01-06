@@ -150,11 +150,29 @@ public class GameState_Home : GameState
             bool firstShow = gameManager.completedLawsuits.Count == 0
             || gameManager.lawsuitsAddedThisArticle == gameManager.lawsuits.Count;
             
-            if (!gameManager.isHomeStateClean)
+            if (firstShow && gameManager.CompletedArticles.Count == 1)
             {
-                firstShow = false;
+                if (!gameManager.hasHiredFirstStaff)
+                {
+                    GameUIController.Instance.ShowGameMessage(
+                        GameConfig.Instance.StaffNoticeTitle,
+                        GameConfig.Instance.StaffNoticeContent,
+                        null);    
+                }
+                else
+                {
+                    LawsuitNotice.Instance.Show(true);
+                }
             }
-            LawsuitNotice.Instance.Show(firstShow);
+            else
+            {
+                if (!gameManager.isHomeStateClean)
+                {
+                    firstShow = false;
+                }
+                
+                LawsuitNotice.Instance.Show(firstShow);   
+            }
         }
         
         gameManager.playerController.enabled = true;

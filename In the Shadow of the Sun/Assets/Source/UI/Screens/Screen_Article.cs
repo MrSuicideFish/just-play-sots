@@ -10,11 +10,13 @@ public class Screen_Article : GameScreen
     public Button button_select;
     public TMP_Text text_headline;
     public TMP_Text text_content;
+    public TMP_Text text_subtitle;
     public ToggleGroup optionsToggleGroup;
     
     public UIArticleOption placeholderOption;
     public ScrollRect scrollView;
-    
+
+    public Sprite[] staff_requirement_sprites;
     private UIArticleOption[] options;
     private int selectedOption;
     public override EScreenType GetScreenType()
@@ -30,6 +32,7 @@ public class Screen_Article : GameScreen
         Article article = GameManager.Instance.CurrentArticle;
         text_headline.text = article.GetHeadline();
         text_content.text = article.GetContent();
+        text_subtitle.text = article.GetSubtitle();
         SetupOptions(article.options);
         button_select.interactable = false;
 
@@ -67,6 +70,18 @@ public class Screen_Article : GameScreen
             options[i].transform.localScale = Vector3.one;
             options[i].gameObject.SetActive(true);
             options[i].content.text = newOptions[i].GetContent();
+            
+            // effects and requirements
+            float staffCount = (float) GameManager.Instance.Staff.Count;
+            float width = GameConfig.Instance.staffRequirementWidth;
+            float percOfStaffRequired = newOptions[i].staffCost / (staffCount - (staffCount * width));
+            int imgIdx = Mathf.RoundToInt(Mathf.Lerp(0.0f, 1.0f, percOfStaffRequired));
+            
+            Debug.Log("Perc of staff: " + percOfStaffRequired);
+            Debug.Log("Img Idx: " + imgIdx);
+            
+            options[i].staffImage.sprite = staff_requirement_sprites[imgIdx];
+            
             var index = i;
             options[i].toggle.onValueChanged.AddListener(isOn =>
             {

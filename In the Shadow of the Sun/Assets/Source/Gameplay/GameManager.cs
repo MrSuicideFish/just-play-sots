@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public Staff Staff { get; private set; }
     public GameStateMachine StateMachine { get; private set; }
 
+    public bool hasHiredFirstStaff = false;
     // Cache
     private bool gameHasStarted;
     private bool gameHasEnded;

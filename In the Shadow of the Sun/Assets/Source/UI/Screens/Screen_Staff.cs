@@ -12,6 +12,7 @@ public class Screen_Staff : GameScreen
 
     public override IEnumerator Show(bool isFirstShow)
     {
+        GameManager.Instance.hasHiredFirstStaff = true;
         text_count.text = GameManager.Instance.Staff.ToString();
         yield return null;
     }
@@ -24,6 +25,7 @@ public class Screen_Staff : GameScreen
     public void HireEmployees()
     {
         GameManager.Instance.Staff.Hire();
+
         text_count.text = GameManager.Instance.Staff.ToString();
     }
 
