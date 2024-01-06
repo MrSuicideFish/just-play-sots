@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1904f9796c4d8399ed2539dc2b1213, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  StarterFunds: 15000
+  StarterPopularity: 60
+  StarterStaff: 5
+  MaxPopularity: 100
+  introArticleHeadline: '{{OrgName}} OPENS FOR BUSINESS!'
+  introArticleContent: "A new hope for Civic City! Theodore Ebbing, son of the late
+    Marta and Tomas Ebbing, has announced his intention to found {{OrgName}}, in
+    an attempt to combat increasing poverty and sky-high crime rates. When asked
+    about the focus of his organization, Ebbing had this to say: \r\n\u201CYou can\u2019t
+    address one without the other. I choose to believe that when people have their
+    needs met, they won\u2019t be driven to violent crime.That\u2019s why I don\u2019t
+    consider this fortune my own: it belongs to the people of Civic City.\u201D\r\nAndrew
+    Taft, at the press conference where he announced his run for mayoral office,
+    commented on Ebbing\u2019s announcement, saying: \u201CTed's initiative is noble,
+    but misguided. Increased police presence will keep Civic City safe, and might
+    even have prevented the tragedy that befell his parents. When I am mayor, I intend
+    to increase the law enforcement budget, and nothing of the kind will happen again.\u201D"
+  HomeTutorialTitle: How To Play
+  HomeTutorialContent: 'Left-Click: Interact
+
+    Right-Click (Hold): Look Around
+
+
+    Newspaper:
+    Read / React to Articles
+
+    Lawsuit: Settle Incoming Suits
+
+    Phone: Hire
+    / Fire Staff'
+  ArticlesTutorialTitle: Newspaper Articles
+  ArticlesTutorialContent: 'Newspapers provide updates on current events. Read through
+    them and choose the outcome. Be careful, actions have consequences!
+
+
+    Each
+    action requires money and staff. Running out of money means bankruptcy and staff
+    shortages lead to more overtime pay!'
+  ResultsTutorialTitle: 
+  ResultsTutorialContent: 'Your choices impact your organization''s standing in the
+    public eye. You are more likely to recieve donations based on your actions.
+
+
+    After
+    each article, payroll and insurance fees are deducted from your organization''s
+    funds. Keep your staff lean to reduce costs.'
+  StaffTutorialTitle: Managing Staff
+  StaffTutorialContent: Staff is required to keep your operation going! Hiring too
+    many staff, increases payroll costs.
+  StaffNoticeTitle: Out of staff
+  StaffNoticeContent: You are short of staff. Use the Phone to hire or fire employees
+    before responding to the next article.
+  staffRequirementWidth: 0.18
+  costPerEmployee: 120
+  overtimeMultiplier: 2.5
+  RandomChanceLawsuit: 0.25
+  LawsuitPopularityLimit: 20
+  LawsuitsTutorialTitle: Lawsuits
+  LawsuitsTutorialContent: Your organization can be sued by others or employees.
+    These lawsuits can be settled by using company funds or by having insurance cover
+    the costs - but will increase insurance fees.
+  StarterInsuranceFee: 500
+  InsuranceMultiplier: 2.1
+  InsuranceTutorialTitle: Lawsuit Insurance
+  InsuranceTutorialContent: Insurance fees are owed after every article. Settling
+    lawsuits with insurance will increase these fees over time.
+  GameFailHeadline: Out With A Whimper
+  GameFailReasonPopularity: '{{OrgName}} closes it''s doors amid deep unpopularity.'
+  GameFailReasonFunds: Upon filing for bankruptcy today, founder Ted Ebbing says
+    he hasn't given up hope. "I still want to help Civic City. I thought it was right
+    to spend my fortune in service of others. Maybe this was just the wrong way."
+  GameWinHeadline: Dr. Sara Trenton Elected Mayor!
+  GameWinSubtext: Result presages exciting new direction
+  GameWinContent: 'Dr. Trenton thanked the people of Civic City for putting their
+    faith in her, saying: "I will do my utmost to be worthy of that trust. Under
+    my leadership, I vow that this city will become a more welcoming, equitable place
+    for all."'
+  GameWinAltHeadline: Andrew Taft Elected Mayor
+  GameWinAltSubtext: Police Chief swears to clean up city
+  GameWinAltContent: '"The people have made their voices heard," Taft said in his
+    acceptance speech. "Law and order have won the day. Civic City will be safe with
+    me." In the same speech, he vowed to increase police spending by 200 percent.'
+  donationDuration: 0.5
+  civillianDonationDelay: 1
+  politicianDonationDelay: 1
+  organizationDonationsDelay: 1
+  staffDuration: 0.5
+  staffAllocatedDelay: 1.5
+  staffTotalDelay: 1.5
+  billDuration: 0.5
+  billDelay: 2
+  payrollDuration: 0.5
+  payrollDelay: 2.5
+  insuranceDuration: 0.5
+  insuranceDelay: 3
+  fundsResultDuration: 1
+  fundsResultDelay: 1
+  captionsFadeSpeed: 5
+  proponentColor: {r: 0, g: 1, b: 0, a: 1}
+  criticColor: {r: 1, g: 0, b: 0, a: 1}
+  neutralColor: {r: 1, g: 1, b: 1, a: 0.45490196}

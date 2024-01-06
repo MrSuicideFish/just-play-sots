@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: TestArticleB
+  m_EditorClassIdentifier: 
+  id: TestArticleB
+  headline: Study Confirms 50% of Americans Think Chocolate Milk Comes from Brown
+    Cows.
+  content: Admins at research center are stunned at recent findings.
+  options:
+  - content: Donate Chocolate Milk in Milk Drive
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Fund Repeat Experiment to Confirm Findings.
+    cost: 2700
+    civilianEffect:
+      donations: 440
+      popularity: 1
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 1600
+      popularity: 5
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: New Study Confirms Findings
+      content: Repeat study confirms 17% increase over previous study.
+  - content: Donate Chocolate Cows to Local Farmers
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 1
+      Value: 99999
+    response:
+      headline: 
+      content: 

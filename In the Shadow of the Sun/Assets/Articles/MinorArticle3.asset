@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MinorArticle3
+  m_EditorClassIdentifier: 
+  id: MinorArticle3
+  headline: A Bay Of Liquid Gold
+  subtitle: Civic City Oil Seeks Eager Investors
+  content: "The city\u2019s largest petroleum producer, Civic City Oil, is seeking
+    capital to develop a new offshore mining rig. The venture is expected to be very
+    profitable, and generate many new jobs.\r"
+  options:
+  - content: Choose to invest in oil drilling
+    fundsCost: 10000
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: -6
+    politicianEffect:
+      donations: 2000
+      popularity: 3
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Buys in to Fossil Fuel Operation'
+      content: "Climate activists decry this \u201Cshort-sighted\u201D move. "
+  - content: Choose not to invest
+    fundsCost: 0
+    staffCost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 5
+    politicianEffect:
+      donations: 0
+      popularity: -1
+    companiesEffect:
+      donations: 0
+      popularity: 4
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Civic City Oil Goes Under
+      content: "\u201CThis spells dark days for the city,\u201D says company president."

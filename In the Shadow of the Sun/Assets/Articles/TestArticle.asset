@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: TestArticle
+  m_EditorClassIdentifier: 
+  id: Debug_Article
+  headline: Pets Overnight Sales Surge During Holidays
+  content: CEO says pet delivery service is poise to overtake Amazon during holiday
+    season.
+  options:
+  - content: Advocate for Ban on Pet Delivery.
+    cost: 0
+    civilianEffect:
+      donations: 5700
+      popularity: 2
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: -4
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Congress Votes to Ban Pet Delivery Services
+      content: Vote passes along pet-lover lines, 400 to 35. The people ceclebrate!
+  - content: Fundraise for Homeless Kittens.
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Everyone thinks this is useless
+      content: No one liked this option.
+  - content: Hold a Delivery Drive to Sign-Up New Adoptees.
+    cost: 0
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    requirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Everyone thinks this is useless
+      content: No one liked this option.

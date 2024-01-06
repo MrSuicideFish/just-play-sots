@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MainArticle2
+  m_EditorClassIdentifier: 
+  id: MainArticle2
+  headline: Cold Case Defrosted
+  subtitle: Decade-Old Killings Finally Get Answers
+  content: "Civic City Police announced that an arrest has been made in the decade-old
+    case of the slaying of Tom and Marta Ebbing. The killer has been identified as
+    Joseph Palin, 41, a former convenience store clerk. Palin was arrested in the
+    early hours of the morning, police say, in connection with an unrelated crime.
+    \u201CWe got a warrant to search his apartment on suspicion of drug possession,
+    and that\u2019s when we found the murder weapon,\u201D said the detective in
+    charge of the case. Palin lived in a rooming house and was previously known to
+    police. \u201CDrunk and disorderly, we\u2019d gotten calls about him a few times.
+    Never anything like this, though.\u201D The trial is set to begin next week. "
+  options:
+  - content: Hold press conference urging guilty verdict
+    fundsCost: 1725
+    staffCost: 30
+    civilianEffect:
+      donations: 2600
+      popularity: 2
+    politicianEffect:
+      donations: 1300
+      popularity: 10
+    companiesEffect:
+      donations: 50.25
+      popularity: -2
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Holds Press Conference Condemning Joseph Palin'
+      content: "Donations to the organization are suspiciously up this quarter following
+        the conference; some question founder\u2019s personal motives."
+  - content: Donate to criminal justice organizations
+    fundsCost: -900
+    staffCost: 5
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 4
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Makes Large Donation to Support Criminal Justice'
+      content: Move praised by various Civic City non-profits.
+  - content: Anonymously contribute to Palin's legal fund
+    fundsCost: -1000
+    staffCost: 0
+    civilianEffect:
+      donations: 3000
+      popularity: 8
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: Anonymous Benefactor Covers Legal Fees
+      content: "In a surprising show of humility, an anonymous donor pays off Joseph
+        Palin's legal fees and supports his case. Citizens praise the donor\u2019s
+        support of the legal process"

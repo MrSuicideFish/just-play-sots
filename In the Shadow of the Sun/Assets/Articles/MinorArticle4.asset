@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MinorArticle4
+  m_EditorClassIdentifier: 
+  id: MinorArticle4
+  headline: The Street Where It Happens
+  subtitle: Historical Society Speaks Out
+  content: "Civic City Historical Society says the time has come to rename Hamilton
+    Avenue, and that its namesake\u2019s connections to slavery should not be lauded.
+    Business owners disagree, citing the expenses that come with rebranding."
+  options:
+  - content: Support renaming
+    fundsCost: 0
+    staffCost: -5
+    civilianEffect:
+      donations: 0
+      popularity: 1
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 700
+      popularity: 3
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Says No More Hamilton'
+      content: 'The vote is expected to pass at City Hall. A competition to decide
+        the new name will begin next year. '
+  - content: "Don\u2019t support renaming"
+    fundsCost: 0
+    staffCost: -10
+    civilianEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 2
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: '{{OrgName}} Passes on Rename Alliance'
+      content: Business owners laud the decision, while some {{OrgName}} staff jump
+        ship in response.
