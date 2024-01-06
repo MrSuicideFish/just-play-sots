@@ -208,6 +208,7 @@ public class Screen_Result : GameScreen
                     .SetDelay(GameConfig.Instance.fundsResultDelay)
                     .OnComplete(() =>
                     {
+                        AudioManager.Instance.PlayEffect(ESoundEffect.MoneyChing);
                         if (tmp <= 0.0f)
                         {
                             text_funds_result.color = Color.red;

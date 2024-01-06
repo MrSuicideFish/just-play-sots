@@ -30,7 +30,7 @@ public class Screen_Staff : GameScreen
     public void HireEmployees()
     {
         GameManager.Instance.Staff.Hire();
-
+        AudioManager.Instance.PlayEffect(ESoundEffect.StaffHire);
         text_count.text = GameManager.Instance.Staff.ToString();
         button_fire.interactable = true;
     }
@@ -38,6 +38,7 @@ public class Screen_Staff : GameScreen
 
     public void FireEmployees()
     {
+        AudioManager.Instance.PlayEffect(ESoundEffect.StaffFire);
         GameManager.Instance.Staff.Fire();
         text_count.text = GameManager.Instance.Staff.ToString();
         button_fire.interactable = GameManager.Instance.Staff.Total >= 0;

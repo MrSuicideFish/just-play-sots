@@ -20,4 +20,9 @@ public class Newspaper : ClickableEntity
     {
         GameManager.Instance.StateMachine.GoToState(new GameState_Newspaper());
     }
+
+    public void OnPaperSlap()
+    {
+        AudioManager.Instance.PlayEffect(ESoundEffect.PaperSlap);
+    }
 }

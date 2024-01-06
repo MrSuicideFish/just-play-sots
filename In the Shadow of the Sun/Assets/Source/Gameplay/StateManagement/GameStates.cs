@@ -208,7 +208,15 @@ public class GameState_Home : GameState
     
     public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AudioManager.Instance.PlayEffect(ESoundEffect.PaperSlap);
+        }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            AudioManager.Instance.PlayEffect(ESoundEffect.MoneyChing);
+        }
     }
 
     public override void OnStateExit(GameManager gameManager, GameStateMachine sm, bool isFirstExit)
@@ -225,6 +233,7 @@ public class GameState_Lawsuit : GameState
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
+        AudioManager.Instance.PlayEffect(ESoundEffect.PaperOpen2);
         if (isFirstEnter)
         {
             ShowFTUE();
@@ -265,6 +274,7 @@ public class GameState_Newspaper : GameState
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;
         Newspaper.Instance.Hide();
+        AudioManager.Instance.PlayEffect(ESoundEffect.PaperOpen1);
         gameManager.isHomeStateClean = false;
         if (isFirstEnter)
         {
@@ -294,7 +304,7 @@ public class GameState_Staff : GameState
         CameraManager.Instance.GoToCamera(ECameraType.Phone);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
-        
+        AudioManager.Instance.PlayEffect(ESoundEffect.PhoneDial1);
         if (isFirstEnter)
         {
             ShowFTUE();

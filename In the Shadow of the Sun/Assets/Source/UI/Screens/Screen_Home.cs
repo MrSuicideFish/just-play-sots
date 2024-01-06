@@ -60,6 +60,7 @@ public class Screen_Home : GameScreen
         
         introArticleParent.gameObject.SetActive(true);
         introArticleParent.Play();
+
     }
 
     public void EndIntroArticle()
