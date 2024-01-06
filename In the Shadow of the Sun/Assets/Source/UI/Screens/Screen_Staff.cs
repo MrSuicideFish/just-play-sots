@@ -1,10 +1,14 @@
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class Screen_Staff : GameScreen
 {
     public TMP_Text text_count;
-    
+
+    public Button button_hire, button_fire;
+
+    private int startedWith;
     public override EScreenType GetScreenType()
     {
         return EScreenType.Staff;
@@ -12,7 +16,9 @@ public class Screen_Staff : GameScreen
 
     public override IEnumerator Show(bool isFirstShow)
     {
+        GameManager.Instance.hasHiredFirstStaff = true;
         text_count.text = GameManager.Instance.Staff.ToString();
+        button_fire.interactable = !isFirstShow;
         yield return null;
     }
 
@@ -24,13 +30,17 @@ public class Screen_Staff : GameScreen
     public void HireEmployees()
     {
         GameManager.Instance.Staff.Hire();
+
         text_count.text = GameManager.Instance.Staff.ToString();
+        button_fire.interactable = true;
     }
+
 
     public void FireEmployees()
     {
         GameManager.Instance.Staff.Fire();
         text_count.text = GameManager.Instance.Staff.ToString();
+        button_fire.interactable = GameManager.Instance.Staff.Total >= 0;
     }
 
     public void Continue()

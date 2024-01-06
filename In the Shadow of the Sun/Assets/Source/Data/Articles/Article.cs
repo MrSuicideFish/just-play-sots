@@ -17,6 +17,11 @@ public class Article : ScriptableObject
     {
         return headline.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
     }
+
+    public string GetSubtitle()
+    {
+        return subtitle.Replace("{{OrgName}}", GameManager.Instance.OrganizationName);
+    }
     
     public string GetContent()
     {

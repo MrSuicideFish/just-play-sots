@@ -15,6 +15,7 @@ MonoBehaviour:
   StarterFunds: 15000
   StarterPopularity: 60
   StarterStaff: 5
+  MaxPopularity: 100
   introArticleHeadline: '{{OrgName}} OPENS FOR BUSINESS!'
   introArticleContent: "A new hope for Civic City! Theodore Ebbing, son of the late
     Marta and Tomas Ebbing, has announced his intention to found {{OrgName}}, in
@@ -60,6 +61,10 @@ MonoBehaviour:
   StaffTutorialTitle: Managing Staff
   StaffTutorialContent: Staff is required to keep your operation going! Hiring too
     many staff, increases payroll costs.
+  StaffNoticeTitle: Out of staff
+  StaffNoticeContent: You are short of staff. Use the Phone to hire or fire employees
+    before responding to the next article.
+  staffRequirementWidth: 0.18
   costPerEmployee: 120
   overtimeMultiplier: 2.5
   RandomChanceLawsuit: 0.25
@@ -73,6 +78,9 @@ MonoBehaviour:
   InsuranceTutorialTitle: Lawsuit Insurance
   InsuranceTutorialContent: Insurance fees are owed after every article. Settling
     lawsuits with insurance will increase these fees over time.
+  GameFailHeadline: '{{OrgName}} COLLAPSES!'
+  GameFailReasonPopularity: '{{OrgName}} closes it''s doors amid deep unpopularity.'
+  GameFailReasonFunds: '{{OrgName}} declares bankruptcy just days into operation.'
   donationDuration: 0.5
   civillianDonationDelay: 1
   politicianDonationDelay: 1
@@ -89,3 +97,6 @@ MonoBehaviour:
   fundsResultDuration: 1
   fundsResultDelay: 1
   captionsFadeSpeed: 5
+  proponentColor: {r: 0, g: 1, b: 0, a: 1}
+  criticColor: {r: 1, g: 0, b: 0, a: 1}
+  neutralColor: {r: 1, g: 1, b: 1, a: 0.45490196}

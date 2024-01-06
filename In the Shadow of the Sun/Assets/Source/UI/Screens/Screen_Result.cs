@@ -28,6 +28,7 @@ public class Screen_Result : GameScreen
     public Animation text_overtime;
     public AnimationClip animClip_show;
     public AnimationClip animClip_bankrupt;
+    public AnimationClip animClip_finish;
 
     private Coroutine resultsRoutine;
     private bool hasShownFundsResults = false;
@@ -83,7 +84,7 @@ public class Screen_Result : GameScreen
 
         DOTween.To(() => tmpDonationCiv,
                 x => { text_donation_civ.text = Funds.Format(x); },
-                option.civilianEffect.donations, GameConfig.Instance.donationDuration)
+                option.citizenEffect.donations, GameConfig.Instance.donationDuration)
             .SetDelay(GameConfig.Instance.civillianDonationDelay);
 
         DOTween.To(() => tmpDonationPol,
@@ -215,6 +216,7 @@ public class Screen_Result : GameScreen
                         }
                         else
                         {
+                            funds_result_anim.Play(animClip_finish.name);
                             button_funds_result_continue.interactable = true;
                             button_funds_result_back.interactable = true;
                         }

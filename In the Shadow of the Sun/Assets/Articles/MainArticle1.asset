@@ -28,16 +28,16 @@ MonoBehaviour:
   options:
   - content: Make statement supporting Dr. Sara Trenton
     fundsCost: 375
-    staffCost: 5
-    civilianEffect:
+    staffCost: 2
+    citizenEffect:
       donations: 350
-      popularity: 3
+      popularity: 2
     politicianEffect:
-      donations: 950.5
-      popularity: 1
+      donations: 100
+      popularity: 0
     companiesEffect:
-      donations: 678.32
-      popularity: 1
+      donations: 50
+      popularity: 0
     popularityRequirement:
       Party: 0
       Value: 0
@@ -46,16 +46,16 @@ MonoBehaviour:
       content: Steadily growing organization, {{OrgName}}, takes stance that brings
         about more support from the populace.
   - content: Issue statement in support of Andrew Taft
-    fundsCost: 0
+    fundsCost: 375
     staffCost: 5
-    civilianEffect:
-      donations: 0
+    citizenEffect:
+      donations: 100
       popularity: 0
     politicianEffect:
-      donations: 500
-      popularity: 1
+      donations: 575
+      popularity: 2
     companiesEffect:
-      donations: 0
+      donations: 50
       popularity: 0
     popularityRequirement:
       Party: 0
@@ -67,15 +67,15 @@ MonoBehaviour:
   - content: Run a fundraiser for {{OrgName}}
     fundsCost: 0
     staffCost: 5
-    civilianEffect:
+    citizenEffect:
       donations: 0
-      popularity: 0
+      popularity: 10
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: -80
     companiesEffect:
       donations: 8000
-      popularity: 5
+      popularity: 30
     popularityRequirement:
       Party: 0
       Value: 0

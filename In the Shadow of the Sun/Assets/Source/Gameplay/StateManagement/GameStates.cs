@@ -64,6 +64,7 @@ public class Gamestate_Entry : GameState
     {
         Newspaper.Instance.Hide();
         LawsuitNotice.Instance.Hide();
+        Phone.Instance.Hide();
         gameManager.playerController.enabled = false;
         CameraManager.Instance.GoToCamera(ECameraType.Intro);
         GameUIController.Instance.GoToScreen(ScreenType);
@@ -150,11 +151,30 @@ public class GameState_Home : GameState
             bool firstShow = gameManager.completedLawsuits.Count == 0
             || gameManager.lawsuitsAddedThisArticle == gameManager.lawsuits.Count;
             
-            if (!gameManager.isHomeStateClean)
+            if (firstShow && gameManager.CompletedArticles.Count == 1)
             {
-                firstShow = false;
+                if (!gameManager.hasHiredFirstStaff)
+                {
+                    Phone.Instance.Show(true);
+                    GameUIController.Instance.ShowGameMessage(
+                        GameConfig.Instance.StaffNoticeTitle,
+                        GameConfig.Instance.StaffNoticeContent,
+                        null);    
+                }
+                else
+                {
+                    LawsuitNotice.Instance.Show(true);
+                }
             }
-            LawsuitNotice.Instance.Show(firstShow);
+            else
+            {
+                if (!gameManager.isHomeStateClean)
+                {
+                    firstShow = false;
+                }
+                
+                LawsuitNotice.Instance.Show(firstShow);   
+            }
         }
         
         gameManager.playerController.enabled = true;

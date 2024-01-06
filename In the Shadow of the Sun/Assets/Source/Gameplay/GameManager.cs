@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public Staff Staff { get; private set; }
     public GameStateMachine StateMachine { get; private set; }
 
+    public bool hasHiredFirstStaff = false;
     // Cache
     private bool gameHasStarted;
     private bool gameHasEnded;
@@ -148,7 +149,7 @@ public class GameManager : MonoBehaviour
         float total = 0.0f;
         
         // donations
-        total += SelectedOption.civilianEffect.donations;
+        total += SelectedOption.citizenEffect.donations;
         total += SelectedOption.politicianEffect.donations;
         total += SelectedOption.companiesEffect.donations;
 
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
 
         
         // popularity
-        Popularity.Apply(EParty.Civilian, SelectedOption.civilianEffect.popularity);
+        Popularity.Apply(EParty.Civilian, SelectedOption.citizenEffect.popularity);
         Popularity.Apply(EParty.Politician, SelectedOption.politicianEffect.popularity);
         Popularity.Apply(EParty.Companies, SelectedOption.companiesEffect.popularity);
         
