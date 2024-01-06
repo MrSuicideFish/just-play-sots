@@ -65,17 +65,17 @@ MonoBehaviour:
       content: Multiple Civic City politicians rally behind the new organization,
         {{OrgName}}.
   - content: Run a fundraiser for {{OrgName}}
-    fundsCost: 0
+    fundsCost: 250
     staffCost: 5
     citizenEffect:
-      donations: 0
-      popularity: 10
+      donations: 1300
+      popularity: 0
     politicianEffect:
-      donations: 0
-      popularity: -80
+      donations: 1600
+      popularity: 0
     companiesEffect:
-      donations: 8000
-      popularity: 30
+      donations: 2600
+      popularity: 0
     popularityRequirement:
       Party: 0
       Value: 0
