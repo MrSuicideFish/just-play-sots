@@ -63,6 +63,10 @@ public class GameConfig : ScriptableObject
     public string GameFailHeadline;
     public string GameFailReasonPopularity;
     public string GameFailReasonFunds;
+    [Space] 
+    public string GameWinHeadline;
+    public string GameWinSubtext;
+    public string GameWinContent;
     
     [Space(5)]
 

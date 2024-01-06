@@ -7,7 +7,8 @@ public class Screen_EndGame : GameScreen
 {
     public TMP_Text text_headline;
     public TMP_Text text_subtext;
-    
+
+    public TMP_Text text_winHeadline, text_winSubtext, text_winContent;
     public Animation winScreen, loseScreen;
     
     public override EScreenType GetScreenType()
@@ -29,6 +30,10 @@ public class Screen_EndGame : GameScreen
 
     public IEnumerator DoWin(int ending)
     {
+        text_winHeadline.text = GameConfig.Instance.GameWinHeadline;
+        text_winSubtext.text = GameConfig.Instance.GameWinContent;
+        text_winContent.text = GameConfig.Instance.GameWinContent;
+        
         winScreen.gameObject.SetActive(true);
         winScreen.Play();
         yield break;
