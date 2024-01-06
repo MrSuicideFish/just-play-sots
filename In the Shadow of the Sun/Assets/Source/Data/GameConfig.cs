@@ -19,6 +19,9 @@ public class GameConfig : ScriptableObject
     public float StarterPopularity = 50;
     public int StarterStaff = 25;
 
+    [Space] 
+    public int MaxPopularity = 100;
+
     [Header("Home")] 
     [TextArea(2, 5)] public string introArticleHeadline;
     [TextArea(2, 5)] public string introArticleContent;
@@ -86,4 +89,8 @@ public class GameConfig : ScriptableObject
     public float fundsResultDelay = 1.0f;
 
     public float captionsFadeSpeed = 1.0f;
+
+    public Color proponentColor;
+    public Color criticColor;
+    public Color neutralColor;
 }

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEditor.Rendering;
 using Button = UnityEngine.UI.Button;
 
 public class Screen_Article : GameScreen
@@ -12,13 +13,14 @@ public class Screen_Article : GameScreen
     public TMP_Text text_content;
     public TMP_Text text_subtitle;
     public ToggleGroup optionsToggleGroup;
-    
+
     public UIArticleOption placeholderOption;
     public ScrollRect scrollView;
 
     public Sprite[] staff_requirement_sprites;
     private UIArticleOption[] options;
     private int selectedOption;
+
     public override EScreenType GetScreenType()
     {
         return EScreenType.Article;
@@ -41,7 +43,6 @@ public class Screen_Article : GameScreen
 
     public override void Hide()
     {
-        
     }
 
     private void ClearOptions()
@@ -70,18 +71,29 @@ public class Screen_Article : GameScreen
             options[i].transform.localScale = Vector3.one;
             options[i].gameObject.SetActive(true);
             options[i].content.text = newOptions[i].GetContent();
-            
-            // effects and requirements
+
+            // staff effect
             float staffCount = (float) GameManager.Instance.Staff.Count;
             float width = GameConfig.Instance.staffRequirementWidth;
             float percOfStaffRequired = newOptions[i].staffCost / (staffCount - (staffCount * width));
-            int imgIdx = Mathf.RoundToInt(Mathf.Lerp(0.0f, 1.0f, percOfStaffRequired));
-            
-            Debug.Log("Perc of staff: " + percOfStaffRequired);
-            Debug.Log("Img Idx: " + imgIdx);
-            
+            int imgIdx =
+                Mathf.FloorToInt(
+                    (staff_requirement_sprites.Length - 1)
+                    * Mathf.Lerp(0.0f, 1.0f, percOfStaffRequired));
             options[i].staffImage.sprite = staff_requirement_sprites[imgIdx];
-            
+
+            // popularity effect (eww)
+            // make icons neutral by default
+            // otherwise, p < 0 == critic && p > 0 == proponent
+            options[i].SetPopularity(EParty.Politician,
+                newOptions[i].politicianEffect.popularity);
+
+            options[i].SetPopularity(EParty.Companies,
+                newOptions[i].companiesEffect.popularity);
+
+            options[i].SetPopularity(EParty.Civilian,
+                newOptions[i].citizenEffect.popularity);
+
             var index = i;
             options[i].toggle.onValueChanged.AddListener(isOn =>
             {

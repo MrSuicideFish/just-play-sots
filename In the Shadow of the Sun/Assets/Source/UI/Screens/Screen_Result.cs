@@ -84,7 +84,7 @@ public class Screen_Result : GameScreen
 
         DOTween.To(() => tmpDonationCiv,
                 x => { text_donation_civ.text = Funds.Format(x); },
-                option.civilianEffect.donations, GameConfig.Instance.donationDuration)
+                option.citizenEffect.donations, GameConfig.Instance.donationDuration)
             .SetDelay(GameConfig.Instance.civillianDonationDelay);
 
         DOTween.To(() => tmpDonationPol,

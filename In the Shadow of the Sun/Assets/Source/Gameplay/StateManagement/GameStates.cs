@@ -64,6 +64,7 @@ public class Gamestate_Entry : GameState
     {
         Newspaper.Instance.Hide();
         LawsuitNotice.Instance.Hide();
+        Phone.Instance.Hide();
         gameManager.playerController.enabled = false;
         CameraManager.Instance.GoToCamera(ECameraType.Intro);
         GameUIController.Instance.GoToScreen(ScreenType);
@@ -154,6 +155,7 @@ public class GameState_Home : GameState
             {
                 if (!gameManager.hasHiredFirstStaff)
                 {
+                    Phone.Instance.Show(true);
                     GameUIController.Instance.ShowGameMessage(
                         GameConfig.Instance.StaffNoticeTitle,
                         GameConfig.Instance.StaffNoticeContent,

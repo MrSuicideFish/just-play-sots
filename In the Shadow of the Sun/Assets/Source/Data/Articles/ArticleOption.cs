@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class ArticleOptionEffect
 {
     public float donations;
-    public float popularity;
+    public int popularity;
 }
 
 [Serializable]
@@ -16,7 +16,7 @@ public class ArticleOption
     public float fundsCost;
     public int staffCost;
 
-    public ArticleOptionEffect civilianEffect;
+    [FormerlySerializedAs("civilianEffect")] public ArticleOptionEffect citizenEffect;
     public ArticleOptionEffect politicianEffect;
     public ArticleOptionEffect companiesEffect;
 
