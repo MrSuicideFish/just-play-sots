@@ -39,6 +39,7 @@ public class Screen_Home : GameScreen
 
     public override IEnumerator Show(bool isFirstShow)
     {
+        
         yield return null;
     }
 
