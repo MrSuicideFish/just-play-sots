@@ -23,6 +23,7 @@ public class Screen_Intro : GameScreen
     public GameObject captionsParent;
     public FadeController captionsPanel;
     public TMP_Text text_captions;
+    public AudioSource introAudioSource;
 
     public bool IsComplete { get; private set; }
 
@@ -33,6 +34,7 @@ public class Screen_Intro : GameScreen
 
     public override IEnumerator Show(bool isFirstShow)
     {
+        introVideo.SetTargetAudioSource(0, introAudioSource);
         captionsParent.gameObject.SetActive(false);
         submitButton.interactable = false;
         input_OrgName.onValueChanged.RemoveListener(OnOrgNameEdit);

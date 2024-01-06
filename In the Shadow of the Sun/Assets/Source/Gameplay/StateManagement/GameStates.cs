@@ -58,6 +58,7 @@ public abstract class GameState
 
 public class Gamestate_Entry : GameState
 {
+    private static bool hasShownSettings;
     public override EScreenType ScreenType { get; } = EScreenType.Intro;
 
     public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
@@ -68,6 +69,12 @@ public class Gamestate_Entry : GameState
         gameManager.playerController.enabled = false;
         CameraManager.Instance.GoToCamera(ECameraType.Intro);
         GameUIController.Instance.GoToScreen(ScreenType);
+
+        if (!hasShownSettings)
+        {
+            SettingsController.Instance.Show();
+            hasShownSettings = true;
+        }
     }
 
     public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
@@ -208,14 +215,9 @@ public class GameState_Home : GameState
     
     public override void OnStateUpdate(GameManager gameManager, GameStateMachine sm)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            AudioManager.Instance.PlayEffect(ESoundEffect.PaperSlap);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            AudioManager.Instance.PlayEffect(ESoundEffect.MoneyChing);
+            SettingsController.Instance.Show();
         }
     }
 
