@@ -20507,7 +20507,7 @@ PrefabInstance:
       objectReference: {fileID: 506102991}
     - target: {fileID: 905954914945269730, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -54.27185
+      value: -54.27173
       objectReference: {fileID: 0}
     - target: {fileID: 4761993560046416047, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_Pivot.x
@@ -20591,7 +20591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6259382242240121743, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -54.27185
+      value: -54.27173
       objectReference: {fileID: 0}
     - target: {fileID: 7388300544807249481, guid: cf49e0ef9ef8e7e40ba8b8063c732674, type: 3}
       propertyPath: m_Name

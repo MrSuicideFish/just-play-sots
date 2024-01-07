@@ -16,4 +16,4 @@ MonoBehaviour:
   header: Property Negligence
   content: Pedestrian injured due to improperly maintained front walk.
   party: 0
-  cost: -1000
+  cost: 1000
