@@ -83,6 +83,10 @@ public class Gamestate_Entry : GameState
         {
             GetScreen<Screen_Intro>().radioAudioSrc.Play();
             sm.GoToState(new GameState_Home());
+        }else if (GetScreen<Screen_Intro>().introVideo.isPlaying
+                  && Input.GetKeyDown(KeyCode.Escape))
+        {
+            GetScreen<Screen_Intro>().SkipIntroductionVideo();
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using Cinemachine;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -26,6 +27,8 @@ public class Screen_Intro : GameScreen
     public AudioSource introAudioSource;
 
     public bool IsComplete { get; private set; }
+
+    private bool skipIntroVideo = false;
 
     public override EScreenType GetScreenType()
     {
@@ -77,6 +80,15 @@ public class Screen_Intro : GameScreen
         });
     }
 
+    public void SkipIntroductionVideo()
+    {
+        fadeScreen.DOFade(1, 1.0f)
+            .OnComplete(() =>
+            {
+                skipIntroVideo = true;
+            });
+    }
+
     private IEnumerator DoIntroduction()
     {
         yield return new WaitForSeconds(1.5f);
@@ -94,6 +106,12 @@ public class Screen_Intro : GameScreen
         int captionIndex = -1;
         while (introVideo.isPlaying)
         {
+            if (skipIntroVideo)
+            {
+
+                break;
+            }
+            
             videoTime = introVideo.time;
             if (videoTime < captions.startTime)
             {
@@ -131,6 +149,8 @@ public class Screen_Intro : GameScreen
             yield return null;
         }
         
+        introVideo.Stop();
+        introAudio.Stop();
         captionsParent.gameObject.SetActive(false);
         Tween fade = fadeScreen.DOFade(1, 1);
         while (fade.active)
