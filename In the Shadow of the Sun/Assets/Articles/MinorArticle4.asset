@@ -21,16 +21,16 @@ MonoBehaviour:
   options:
   - content: Support renaming
     fundsCost: 0
-    staffCost: -5
-    civilianEffect:
-      donations: 0
-      popularity: 1
+    staffCost: 2
+    citizenEffect:
+      donations: 2450
+      popularity: 2
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: -4
     companiesEffect:
-      donations: 700
-      popularity: 3
+      donations: 0
+      popularity: 0
     popularityRequirement:
       Party: 0
       Value: 0
@@ -40,16 +40,16 @@ MonoBehaviour:
         the new name will begin next year. '
   - content: "Don\u2019t support renaming"
     fundsCost: 0
-    staffCost: -10
-    civilianEffect:
+    staffCost: 0
+    citizenEffect:
       donations: 0
-      popularity: 0
+      popularity: -8
     politicianEffect:
-      donations: 0
-      popularity: 0
+      donations: 3700
+      popularity: 8
     companiesEffect:
       donations: 0
-      popularity: 2
+      popularity: 8
     popularityRequirement:
       Party: 0
       Value: 0

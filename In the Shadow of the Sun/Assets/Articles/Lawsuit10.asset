@@ -16,4 +16,4 @@ MonoBehaviour:
   header: Identity Theft
   content: '{{OrgName}} CEO accused of impersonating the real Ted Ebbing.'
   party: 0
-  cost: -5000
+  cost: 1900

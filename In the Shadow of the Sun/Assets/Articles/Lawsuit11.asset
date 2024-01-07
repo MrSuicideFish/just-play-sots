@@ -17,4 +17,4 @@ MonoBehaviour:
   content: Woman forgets why she is volunteering with {{OrgName}} and sues for misleading
     her.
   party: 0
-  cost: -100
+  cost: 100

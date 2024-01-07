@@ -16,4 +16,4 @@ MonoBehaviour:
   header: Worker's Compensation
   content: Staff member burned by hot coffee.
   party: 3
-  cost: -200
+  cost: 200

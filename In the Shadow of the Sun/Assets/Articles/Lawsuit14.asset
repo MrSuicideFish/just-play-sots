@@ -17,4 +17,4 @@ MonoBehaviour:
   content: Employee sues for being dismissed after not showing up to work without
     any notice since being hired.
   party: 0
-  cost: -900
+  cost: 900

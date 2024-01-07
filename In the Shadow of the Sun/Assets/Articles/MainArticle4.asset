@@ -18,23 +18,23 @@ MonoBehaviour:
   content: "To complicate an already heated mayoral race, a medical malpractice suit
     has been brought against Dr. Sara Trenton, one of the leading candidates. The
     suit has been brought by the family of Louis Nostramo, a former patient of Dr.
-    Trenton\u2019s, is dead after a massive brain hemorrhage occurred while he was
+    Trenton\u2019s that dead after a massive brain hemorrhage occurred while he was
     at home recuperating from surgery. Dr. Trenton referred all requests for comment
     to her lawyer, but her opponent, police chief Andrew Taft, was quick to make
     a statement. \u201CDr. Trenton says she wants to heal Civic City. How can she
     be trusted to do that when she can\u2019t even heal her own patients?\u201D "
   options:
   - content: 'Help run press event boosting Dr. Trenton''s image '
-    fundsCost: -1000
-    staffCost: -2
-    civilianEffect:
-      donations: 0
-      popularity: 1
+    fundsCost: 2700
+    staffCost: 10
+    citizenEffect:
+      donations: 780
+      popularity: 8
     politicianEffect:
       donations: 0
-      popularity: -4
+      popularity: -8
     companiesEffect:
-      donations: 0
+      donations: 305
       popularity: 0
     popularityRequirement:
       Party: 0
@@ -45,17 +45,17 @@ MonoBehaviour:
       content: Could this be an underhanded effort to interfere with the mayoral
         race?
   - content: Donate to medical funds
-    fundsCost: -5000
+    fundsCost: 3000
     staffCost: 0
-    civilianEffect:
-      donations: 800
-      popularity: 4
+    citizenEffect:
+      donations: 1260
+      popularity: 8
     politicianEffect:
-      donations: 0
-      popularity: 0
+      donations: 575
+      popularity: 2
     companiesEffect:
-      donations: 0
-      popularity: 1
+      donations: 430
+      popularity: 2
     popularityRequirement:
       Party: 0
       Value: 0
@@ -66,15 +66,15 @@ MonoBehaviour:
   - content: Cut ties with Dr. Trenton
     fundsCost: 0
     staffCost: 0
-    civilianEffect:
+    citizenEffect:
       donations: 0
-      popularity: -1
+      popularity: -16
     politicianEffect:
-      donations: 2000
-      popularity: 5
+      donations: 2780
+      popularity: 8
     companiesEffect:
-      donations: 0
-      popularity: 0
+      donations: 398.5
+      popularity: 2
     popularityRequirement:
       Party: 0
       Value: 0

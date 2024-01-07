@@ -16,9 +16,9 @@ MonoBehaviour:
   headline: Cold Case Defrosted
   subtitle: Decade-Old Killings Finally Get Answers
   content: "Civic City Police announced that an arrest has been made in the decade-old
-    case of the slaying of Tom and Marta Ebbing. The killer has been identified as
-    Joseph Palin, 41, a former convenience store clerk. Palin was arrested in the
-    early hours of the morning, police say, in connection with an unrelated crime.
+    case of the slaying of Tom and Marta Ebbing. The suspect has been identified
+    as Joseph Palin, 41, a former convenience store clerk. Palin was arrested in
+    the early hours of the morning, police say, in connection with an unrelated crime.
     \u201CWe got a warrant to search his apartment on suspicion of drug possession,
     and that\u2019s when we found the murder weapon,\u201D said the detective in
     charge of the case. Palin lived in a rooming house and was previously known to
@@ -26,16 +26,16 @@ MonoBehaviour:
     Never anything like this, though.\u201D The trial is set to begin next week. "
   options:
   - content: Hold press conference urging guilty verdict
-    fundsCost: 1725
-    staffCost: 30
-    civilianEffect:
-      donations: 2600
-      popularity: 2
+    fundsCost: 0
+    staffCost: 3
+    citizenEffect:
+      donations: 1200
+      popularity: 4
     politicianEffect:
-      donations: 1300
-      popularity: 10
+      donations: 0
+      popularity: -2
     companiesEffect:
-      donations: 50.25
+      donations: 0
       popularity: -2
     popularityRequirement:
       Party: 0
@@ -45,17 +45,17 @@ MonoBehaviour:
       content: "Donations to the organization are suspiciously up this quarter following
         the conference; some question founder\u2019s personal motives."
   - content: Donate to criminal justice organizations
-    fundsCost: -900
-    staffCost: 5
-    civilianEffect:
+    fundsCost: 1370
+    staffCost: 3
+    citizenEffect:
       donations: 0
-      popularity: 0
+      popularity: -4
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: 4
     companiesEffect:
       donations: 0
-      popularity: 4
+      popularity: 0
     popularityRequirement:
       Party: 0
       Value: 0
@@ -63,11 +63,11 @@ MonoBehaviour:
       headline: '{{OrgName}} Makes Large Donation to Support Criminal Justice'
       content: Move praised by various Civic City non-profits.
   - content: Anonymously contribute to Palin's legal fund
-    fundsCost: -1000
+    fundsCost: 2500
     staffCost: 0
-    civilianEffect:
-      donations: 3000
-      popularity: 8
+    citizenEffect:
+      donations: 0
+      popularity: 0
     politicianEffect:
       donations: 0
       popularity: 0

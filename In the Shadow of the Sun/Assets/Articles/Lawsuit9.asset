@@ -16,4 +16,4 @@ MonoBehaviour:
   header: Breach of Contract
   content: Speaker not paid for appearance at {{OrgName}}'s event earlier this month.
   party: 0
-  cost: -10000
+  cost: 925

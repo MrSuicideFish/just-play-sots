@@ -16,4 +16,4 @@ MonoBehaviour:
   header: Wage Theft
   content: Failure to pay wages on time.
   party: 3
-  cost: -12000
+  cost: 750

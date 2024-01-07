@@ -21,14 +21,14 @@ MonoBehaviour:
     decisions in dangerous situations.\r"
   options:
   - content: Donate to protest legal fund
-    fundsCost: 0
+    fundsCost: 550
     staffCost: 0
-    civilianEffect:
-      donations: 1000
-      popularity: 5
+    citizenEffect:
+      donations: 0
+      popularity: 2
     politicianEffect:
       donations: 0
-      popularity: -3
+      popularity: -2
     companiesEffect:
       donations: 0
       popularity: 0
@@ -42,12 +42,12 @@ MonoBehaviour:
   - content: Issue statement in support of police union
     fundsCost: 0
     staffCost: 0
-    civilianEffect:
+    citizenEffect:
       donations: 0
       popularity: -2
     politicianEffect:
       donations: 1500
-      popularity: 5
+      popularity: 2
     companiesEffect:
       donations: 0
       popularity: 0

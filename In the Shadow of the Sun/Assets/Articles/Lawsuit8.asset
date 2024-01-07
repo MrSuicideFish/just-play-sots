@@ -16,4 +16,4 @@ MonoBehaviour:
   header: Money Laundering
   content: Member of the public accuses {{OrgName}} of being a front.
   party: 1
-  cost: -2500
+  cost: 1700
