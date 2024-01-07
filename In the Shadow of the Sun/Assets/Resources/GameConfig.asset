@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1904f9796c4d8399ed2539dc2b1213, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  StarterFunds: 15000
-  StarterPopularity: 60
+  StarterFunds: 10000
+  StarterPopularity: 30
   StarterStaff: 5
   MaxPopularity: 100
   introArticleHeadline: '{{OrgName}} OPENS FOR BUSINESS!'
@@ -65,8 +65,8 @@ MonoBehaviour:
   StaffNoticeContent: You are short of staff. Use the Phone to hire or fire employees
     before responding to the next article.
   staffRequirementWidth: 0.18
-  costPerEmployee: 120
-  overtimeMultiplier: 2.5
+  costPerEmployee: 10
+  overtimeMultiplier: 1.2
   RandomChanceLawsuit: 0.25
   LawsuitPopularityLimit: 20
   LawsuitsTutorialTitle: Lawsuits

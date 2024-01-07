@@ -1,8 +1,10 @@
+using UnityEngine;
+
 [System.Serializable]
 public class ArticleOptionResponse
 {
     public string headline;
-    public string content;
+    [TextArea(3,5)]public string content;
 
     public string GetHeadline()
     {

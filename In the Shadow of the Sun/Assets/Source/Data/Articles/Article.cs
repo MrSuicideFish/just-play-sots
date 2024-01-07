@@ -8,7 +8,7 @@ public class Article : ScriptableObject
     public string id;
     public string headline;
     [TextArea(2,30)]public string subtitle;
-    [TextArea(2,30)]public string content;
+    [TextArea(3,30)]public string content;
     public ArticleOption[] options;
 
     [NonSerialized] public int selectedOption = -1;

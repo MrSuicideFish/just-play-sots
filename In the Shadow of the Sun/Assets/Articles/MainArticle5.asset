@@ -31,7 +31,7 @@ MonoBehaviour:
   - content: Make statement in support of Taft
     fundsCost: 0
     staffCost: 0
-    civilianEffect:
+    citizenEffect:
       donations: 0
       popularity: -3000
     politicianEffect:
@@ -45,12 +45,11 @@ MonoBehaviour:
       Value: 0
     response:
       headline: '{{OrgName}} Makes Statement in Support of Taft'
-      content: Politicians praise the stance, in support of the organizations priorities.
-        However, numbers seem to dwindle as the company downsizes.
+      content: Citizens praise the stance, in support of the organization's priorities.
   - content: Donate to police fund
     fundsCost: 0
     staffCost: 0
-    civilianEffect:
+    citizenEffect:
       donations: 0
       popularity: 0
     politicianEffect:
@@ -69,7 +68,7 @@ MonoBehaviour:
   - content: Lend staff to help run polls
     fundsCost: 0
     staffCost: -10
-    civilianEffect:
+    citizenEffect:
       donations: 0
       popularity: 500
     politicianEffect:

@@ -20,17 +20,17 @@ MonoBehaviour:
     profitable, and generate many new jobs.\r"
   options:
   - content: Choose to invest in oil drilling
-    fundsCost: 10000
+    fundsCost: 2200
     staffCost: 0
-    civilianEffect:
+    citizenEffect:
       donations: 0
-      popularity: -6
+      popularity: -4
     politicianEffect:
-      donations: 2000
-      popularity: 3
+      donations: 1450
+      popularity: 2
     companiesEffect:
-      donations: 0
-      popularity: 0
+      donations: 3600
+      popularity: 4
     popularityRequirement:
       Party: 0
       Value: 0
@@ -40,15 +40,15 @@ MonoBehaviour:
   - content: Choose not to invest
     fundsCost: 0
     staffCost: 0
-    civilianEffect:
-      donations: 0
-      popularity: 5
+    citizenEffect:
+      donations: 2700
+      popularity: 4
     politicianEffect:
       donations: 0
-      popularity: -1
+      popularity: -2
     companiesEffect:
       donations: 0
-      popularity: 4
+      popularity: -4
     popularityRequirement:
       Party: 0
       Value: 0

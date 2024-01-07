@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb2341ef7c2f7d4c8689c98a37628bb, type: 3}
+  m_Name: MainArticle6
+  m_EditorClassIdentifier: 
+  id: MainArticle6
+  headline: Election Day!
+  subtitle: Voters make their voice heard at the polls.
+  content: 'Citizens flock to the polling booths to cast their votes in what promises
+    to be a historic mayoral race. Dr. Sara Trenton, the esteemed local physician
+    known for her tireless community service, and the no-nonsense Police Chief Andrew
+    Taft, synonymous with law and order, are set to clash in a battle for the city''s
+    highest office.
+
+    
+
+    Dr. Trenton, known for her progressive views on
+    education and healthcare, arrived at the polls with a warm smile and a promise
+    of a brighter future for the city. As she cast her vote, she spoke optimistically
+    about unity and progress, emphasizing her commitment to building a stronger community.
+
+    
+
+    Police
+    Chief Taft, clad in his crisp uniform, exuded authority and stability. His supporters,
+    many of whom are members of the city''s law enforcement, rallied around him,
+    praising his track record in maintaining law and order. Chief Taft confidently
+    declared, "This city needs a leader who understands the importance of safety
+    and security. Together, we''ll ensure our streets remain safe for generations
+    to come."
+
+    
+
+    The polls will remain open until late evening, and the
+    citizens are encouraged to exercise their civic duty and make their voices heard
+    in this pivotal election.'
+  options:
+  - content: Organize march to the polls in support of Dr. Sara Trenton
+    fundsCost: 0
+    staffCost: 0
+    citizenEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Organize march to the polls in support of Andrew Taft
+    fundsCost: 0
+    staffCost: 0
+    citizenEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Organize march to the polls in support of Andrew Taft
+    fundsCost: 0
+    staffCost: 0
+    citizenEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 
+  - content: Run radio advertisements denoucing the election as rigged
+    fundsCost: 0
+    staffCost: 0
+    citizenEffect:
+      donations: 0
+      popularity: 0
+    politicianEffect:
+      donations: 0
+      popularity: 0
+    companiesEffect:
+      donations: 0
+      popularity: 0
+    popularityRequirement:
+      Party: 0
+      Value: 0
+    response:
+      headline: 
+      content: 

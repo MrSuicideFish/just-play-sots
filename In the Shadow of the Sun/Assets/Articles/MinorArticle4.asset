@@ -21,8 +21,8 @@ MonoBehaviour:
   options:
   - content: Support renaming
     fundsCost: 0
-    staffCost: -5
-    civilianEffect:
+    staffCost: 0
+    citizenEffect:
       donations: 0
       popularity: 1
     politicianEffect:
@@ -41,7 +41,7 @@ MonoBehaviour:
   - content: "Don\u2019t support renaming"
     fundsCost: 0
     staffCost: -10
-    civilianEffect:
+    citizenEffect:
       donations: 0
       popularity: 0
     politicianEffect:
