@@ -26,7 +26,7 @@ MonoBehaviour:
   options:
   - content: 'Help run press event boosting Dr. Trenton''s image '
     fundsCost: 2700
-    staffCost: -2
+    staffCost: 10
     citizenEffect:
       donations: 780
       popularity: 8

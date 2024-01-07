@@ -45,14 +45,14 @@ MonoBehaviour:
     in this pivotal election.'
   options:
   - content: Organize march to the polls in support of Dr. Sara Trenton
-    fundsCost: 0
-    staffCost: 0
+    fundsCost: 3200
+    staffCost: 10
     citizenEffect:
       donations: 0
-      popularity: 0
+      popularity: 16
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: -16
     companiesEffect:
       donations: 0
       popularity: 0
@@ -63,32 +63,14 @@ MonoBehaviour:
       headline: 
       content: 
   - content: Organize march to the polls in support of Andrew Taft
-    fundsCost: 0
-    staffCost: 0
+    fundsCost: 3200
+    staffCost: 10
     citizenEffect:
       donations: 0
-      popularity: 0
+      popularity: -16
     politicianEffect:
       donations: 0
-      popularity: 0
-    companiesEffect:
-      donations: 0
-      popularity: 0
-    popularityRequirement:
-      Party: 0
-      Value: 0
-    response:
-      headline: 
-      content: 
-  - content: Organize march to the polls in support of Andrew Taft
-    fundsCost: 0
-    staffCost: 0
-    citizenEffect:
-      donations: 0
-      popularity: 0
-    politicianEffect:
-      donations: 0
-      popularity: 0
+      popularity: 16
     companiesEffect:
       donations: 0
       popularity: 0
@@ -103,13 +85,13 @@ MonoBehaviour:
     staffCost: 0
     citizenEffect:
       donations: 0
-      popularity: 0
+      popularity: -8
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: -8
     companiesEffect:
       donations: 0
-      popularity: 0
+      popularity: -8
     popularityRequirement:
       Party: 0
       Value: 0

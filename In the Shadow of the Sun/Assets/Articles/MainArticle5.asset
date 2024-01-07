@@ -29,14 +29,14 @@ MonoBehaviour:
     starting tomorrow. "
   options:
   - content: Make statement in support of Taft
-    fundsCost: 0
-    staffCost: 0
+    fundsCost: 400
+    staffCost: 6
     citizenEffect:
-      donations: 0
-      popularity: -3000
+      donations: 3100
+      popularity: 16
     politicianEffect:
-      donations: 700
-      popularity: 1300
+      donations: 0
+      popularity: -16
     companiesEffect:
       donations: 0
       popularity: 0
@@ -47,14 +47,14 @@ MonoBehaviour:
       headline: '{{OrgName}} Makes Statement in Support of Taft'
       content: Citizens praise the stance, in support of the organization's priorities.
   - content: Donate to police fund
-    fundsCost: 0
-    staffCost: 0
+    fundsCost: 2500
+    staffCost: 6
     citizenEffect:
       donations: 0
       popularity: 0
     politicianEffect:
       donations: 0
-      popularity: 0
+      popularity: 16
     companiesEffect:
       donations: 0
       popularity: 0
@@ -66,17 +66,17 @@ MonoBehaviour:
       content: Thanks to a generous donation from {{OrgName}}, the Civic City Police
         Department announces their intention to expand operations.
   - content: Lend staff to help run polls
-    fundsCost: 0
-    staffCost: -10
+    fundsCost: 740
+    staffCost: 12
     citizenEffect:
-      donations: 0
-      popularity: 500
+      donations: 300
+      popularity: 0
     politicianEffect:
-      donations: 0
-      popularity: 500
+      donations: 580
+      popularity: 0
     companiesEffect:
-      donations: 0
-      popularity: -4
+      donations: 500
+      popularity: 4
     popularityRequirement:
       Party: 0
       Value: 0
