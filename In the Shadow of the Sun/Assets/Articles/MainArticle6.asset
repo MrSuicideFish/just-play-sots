@@ -21,14 +21,14 @@ MonoBehaviour:
     Taft, synonymous with law and order, are set to clash in a battle for the city''s
     highest office.
 
-    
 
-    Dr. Trenton, known for her progressive views on
-    education and healthcare, arrived at the polls with a warm smile and a promise
-    of a brighter future for the city. As she cast her vote, she spoke optimistically
-    about unity and progress, emphasizing her commitment to building a stronger community.
 
-    
+    Dr. Trenton, known for her progressive views on education
+    and healthcare, arrived at the polls with a warm smile and a promise of a brighter
+    future for the city. As she cast her vote, she spoke optimistically about unity
+    and progress, emphasizing her commitment to building a stronger community.
+
+
 
     Police
     Chief Taft, clad in his crisp uniform, exuded authority and stability. His supporters,
@@ -38,11 +38,11 @@ MonoBehaviour:
     and security. Together, we''ll ensure our streets remain safe for generations
     to come."
 
-    
 
-    The polls will remain open until late evening, and the
-    citizens are encouraged to exercise their civic duty and make their voices heard
-    in this pivotal election.'
+
+    The polls will remain open until late evening, and the citizens
+    are encouraged to exercise their civic duty and make their voices heard in this
+    pivotal election.'
   options:
   - content: Organize march to the polls in support of Dr. Sara Trenton
     fundsCost: 3200
@@ -60,8 +60,8 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: Roaring Support for Dr. Trenton
+      content: Voters arrive to support Dr. Trenton in droves.
   - content: Organize march to the polls in support of Andrew Taft
     fundsCost: 3200
     staffCost: 10
@@ -78,23 +78,23 @@ MonoBehaviour:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
-  - content: Run radio advertisements denoucing the election as rigged
+      headline: Voters Rally Behind Chief Taft
+      content: Voters arrive to support Chief Taft in droves.
+  - content: '[Do Nothing]'
     fundsCost: 0
     staffCost: 0
     citizenEffect:
       donations: 0
-      popularity: -8
+      popularity: 0
     politicianEffect:
       donations: 0
-      popularity: -8
+      popularity: 0
     companiesEffect:
       donations: 0
-      popularity: -8
+      popularity: 0
     popularityRequirement:
       Party: 0
       Value: 0
     response:
-      headline: 
-      content: 
+      headline: Voters Take to the Polls!
+      content: Citizens from all over the city fill the voting booths.
