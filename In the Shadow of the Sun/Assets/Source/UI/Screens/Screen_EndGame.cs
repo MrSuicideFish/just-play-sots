@@ -20,6 +20,7 @@ public class Screen_EndGame : GameScreen
     {
         winScreen.gameObject.SetActive(false);
         loseScreen.gameObject.SetActive(false);
+        GameUIController.Instance.HideStats();
         yield return null;
     }
 

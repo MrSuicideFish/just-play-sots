@@ -89,12 +89,14 @@ public class GameManager : MonoBehaviour
         endGameScreen.gameObject.SetActive(true);
         if (isWin)
         {
+            Radio.Instance.Play(EMusicType.Win);
             StartCoroutine(endGameScreen.DoWin(
                 (Popularity.Politician > Popularity.Civilian
                 && Popularity.Politician >= Popularity.Companies) || forceAlternativeWin));
         }
         else
         {
+            Radio.Instance.Play(EMusicType.Lose);
             StartCoroutine(endGameScreen.DoLose(failByPop));
         }
         gameHasEnded = true;
