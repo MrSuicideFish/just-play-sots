@@ -19,7 +19,6 @@ public class Screen_Intro : GameScreen
     public GameObject namePanel;
     public Image fadeScreen;
     public Image background;
-    public AudioSource radioAudioSrc;
     public CaptionsInfo captions;
     public GameObject captionsParent;
     public FadeController captionsPanel;
@@ -108,7 +107,6 @@ public class Screen_Intro : GameScreen
         {
             if (skipIntroVideo)
             {
-
                 break;
             }
             
@@ -149,17 +147,17 @@ public class Screen_Intro : GameScreen
             yield return null;
         }
         
-        introVideo.Stop();
-        introAudio.Stop();
+
         captionsParent.gameObject.SetActive(false);
         Tween fade = fadeScreen.DOFade(1, 1);
         while (fade.active)
         {
-            Debug.Log("Is fading");
             yield return null;
         }
-
-        radioAudioSrc.Play();
+        
+        introVideo.Stop();
+        introAudio.Stop();
+        Radio.Instance.Play(EMusicType.Jazz);
         radioEntryAnim.Play();
         yield return new WaitForSeconds(2.0f);
         introVideo.enabled = false;

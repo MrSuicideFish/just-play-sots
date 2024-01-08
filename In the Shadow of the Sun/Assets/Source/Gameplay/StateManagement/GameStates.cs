@@ -82,9 +82,9 @@ public class Gamestate_Entry : GameState
     {
         if (GetScreen<Screen_Intro>().IsComplete)
         {
-            if (!GetScreen<Screen_Intro>().radioAudioSrc.isPlaying)
+            if (!Radio.Instance.IsPlaying())
             {
-                GetScreen<Screen_Intro>().radioAudioSrc.Play();   
+                Radio.Instance.Play(EMusicType.Jazz);
             }
             
             sm.GoToState(new GameState_Home());
