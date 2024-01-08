@@ -28,9 +28,9 @@ public class Screen_EndGame : GameScreen
         
     }
 
-    public IEnumerator DoWin(int ending)
+    public IEnumerator DoWin(bool altEnding)
     {
-        if (ending == 0)
+        if (!altEnding)
         {
             text_winHeadline.text = GameConfig.Instance.GameWinHeadline;
             text_winSubtext.text = GameConfig.Instance.GameWinSubtext;

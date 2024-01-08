@@ -69,6 +69,7 @@ public class Gamestate_Entry : GameState
         gameManager.playerController.enabled = false;
         CameraManager.Instance.GoToCamera(ECameraType.Intro);
         GameUIController.Instance.GoToScreen(ScreenType);
+        GameUIController.Instance.HideStats();
 
         if (!hasShownSettings)
         {
@@ -81,7 +82,11 @@ public class Gamestate_Entry : GameState
     {
         if (GetScreen<Screen_Intro>().IsComplete)
         {
-            GetScreen<Screen_Intro>().radioAudioSrc.Play();
+            if (!GetScreen<Screen_Intro>().radioAudioSrc.isPlaying)
+            {
+                GetScreen<Screen_Intro>().radioAudioSrc.Play();   
+            }
+            
             sm.GoToState(new GameState_Home());
         }else if (GetScreen<Screen_Intro>().introVideo.isPlaying
                   && Input.GetKeyDown(KeyCode.Escape))
@@ -105,6 +110,7 @@ public class GameState_Home : GameState
     {
         GameUIController.Instance.GoToScreen(EScreenType.Home);
         CameraManager.Instance.GoToCamera(ECameraType.Home);
+        
         if (isFirstEnter)
         {
             GetScreen<Screen_Home>().BeginIntroArticle(() =>
@@ -120,7 +126,8 @@ public class GameState_Home : GameState
                     GetScreen<Screen_Home>().orgNamePanel.Set(0.0f);
                 
                     GameUIController.Instance.GoToScreen(EScreenType.Home);
-                
+                    GameUIController.Instance.ShowStats();
+                    
                     // fade in org name and deliver first article
                     DOTween.To(
                         () => GetScreen<Screen_Home>().orgNamePanel.Opacity,
@@ -143,6 +150,7 @@ public class GameState_Home : GameState
             return;
         }
 
+        GameUIController.Instance.ShowStats();
         if (gameManager.CurrentArticle != null)
         {
             Newspaper.Instance.Show(false);
@@ -155,6 +163,12 @@ public class GameState_Home : GameState
                 // we've delivered the last article already, game is over
                 gameManager.EndGame(isWin: true);
             }
+        }
+
+        if (gameManager.isHomeStateClean)
+        {
+            Screen_Staff staff = GameUIController.Instance.GetScreen(EScreenType.Staff) as Screen_Staff;
+            staff.startedWith = GameManager.Instance.Staff.Total;
         }
         
         if (gameManager.lawsuits.Count > 0)
@@ -214,6 +228,7 @@ public class GameState_Home : GameState
             return;
         }
         
+        
         gameManager.playerController.enabled = true;
     }
     
@@ -236,6 +251,7 @@ public class GameState_Lawsuit : GameState
     public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Lawsuit);
+        GameUIController.Instance.ShowStats();
         CameraManager.Instance.GoToCamera(ECameraType.Lawsuit);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
@@ -278,6 +294,7 @@ public class GameState_Newspaper : GameState
     {
         GameUIController.Instance.GoToScreen(EScreenType.Article);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
+        GameUIController.Instance.HideStats();
         gameManager.playerController.enabled = false;
         Newspaper.Instance.Hide();
         AudioManager.Instance.PlayEffect(ESoundEffect.PaperOpen1);
@@ -307,6 +324,7 @@ public class GameState_Staff : GameState
     public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
         GameUIController.Instance.GoToScreen(EScreenType.Staff);
+        GameUIController.Instance.ShowStats();
         CameraManager.Instance.GoToCamera(ECameraType.Phone);
         gameManager.playerController.enabled = false;
         gameManager.isHomeStateClean = false;
@@ -337,6 +355,7 @@ public class GameState_Results : GameState
     private ArticleOption selectedOption;
     public override void OnStateEnter(GameManager gameManager, GameStateMachine sm, bool isFirstEnter)
     {
+        GameUIController.Instance.HideStats();
         GameUIController.Instance.GoToScreen(EScreenType.Result);
         CameraManager.Instance.GoToCamera(ECameraType.Newspaper);
         gameManager.playerController.enabled = false;

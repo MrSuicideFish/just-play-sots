@@ -66,15 +66,15 @@ MonoBehaviour:
     before responding to the next article.
   staffRequirementWidth: 0.18
   costPerEmployee: 10
-  overtimeMultiplier: 2.5
-  RandomChanceLawsuit: 0.25
-  LawsuitPopularityLimit: 20
+  overtimeMultiplier: 1.9
+  RandomChanceLawsuit: 0.3
+  LawsuitPopularityLimit: 24
   LawsuitsTutorialTitle: Lawsuits
   LawsuitsTutorialContent: Your organization can be sued by others or employees.
     These lawsuits can be settled by using company funds or by having insurance cover
     the costs - but will increase insurance fees.
-  StarterInsuranceFee: 500
-  InsuranceMultiplier: 2.1
+  StarterInsuranceFee: 250
+  InsuranceMultiplier: 1.7
   InsuranceTutorialTitle: Lawsuit Insurance
   InsuranceTutorialContent: Insurance fees are owed after every article. Settling
     lawsuits with insurance will increase these fees over time.

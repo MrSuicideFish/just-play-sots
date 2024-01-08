@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c734337408e641ac8ef4a961000f02ac, type: 3}
-  m_Name: Lawsuit11
+  m_Name: Lawsuit17
   m_EditorClassIdentifier: 
-  id: Lawsuit11
-  header: Elderly Woman Sues for Negligence
-  content: Woman forgets why she is volunteering with {{OrgName}} and sues for misleading
-    her.
+  id: Lawsuit17
+  header: Fireworks Show Goes Awry
+  content: Several attendees at a recent outreach event were injured when the pyrotechnics
+    malfunctioned and ignited towards the crowd.
   party: 0
-  cost: 975
+  cost: 1900

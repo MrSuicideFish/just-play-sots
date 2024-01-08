@@ -8,7 +8,7 @@ public class Screen_Staff : GameScreen
 
     public Button button_hire, button_fire;
 
-    private int startedWith;
+    public int startedWith;
     public override EScreenType GetScreenType()
     {
         return EScreenType.Staff;
@@ -41,7 +41,7 @@ public class Screen_Staff : GameScreen
         AudioManager.Instance.PlayEffect(ESoundEffect.StaffFire);
         GameManager.Instance.Staff.Fire();
         text_count.text = GameManager.Instance.Staff.ToString();
-        button_fire.interactable = GameManager.Instance.Staff.Total >= 0;
+        button_fire.interactable = GameManager.Instance.Staff.Total > startedWith;
     }
 
     public void Continue()

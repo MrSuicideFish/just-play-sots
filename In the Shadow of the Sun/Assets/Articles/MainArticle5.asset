@@ -33,10 +33,10 @@ MonoBehaviour:
     staffCost: 6
     citizenEffect:
       donations: 3100
-      popularity: 16
+      popularity: -16
     politicianEffect:
       donations: 0
-      popularity: -16
+      popularity: 16
     companiesEffect:
       donations: 0
       popularity: 0

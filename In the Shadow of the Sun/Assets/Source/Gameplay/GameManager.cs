@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         StateMachine.GoToState(new Gamestate_Entry());
     }
 
-    public void EndGame(bool isWin, bool failByPop = false)
+    public void EndGame(bool isWin, bool failByPop = false, bool forceAlternativeWin = false)
     {
         if (gameHasEnded)
         {
@@ -90,9 +90,8 @@ public class GameManager : MonoBehaviour
         if (isWin)
         {
             StartCoroutine(endGameScreen.DoWin(
-                Popularity.Politician > Popularity.Civilian
-                && Popularity.Politician >= Popularity.Companies
-                    ? 1 : 0));
+                (Popularity.Politician > Popularity.Civilian
+                && Popularity.Politician >= Popularity.Companies) || forceAlternativeWin));
         }
         else
         {
@@ -106,6 +105,12 @@ public class GameManager : MonoBehaviour
     public void DoWinGame()
     {
         EndGame(true);
+    }
+    
+    [ContextMenu("Alternate Game Win")]
+    public void DoAltWinGame()
+    {
+        EndGame(true, false, true);
     }
 
     [ContextMenu("Game Fail (Popularity)")]

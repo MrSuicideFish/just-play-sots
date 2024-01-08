@@ -17,4 +17,4 @@ MonoBehaviour:
   content: Man unable to sleep while {{OrgName}}'s previous event was held in the
     city park.
   party: 0
-  cost: 100
+  cost: 520
