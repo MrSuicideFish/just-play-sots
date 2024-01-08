@@ -67,8 +67,8 @@ MonoBehaviour:
   staffRequirementWidth: 0.18
   costPerEmployee: 10
   overtimeMultiplier: 1.9
-  RandomChanceLawsuit: 0.25
-  LawsuitPopularityLimit: 20
+  RandomChanceLawsuit: 0.3
+  LawsuitPopularityLimit: 24
   LawsuitsTutorialTitle: Lawsuits
   LawsuitsTutorialContent: Your organization can be sued by others or employees.
     These lawsuits can be settled by using company funds or by having insurance cover
