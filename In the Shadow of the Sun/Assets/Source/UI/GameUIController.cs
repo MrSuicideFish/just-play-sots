@@ -17,6 +17,7 @@ public class GameUIController : MonoBehaviour
     }
 
     public GameMessageUI gameMessage;
+    public GameStatsUI gameStats;
 
     [SerializeField] private GameScreen[] screens;
     public void GoToScreen(EScreenType screen)
@@ -39,6 +40,16 @@ public class GameUIController : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void ShowStats()
+    {
+        gameStats.Show();
+    }
+
+    public void HideStats()
+    {
+        gameStats.Hide();
     }
 
     public void ShowGameMessage(
